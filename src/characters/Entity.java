@@ -51,6 +51,7 @@ public abstract class Entity {
 	//Constructor class
 	public Entity(String name) {
 		this.nome = name;
+
 	}
 	
 }

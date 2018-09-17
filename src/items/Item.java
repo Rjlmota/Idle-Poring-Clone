@@ -3,10 +3,10 @@ package items;
 public abstract class Item {
 
 	
-	String name;
-	String description;
-	String type;
-	
+	public String name;
+	public String description;
+	public String type;
+	public int id;
 	
 	
 	public void Use(Character Player) {
@@ -14,9 +14,10 @@ public abstract class Item {
 	}
 	
 	
-	public Item(String name, String type) {
+	public Item(String name, String type, String description) {
 		this.name = name;
 		this.type = type;
+		this.description = description;
 	}
 	
 }
