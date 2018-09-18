@@ -1,12 +1,12 @@
 package combat;
 
-import characters.Character;
-public class Combat {
+import characters.Personagem;
+public class Combate {
 	
 	
-	public boolean isHit(Character Atacante, Character Atacado) {
+	public boolean acerto(Personagem Atacante, Personagem Atacado) {
 		double chance = Math.random()*1 +0;
-		if((Atacado.getStats().miss / Atacante.getStats().hit) <= chance) {
+		if((Atacado.getAtributos().miss / Atacante.getAtributos().hit) <= chance) {
 			return true;
 		}
 		
@@ -14,7 +14,7 @@ public class Combat {
 	}
 	
 	
-	public boolean isCrit(Character Atacante){
+	public boolean crit(Character Atacante){
 		double chance = Math.random() *1 +0;
 		if(20 < chance) {
 			return true;
@@ -23,10 +23,10 @@ public class Combat {
 		}
 	}
 	
-	public int physicalDamageDealt(Character Atacante, Character Atacado) {
+	public int danoFisico(Personagem Atacante, Personagem Atacado) {
 		/*Code to determine the amount of damage to be removed of reciever's health pool */
 		int damage;
-		if(isHit(Atacante, Atacado)) {
+		if(acerto(Atacante, Atacado)) {
 			
 		}
 		

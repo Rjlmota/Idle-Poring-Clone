@@ -2,10 +2,10 @@ package characters;
 
 
 //A Class designed to hold standard attributes for all characters from the game
-public abstract class Entity {
+public abstract class Entidade {
 
-	public class atributos{
-		public int ataque = 2;
+	public class Atributos{
+		public int forca = 2;
 		public int vitalidade = 2;
 		public int destreza = 2;
 		public int inteligencia = 2;
@@ -13,8 +13,6 @@ public abstract class Entity {
 		public int agilidade = 2;
 		public int poder = 2;
 		
-	}
-	public class Stats{
 		public int hp = 2;
 		public int sp = 2;
 		public int atq = 2;
@@ -26,12 +24,16 @@ public abstract class Entity {
 		public int tenacity = 2;
 		public int miss = 2;
 		public int atkSpeed = 2;
+		
+		public Atributos() {
+			
+		}
 	}
 	
-	Stats stats = new Stats();
+	public Atributos atributos = new Atributos();
 	public String status = "Free";
-	public String nome;
-	public String race;
+	private String nome;
+	public String raca;
 	int nivel = 1;
 	
 	
@@ -40,8 +42,8 @@ public abstract class Entity {
 	}
 	
 	//This function returns the character's stats
-	public Stats getStats() {
-		return this.stats;
+	public Atributos getAtributos() {
+		return this.atributos;
 	}
 	
 	//This function returns the name of the character
@@ -49,7 +51,7 @@ public abstract class Entity {
 		return this.nome;
 	}
 	//Constructor class
-	public Entity(String name) {
+	public Entidade(String name) {
 		this.nome = name;
 
 	}

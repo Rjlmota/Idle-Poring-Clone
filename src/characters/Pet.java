@@ -1,9 +1,9 @@
 package characters;
 
-public class Pet extends Entity {
+public class Pet extends Entidade {
 
-	public Pet(String name) {
-		super(name);
+	public Pet(String nome) {
+		super(nome);
 		// TODO Auto-generated constructor stub
 	}
 

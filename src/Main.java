@@ -1,15 +1,16 @@
-import characters.Character;
+import characters.Personagem;
 import items.*;
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Character player = new Character("Rjlmota", "Male");
+		Personagem player = new Personagem("Rjlmota", "Male");
 		Item sword = new Sword("Longsword", "sword", "Just a sword that is long", 12, 10);
-		player.bag.addItem(sword);
+		player.mochila.adicionarItem(sword);
 		//System.out.println(player.getStats().atkSpeed);
-		player.bag.list();
+		player.mochila.listar();
 
+		System.out.println(player.getName());
 		
 	}
 
