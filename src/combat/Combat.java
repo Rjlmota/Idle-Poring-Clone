@@ -4,15 +4,20 @@ import characters.Entity;
 public class Combat {
 	
 	
-	public boolean hit(Entity Atacante, Entity Atacado) {
-		double chance = Math.random()*1 +0;
-		if((Atacado.getAttributes().miss / Atacante.getAttributes().hit) <= chance) {
+	public boolean hit(Entity attacker, Entity defender) {
+		int chance = (int)Math.random()*100 +0;
+		//ATTACKERHIT - DEFENDERFLEE
+		int precision = attacker.attributes.hit - defender.attributes.flee;
+		
+		if (precision >= 95) precision = 95;
+		else if (precision <0) precision = 0;
+		
+		if(chance <= precision){
 			return true;
 		}
-		
 		return false;
 	}
-	
+
 	
 	public boolean crit(Character Atacante){
 		double chance = Math.random() *1 +0;
