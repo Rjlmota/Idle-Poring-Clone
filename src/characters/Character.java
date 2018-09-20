@@ -4,23 +4,23 @@ import java.util.*;
 import items.*;
 
 
-public class Personagem extends Entidade{
+public class Character extends Entity{
 	
 
-	public class Mochila{
-		int capacidade = 40;
-		int usado = 0;
+	public class Bag{
+		int capacity = 40;
+		int used = 0;
 		ArrayList<Item> items = new ArrayList <Item>();
 		
 		
 		public void adicionarItem(Item item){
-			if(usado < capacidade) {
+			if(used < capacity) {
 				items.add(item);
-				usado++;
+				used++;
 			}
 		}
 		
-		public void deletarItem(Item item) {
+		public void deleteItem(Item item) {
 			for(Item i : items) {
 				if (i.id == item.id) {
 					items.remove(i);
@@ -29,24 +29,24 @@ public class Personagem extends Entidade{
 			
 		}
 		
-		public void listar() {
+		public void list() {
 			for(Item i : items) {
 				System.out.println("Name: " + i.name);
 				System.out.println("Description: " + i.description);
 			}
 		}
-		public Mochila() {
+		public Bag() {
 			
 		}
 	}
 	
 	
-	public Mochila mochila;
+	public Bag bag;
 	
-	public Personagem(String nome, String genero) {
-		super(nome);
-		this.gender = genero;
-		this.mochila = new Mochila();
+	public Character(String name, String gender) {
+		super(name);
+		this.gender = gender;
+		this.bag= new Bag();
 		// TODO Auto-generated constructor stub
 	}
 
