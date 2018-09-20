@@ -42,7 +42,7 @@ public abstract class Entity {
 	}
 	
 	//This function returns the character's stats
-	public Attributes getAtributos() {
+	public Attributes getAttributes() {
 		return this.attributes;
 	}
 	

@@ -13,14 +13,14 @@ public class Character extends Entity{
 		ArrayList<Item> items = new ArrayList <Item>();
 		
 		
-		public void adicionarItem(Item item){
+		public void addItem(Item item){
 			if(used < capacity) {
 				items.add(item);
 				used++;
 			}
 		}
 		
-		public void deleteItem(Item item) {
+		public void delItem(Item item) {
 			for(Item i : items) {
 				if (i.id == item.id) {
 					items.remove(i);
@@ -51,7 +51,7 @@ public class Character extends Entity{
 	}
 
 	String gender;
-	int experiencia;
+	int exp;
 	
 	
 	

@@ -1,8 +1,8 @@
 package combat;
 
 import java.util.Random;
-import characters.Personagem;
 
+import characters.Entity;
 
 
 public class Skill {
@@ -14,9 +14,9 @@ public class Skill {
 		
 	}
 	
-	void applyStatus(Effect effect, Character enemy) {
+	void applyStatus(Effect effect, Entity enemy) {
 		if(effect.name == "Stun") {
-			double random = Math.random() *1 + 0;
+			double random = Math.random()*1 + 0;
 			if(random < effect.chance){
 					enemy.status = "Stunned";
 			}	
