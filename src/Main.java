@@ -13,15 +13,17 @@ public class Main {
 		//System.out.println(player.getStats().atkSpeed);
 		player.bag.list();
 
-		System.out.println(player.attributes.hp);
-		player.updateHp(-100);
-		System.out.println(player.attributes.hp);
+		//System.out.println(player.attributes.hp);
+		//player.updateHp(-100);
+		//System.out.println(player.attributes.hp);
 		
 		Monster monster = new Monster("Poring");
-		System.out.println(monster.level);
-		monster.upLevel(1);
-		System.out.println(monster.level);
+		//System.out.println(monster.level);
+		//monster.upLevel(1);
+		//System.out.println(monster.level);
 		
+		player.upLevel(6);
+		monster.upLevel(4);
 		
 		Combat.turn(player, monster);
 		
