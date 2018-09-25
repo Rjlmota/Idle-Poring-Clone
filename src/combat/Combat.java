@@ -8,9 +8,9 @@ public abstract class Combat {
 		int turn_player = 0;
 		int turn_monster = 0;
 		int damage = 0;
-		while((player.attributes.hp > 0)||(monster.attributes.hp > 0)) {
-			System.out.println(player.getName() + ": " + player.attributes.hp);
-			System.out.println(monster.getName() + ": " + monster.attributes.hp);
+		System.out.println(player.getName() + ": " + player.attributes.hp);
+		System.out.println(monster.getName() + ": " + monster.attributes.hp);
+		while((player.attributes.hp > 0)&&(monster.attributes.hp > 0)) {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -18,40 +18,46 @@ public abstract class Combat {
 				e.printStackTrace();
 			}
 			turn_player += player.attributes.atkSpeed;
-			if (turn_player >= 10) {
-				turn_player -= 10;
+			if (turn_player >= 5) {
+				turn_player -= 5;
 				if (hit(player, monster)) {
-					damage = (int)Math.random()*100 +0;
-					System.out.println(player.getName() + " deu " + damage + " de dano em " + monster.getName() + "!");
-					monster.updateHp(-damage);
+					damage = player.attack(monster);
+					System.out.println("\t\t" + player.getName() + " deu " + damage + " de dano em " + monster.getName() + "!");
 				}else {
-					System.out.println(player.getName() + "errou!");
+					System.out.println("\t\t" + player.getName() + " errou!");
 				}
 			}
 			turn_monster += player.attributes.atkSpeed;
-			if (turn_monster >= 10) {
-				turn_monster -= 10;
+			if (turn_monster >= 5) {
+				turn_monster -= 5;
 				if (hit(player, monster)) {
-					damage = (int)Math.random()*100 +0;
-					System.out.println(monster.getName() + " deu " + damage + " de dano em " + player.getName() + "!");
-					player.updateHp(-damage);
+					damage = monster.attack(player);
+					System.out.println("\t\t" + monster.getName() + " deu " + damage + " de dano em " + player.getName() + "!");
 				}else {
-					System.out.println(player.getName() + "errou!");
+					System.out.println("\t\t" + monster.getName() + " errou!");
 				}
 			}
+			System.out.println(player.getName() + ": " + player.attributes.hp);
+			System.out.println(monster.getName() + ": " + monster.attributes.hp);
+		}
+		if (player.attributes.hp > 0) {
+			System.out.println(player.getName() + " ganhou!");
+		}else {
+			System.out.println(monster.getName() + " ganhou!");
 		}
 	}
 	
 	public static boolean hit(Entity attacker, Entity defender) {
 		double chance = Math.random()*1 +0;
 		//ATTACKERHIT - DEFENDERFLEE
-		int precision = attacker.getAttributes().hit - defender.getAttributes().flee;
-		int pool = attacker.getAttributes().hit + defender.getAttributes().flee;
-		double bet = precision/(double)pool;
-		if (bet >= 0.95) bet = 0.95;
-		else if (bet <0) bet = 0;
+		double precision = attacker.getAttributes().hit/defender.getAttributes().flee;
+			
+		//int pool = attacker.getAttributes().hit + defender.getAttributes().flee;
+		//double bet = precision/(double)pool;
+		if (precision >= 0.95) precision = 0.95;
+		else if (precision <=0) precision = 0.05;
 	
-		if(chance <= bet){
+		if(chance <= precision){
 			return true;
 		}
 		return false;
