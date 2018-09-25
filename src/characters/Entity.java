@@ -1,5 +1,6 @@
 package characters;
 
+import combat.Combat;
 
 //A Class designed to hold standard attributes for all characters from the game
 public abstract class Entity {
@@ -15,15 +16,15 @@ public abstract class Entity {
 		
 		public int hp = 200;
 		public int sp = 2;
-		public int atk = 2;
-		public int def = 2;
+		public int atk = 10;
+		public int def = 5;
 		public int atkM = 2;
 		public int defM = 2;
 		public int hit = 10;
 		public int crit=  2;
 		public int tenacity = 2;
 		public int flee = 5;
-		public int atkSpeed = 2;
+		public int atkSpeed = 3;
 		
 		public Attributes() {
 			
@@ -37,7 +38,17 @@ public abstract class Entity {
 	public int level = 1;
 	
 	
-	public void attack(Character target) {
+	public int attack(Entity target) {
+		
+		int damage = attributes.atk - target.attributes.def;
+		if(Combat.hit(this, target)){
+			System.out.println("DAMAGE: " + damage);
+			return damage;
+		}
+		else {
+			System.out.println("MISS");
+			return 0;
+		}
 		
 	}
 	
