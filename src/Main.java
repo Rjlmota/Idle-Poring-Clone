@@ -1,5 +1,6 @@
 import characters.Character;
 import characters.Monster;
+import combat.Combat;
 import items.*;
 
 public class Main {
@@ -21,16 +22,8 @@ public class Main {
 		monster.upLevel(1);
 		System.out.println(monster.level);
 		
-		while(true) {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			player.attack(monster);
-		}
 		
+		Combat.turn(player, monster);
 		
 		
 		
