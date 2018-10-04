@@ -4,7 +4,7 @@ import combat.Combat;
 import items.*;
 
 public class Main {
-
+	//Teste
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Character player = new Character("Rjlmota", "Male");
