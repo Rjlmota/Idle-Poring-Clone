@@ -6,6 +6,7 @@ import items.*;
 public class Main {
 	//Teste
 	//Teste 2
+	//Teste 3
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Character player = new Character("Rjlmota", "Male");
