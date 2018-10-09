@@ -1,0 +1,20 @@
+## MONSTER
+
+Monsters are initiated by blabla and have blabla
+Monster skills are defined by blabla
+
+
+
+
+## CHARACTER 
+
+Character has upgradable skills blabla
+Character dying function works like this
+
+
+## MAP
+
+Maps are initializes by clicking in the battle function and blabla
+
+
+## 
