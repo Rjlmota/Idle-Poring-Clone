@@ -1,9 +1,19 @@
 package characters;
 
-public class Monster extends Entity {
+import java.util.ArrayList;
+
+import combat.Skill;
+
+public class Monster extends Character {
 	
-	public Monster(String name){
-		super(name);
+	public Monster(String id, String name){
+		super(id, name);
 	}
+	
+	private ArrayList <Skill> Skills = new ArrayList<Skill>();
+	
+	
+	
+	
 	
 }

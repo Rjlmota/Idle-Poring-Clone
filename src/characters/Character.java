@@ -6,6 +6,77 @@ import characters.Attributes;
 
 public abstract class Character {
 	
-	Attributes attributes = new Attributes();
+	public String status = "free";
+	public Attributes attributes;
+	public String name;
+	int level = 1;
+	public Bag bag = new Bag();
+	public Character(String id, String name) {
+		this.attributes = new Attributes();
+		this.name = name;
+	}
+	
+	
+	public class Bag{
+		int capacity = 40;
+		int used = 0;
+		ArrayList<Item> items = new ArrayList <Item>();
+		
+		
+		public void addItem(Item item){
+			if(used < capacity) {
+				items.add(item);
+				used++;
+			}
+		}
+		
+		public void delItem(Item item) {
+			for(Item i : items) {
+				if (i.id == item.id) {
+					items.remove(i);
+				}
+			}
+			
+		}
+		
+		public void list() {
+			for(Item i : items) {
+				System.out.println("Name: " + i.name);
+				System.out.println("Description: " + i.description);
+			}
+		}
+		public Bag() {
+			
+		}
+}
+	
+	
+	public void upLevel(int level){
+		this.level += level;
+		this.attributes.atk += this.level*2;
+		this.attributes.hit += (int)this.level*1.5;
+		this.attributes.hp += this.level*3;
+		this.attributes.flee += this.level*2;
+	}
+
+	
+	public boolean isDead() {
+		if(this.attributes.hp <= 0)
+			return true;
+		else
+			return false;
+	}
+	
+	
+	public Attributes getAttributes() {
+		return this.attributes;
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	
+	
 
 }

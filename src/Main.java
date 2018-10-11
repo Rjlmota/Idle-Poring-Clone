@@ -1,4 +1,5 @@
 import characters.Character;
+import characters.Hero;
 import characters.Monster;
 import combat.Combat;
 import items.*;
@@ -9,7 +10,7 @@ public class Main {
 	//Teste 3
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Character player = new Character("Rjlmota", "Male");
+		Character player = new Hero("10", "Rjlmota");
 		Item sword = new Sword("Longsword", "sword", "Just a sword that is long", 12, 10);
 		player.bag.addItem(sword);
 		//System.out.println(player.getStats().atkSpeed);
@@ -19,7 +20,7 @@ public class Main {
 		//player.updateHp(-100);
 		//System.out.println(player.attributes.hp);
 		
-		Monster monster = new Monster("Poring");
+		Monster monster = new Monster("22", "Poring");
 		//System.out.println(monster.level);
 		//monster.upLevel(1);
 		//System.out.println(monster.level);

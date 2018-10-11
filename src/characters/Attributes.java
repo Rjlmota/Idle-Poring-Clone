@@ -1,9 +1,12 @@
 package characters;
-import combat.Combat;
+
 
 //A Class designed to hold standard attributes for all characters from the game
 public class Attributes {
 
+	
+	public int level = 1;
+	
 	public int strength = 2;
 	public int vitality = 2;
 	public int dexterity = 2;
@@ -30,16 +33,16 @@ public class Attributes {
 	
 	public void upLevel(int level){
 		this.level += level;
-		this.attributes.atk += this.level*2;
-		this.attributes.hit += (int)this.level*1.5;
-		this.attributes.hp += this.level*3;
-		this.attributes.flee += this.level*2;
+		this.atk += this.level*2;
+		this.hit += (int)this.level*1.5;
+		this.hp += this.level*3;
+		this.flee += this.level*2;
 	}
 	
 	public void updateHp(int damage){
-		this.attributes.hp += damage;
-		if (this.attributes.hp < 0) {
-			this.attributes.hp = 0;
+		this .hp += damage;
+		if (this .hp < 0) {
+			this .hp = 0;
 		}
 	}
 }

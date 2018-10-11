@@ -1,53 +1,69 @@
 package combat;
 
-import characters.Entity;
+import characters.Character;
 public abstract class Combat {
 	
+	
+	
+	
+	public static int attack(Character attacker, Character defender) {
+		if (attacker.getAttributes().hp > 0) {
+			int damage = attacker.getAttributes().atk - defender.getAttributes().def;
+			if(damage > 0){
+				defender.attributes.updateHp(-damage);
+				return damage;
+			}
+			else {
+				return 0;
+			}
+		}
+		return 0;
+}
 
-	public static void turn(Entity player, Entity monster) {
+	public static void turn(Character player, Character monster) {
 		int turn_player = 0;
 		int turn_monster = 0;
 		int damage = 0;
-		System.out.println(player.getName() + ": " + player.attributes.hp);
-		System.out.println(monster.getName() + ": " + monster.attributes.hp);
-		while((player.attributes.hp > 0)&&(monster.attributes.hp > 0)) {
+		System.out.println(player.getName() + ": " + player.getAttributes().hp);
+		System.out.println(monster.getName() + ": " + monster.getAttributes().hp);
+		while((player.getAttributes().hp > 0)&&(monster.getAttributes().hp > 0)) {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			turn_player += player.attributes.atkSpeed;
+			turn_player += player.getAttributes().atkSpeed;
 			if (turn_player >= 5) {
 				turn_player -= 5;
 				if (hit(player, monster)) {
-					damage = player.attack(monster);
+					damage = attack(player, monster);
 					System.out.println("\t\t" + player.getName() + " deu " + damage + " de dano em " + monster.getName() + "!");
 				}else {
 					System.out.println("\t\t" + player.getName() + " errou!");
 				}
 			}
-			turn_monster += player.attributes.atkSpeed;
+			turn_monster += player.getAttributes().atkSpeed;
 			if (turn_monster >= 5) {
 				turn_monster -= 5;
 				if (hit(player, monster)) {
-					damage = monster.attack(player);
+					damage = attack(monster, player);
 					System.out.println("\t\t" + monster.getName() + " deu " + damage + " de dano em " + player.getName() + "!");
 				}else {
 					System.out.println("\t\t" + monster.getName() + " errou!");
 				}
 			}
-			System.out.println(player.getName() + ": " + player.attributes.hp);
-			System.out.println(monster.getName() + ": " + monster.attributes.hp);
+			System.out.println(player.getName() + ": " + player.getAttributes().hp);
+			System.out.println(monster.getName() + ": " + monster.getAttributes().hp);
 		}
-		if (player.attributes.hp > 0) {
+		if (player.getAttributes().hp > 0) {
 			System.out.println(player.getName() + " ganhou!");
 		}else {
 			System.out.println(monster.getName() + " ganhou!");
 		}
 	}
 	
-	public static boolean hit(Entity attacker, Entity defender) {
+	public static boolean hit(Character attacker, Character defender) {
 		double chance = Math.random()*1 +0;
 		//ATTACKERHIT - DEFENDERFLEE
 		double precision = attacker.getAttributes().hit/defender.getAttributes().flee;
@@ -73,15 +89,7 @@ public abstract class Combat {
 		}
 	}
 	
-	public static int physDamage(Entity Atacante, Entity Atacado) {
-		/*Code to determine the amount of damage to be removed of reciever's health pool */
-		int damage;
-		if(hit(Atacante, Atacado)) {
-		}
-		
-		return 200;
-	}
-	
+
 	
 	
 
