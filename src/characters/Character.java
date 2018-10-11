@@ -10,12 +10,20 @@ public abstract class Character {
 	public Attributes attributes;
 	public String name;
 	int level = 1;
+	public int hp;
 	public Bag bag = new Bag();
-	public Character(String id, String name) {
-		this.attributes = new Attributes();
+	public Character(String id, String name) { 
+		this.attributes = new Attributes(id);
 		this.name = name;
+		this.hp = attributes.maxHp;
 	}
 	
+	public void updateHp(int damage){
+		this.hp += damage;
+		if (this.hp < 0) {
+			this.hp = 0;
+		}
+	}
 	
 	public class Bag{
 		int capacity = 40;
@@ -55,13 +63,13 @@ public abstract class Character {
 		this.level += level;
 		this.attributes.atk += this.level*2;
 		this.attributes.hit += (int)this.level*1.5;
-		this.attributes.hp += this.level*3;
-		this.attributes.flee += this.level*2;
+		this.hp += this.level*3;
+		this.attributes.evasion += this.level*2;
 	}
 
 	
 	public boolean isDead() {
-		if(this.attributes.hp <= 0)
+		if(this.hp <= 0)
 			return true;
 		else
 			return false;

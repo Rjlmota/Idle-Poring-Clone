@@ -7,10 +7,10 @@ public abstract class Combat {
 	
 	
 	public static int attack(Character attacker, Character defender) {
-		if (attacker.getAttributes().hp > 0) {
+		if (attacker.hp > 0) {
 			int damage = attacker.getAttributes().atk - defender.getAttributes().def;
 			if(damage > 0){
-				defender.attributes.updateHp(-damage);
+				defender.updateHp(-damage);
 				return damage;
 			}
 			else {
@@ -24,9 +24,9 @@ public abstract class Combat {
 		int turn_player = 0;
 		int turn_monster = 0;
 		int damage = 0;
-		System.out.println(player.getName() + ": " + player.getAttributes().hp);
-		System.out.println(monster.getName() + ": " + monster.getAttributes().hp);
-		while((player.getAttributes().hp > 0)&&(monster.getAttributes().hp > 0)) {
+		System.out.println(player.getName() + ": " + player.hp);
+		System.out.println(monster.getName() + ": " + monster.hp);
+		while((player.hp > 0)&&(monster.hp > 0)) {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -53,10 +53,10 @@ public abstract class Combat {
 					System.out.println("\t\t" + monster.getName() + " errou!");
 				}
 			}
-			System.out.println(player.getName() + ": " + player.getAttributes().hp);
-			System.out.println(monster.getName() + ": " + monster.getAttributes().hp);
+			System.out.println(player.getName() + ": " + player.hp);
+			System.out.println(monster.getName() + ": " + monster.hp);
 		}
-		if (player.getAttributes().hp > 0) {
+		if (player.hp > 0) {
 			System.out.println(player.getName() + " ganhou!");
 		}else {
 			System.out.println(monster.getName() + " ganhou!");
@@ -66,7 +66,7 @@ public abstract class Combat {
 	public static boolean hit(Character attacker, Character defender) {
 		double chance = Math.random()*1 +0;
 		//ATTACKERHIT - DEFENDERFLEE
-		double precision = attacker.getAttributes().hit/defender.getAttributes().flee;
+		double precision = attacker.getAttributes().hit/defender.getAttributes().evasion;
 			
 		//int pool = attacker.getAttributes().hit + defender.getAttributes().flee;
 		//double bet = precision/(double)pool;
