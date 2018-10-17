@@ -1,7 +1,12 @@
 package characters;
 
-public class Hero extends Character{
+public class Hero{
+	
+	public String name;
+	public Attributes attributes;
+	
 	public Hero(String id, String name) {
-		super(id, name);
+		this.name = name;
+		this.attributes = new Attributes(id);
 	}
 }
