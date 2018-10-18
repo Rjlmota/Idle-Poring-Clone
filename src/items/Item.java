@@ -8,10 +8,14 @@ public class Item {
 	public Attributes attributes;
 	public String description;
 	
+	public Item() {
+		this.attributes = new Attributes(1, 1, 1, 1, 1, 1);
+	}
+	
 	public Item(String name, String id) {
 		this.name = name;
 		this.id = id;
-		this.attributes = new Attributes("1");
+		this.attributes = new Attributes();
 	}
 	
 }

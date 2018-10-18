@@ -13,7 +13,7 @@ public abstract class Character {
 	public int hp;
 	public Bag bag = new Bag();
 	public Character(String id, String name) { 
-		this.attributes = new Attributes(id);
+		this.attributes = new Attributes();
 		this.name = name;
 		this.hp = attributes.maxHp;
 	}
