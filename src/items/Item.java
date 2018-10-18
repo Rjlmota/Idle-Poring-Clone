@@ -11,7 +11,7 @@ public class Item {
 	public Item(String name, String id) {
 		this.name = name;
 		this.id = id;
-		this.attributes = new Attributes("1");
+		this.attributes = new Attributes();
 	}
 	
 }
