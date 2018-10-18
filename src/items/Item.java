@@ -1,23 +1,16 @@
 package items;
+import characters.Attributes;
 
-public abstract class Item {
+public class Item {
 
-	
 	public String name;
-	public String description;
-	public String type;
-	public int id;
+	public String id;
+	public Attributes attributes;
 	
-	
-	public void Use(Character Player) {
-	//Function to update character's stats according to Items specifications
-	}
-	
-	
-	public Item(String name, String type, String description) {
+	public Item(String name, String id) {
 		this.name = name;
-		this.type = type;
-		this.description = description;
+		this.id = id;
+		this.attributes = new Attributes("1");
 	}
 	
 }

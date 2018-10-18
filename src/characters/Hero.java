@@ -1,4 +1,5 @@
 package characters;
+import items.Item;
 
 public class Hero{
 	
