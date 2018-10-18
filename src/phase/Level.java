@@ -25,6 +25,7 @@ public class Level {
 	
 	
 	private void nextLevel() {
+		System.out.println("Moving on to next level");
 		
 	}
 	
