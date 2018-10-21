@@ -7,7 +7,7 @@ import combat.Skill;
 public class Monster extends Character {
 	
 	public Monster(String id, String name){
-		super(id, name);
+		super(name);
 	}
 	
 	private ArrayList <Skill> Skills = new ArrayList<Skill>();

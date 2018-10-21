@@ -1,21 +1,17 @@
 package items;
+
 import characters.Attributes;
 
-public class Item {
+public class Item extends Attributes{
 
 	public String name;
 	public String id;
-	public Attributes attributes;
 	public String description;
-	
-	public Item() {
-		this.attributes = new Attributes(1, 1, 1, 1, 1, 1);
-	}
 	
 	public Item(String name, String id) {
 		this.name = name;
 		this.id = id;
-		this.attributes = new Attributes();
+		setRandomAttributes(0, 10);
 	}
 	
 }
