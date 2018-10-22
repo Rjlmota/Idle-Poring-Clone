@@ -41,4 +41,13 @@ public abstract class Attributes {
 		this.luck = rand.nextInt(high) + low;
 	}
 	
+	public void addAttributes(int str, int agi, int vit, int inte, int dex, int luck) {
+		this.str += str;
+		this.agi += agi;
+		this.vit += vit;
+		this.inte += inte;
+		this.dex += dex;
+		this.luck += luck; 
+	}
+	
 }

@@ -6,6 +6,8 @@ public abstract class Character extends Attributes{
 	
 	public String name;
 	
+	public int level;
+	
 	public int maxHp;
 	public int currentHp;
 	public int maxSp;
@@ -24,6 +26,7 @@ public abstract class Character extends Attributes{
 	
 	public Character(String name) {
 		this.name = name;
+		this.level = 1;
 		setAttributes(9, 9, 9, 9, 9, 9);
 	}
 	

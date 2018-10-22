@@ -1,8 +1,6 @@
-import characters.Character;
-import characters.Monster;
 import characters.Swordman;
 import combat.Combat;
-import items.*;
+import pseudointerface.Pseudointerface;
 
 public class Main {
 	//Teste
@@ -11,8 +9,9 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Swordman player = new Swordman("Alberto");
-		player.showAttributes();
+		Pseudointerface.showCharacterAttributes(player);
 		
 	}
+
 
 }

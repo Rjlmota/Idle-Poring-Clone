@@ -3,24 +3,10 @@ package characters;
 import items.Item;
 
 public class Swordman extends Character{
-
+	
 	public Item[] equipments = new Item[8];
 	
-	public int maxHp;
-	public int currentHp;
-	public int maxSp;
-	public int currentSp;
-	
-	public int atk;
-	public int def;
-	public int atkM;
-	public int defM;
-	public int hit;
-	public int evasion;
-	public int critic;
-	public int atkSpeed;
-	public int tenacity;
-	public int cast;
+	public int power;
 	
 	public Swordman(String name) {
 		super(name);
@@ -38,6 +24,8 @@ public class Swordman extends Character{
 		this.inte += equips[3];
 		this.dex += equips[4];
 		this.luck += equips[5];
+		
+		this.power += equips[6];
 		
 		this.maxHp = (4*this.str) + (16*this.vit);
 		this.currentHp = this.maxHp;			
@@ -57,7 +45,7 @@ public class Swordman extends Character{
 	}
 
 	public int[] equipsAttributes() {
-		int[] equips = new int[6];
+		int[] equips = new int[7];
 		
 		for (int i=0; i<8; i++) {
 				equips[0] += this.equipments[i].str;
@@ -66,30 +54,16 @@ public class Swordman extends Character{
 				equips[3] += this.equipments[i].inte;
 				equips[4] += this.equipments[i].dex;
 				equips[5] += this.equipments[i].luck;
+				equips[6] += this.equipments[i].power;
 		}
 
 		return equips;
 	}
 	
-	public void showAttributes() {
-		System.out.println("Max Hp: " + this.maxHp + " | Hp: " + this.currentHp);
-		System.out.println("Max Sp: " + this.maxSp + " | Sp: " + this.currentSp);
-		System.out.println("Strength: " + this.str);
-		System.out.println("Agility: " + this.agi);
-		System.out.println("Vitality: " + this.vit);
-		System.out.println("Intelligence: " + this.inte);
-		System.out.println("Dexterity: " + this.dex);
-		System.out.println("Luck: " + this.luck);
-		System.out.println("Attack: " + this.atk);
-		System.out.println("Defense: " + this.def);
-		System.out.println("Magical Attack: " + this.atkM);
-		System.out.println("Magical Defense: " + this.defM);
-		System.out.println("Hit: " + this.hit);
-		System.out.println("Evasion: " + this.evasion);
-		System.out.println("Critic: " + this.critic);
-		System.out.println("Attack Speed: " + this.atkSpeed);
-		System.out.println("Tenacity: " + this.tenacity);
-		System.out.println("Cast: " + this.cast);
+	public void upLevel(int str, int agi, int vit, int inte, int dex, int luck) {
+		this.level += 1;
+		this.addAttributes(str, agi, vit, inte, dex, luck);
+		updateAttributes(equipsAttributes());
 	}
 	
 }
