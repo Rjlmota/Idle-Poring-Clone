@@ -13,35 +13,7 @@ public class Swordman extends Character{
 		for (int i=0; i<8; i++) {
 			this.equipments[i] = new Item("Item " + Integer.toString(i), Integer.toString(i));
 		}
-		updateAttributes(equipsAttributes());
-	}
-	
-	public void updateAttributes(int[] equips) {
-		
-		this.str += equips[0];
-		this.agi += equips[1];
-		this.vit += equips[2];
-		this.inte += equips[3];
-		this.dex += equips[4];
-		this.luck += equips[5];
-		
-		this.power += equips[6];
-		
-		this.maxHp = (4*this.str) + (16*this.vit);
-		this.currentHp = this.maxHp;			
-		this.maxSp = (8*this.inte);
-		this.currentSp = this.maxSp;
-		
-		this.atk = (4*this.str);
-		this.def = (2*this.vit) + (this.dex);
-		this.atkM = 0;
-		this.defM = (2*this.vit) + (this.inte);
-		this.hit = (2*this.dex) + (this.luck);
-		this.evasion = (2*this.agi) + (this.luck);
-		this.critic = (2*this.luck);
-		this.atkSpeed = (2*this.agi);
-		this.tenacity = (2*this.vit);
-		this.cast = 0;
+		updateAttributes(this.str, equipsAttributes());
 	}
 
 	public int[] equipsAttributes() {
@@ -63,7 +35,7 @@ public class Swordman extends Character{
 	public void upLevel(int str, int agi, int vit, int inte, int dex, int luck) {
 		this.level += 1;
 		this.addAttributes(str, agi, vit, inte, dex, luck);
-		updateAttributes(equipsAttributes());
+		updateAttributes(this.str, equipsAttributes());
 	}
 	
 }

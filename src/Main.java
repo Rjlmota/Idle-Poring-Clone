@@ -9,7 +9,7 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Swordman player = new Swordman("Alberto");
-		Pseudointerface.showCharacterAttributes(player);
+		Pseudointerface.showAttributes(player);
 		
 	}
 
