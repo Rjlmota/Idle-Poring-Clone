@@ -1,6 +1,7 @@
-import characters.Swordman;
+import characters.Monster;
+import characters.Class;
 import combat.Combat;
-import pseudointerface.Pseudointerface;
+import pseudointerface.PInterface;
 
 public class Main {
 	//Teste
@@ -8,8 +9,14 @@ public class Main {
 	//Teste 3
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Swordman player = new Swordman("Alberto");
-		Pseudointerface.showAttributes(player);
+		Class player = new Class("Alberto", "1");
+		PInterface.showAttributes(player);
+		
+		Monster monster = new Monster("Monster 1");
+		PInterface.showAttributes(monster);
+		
+		Combat combat = new Combat(player, monster);
+		combat.startCombat();
 		
 	}
 

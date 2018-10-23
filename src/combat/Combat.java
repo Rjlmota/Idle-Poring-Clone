@@ -1,11 +1,108 @@
 package combat;
+import characters.Class;
+import characters.Monster;
 
-import characters.Character;
-public abstract class Combat {
+import java.util.Random;
+
+public class Combat {
+	
+	String p_name;
+	int p_currentHp;
+	int p_atkSpeed;
+	
+	String m_name;
+	int m_currentHp;
+	int m_atkSpeed;
+	
+	Boolean dealing_damage;
+	
+	public Combat(Class player, Monster monster) {
+		this.p_name = player.name;
+		this.p_currentHp = player.maxHp;
+		this.p_atkSpeed = player.atkSpeed;
+		
+		this.m_name = monster.name;
+		this.m_currentHp = monster.maxHp;	
+		this.m_atkSpeed = monster.atkSpeed;
+		
+		this.dealing_damage = false;
+		
+		System.out.println("\nCombat Starts!");
+		System.out.println(p_name + " - Hp: " + p_currentHp);
+		System.out.println(m_name + " - Hp: " + m_currentHp);
+		
+		startCombat();
+	}
+	
+	public void startCombat() {
+		
+		new Thread(playerTurn).start();
+		new Thread(monsterTurn).start();
+
+	}
+	
+	public Boolean combatIsOn() {
+		if ((p_currentHp > 0) && (m_currentHp > 0)) {
+			return true; 
+		}
+		return false;
+	}
+	
+	public int getMyTurn(int my_atkSpeed, int enemy_atkSpeed) {
+		//int my_turn = (my_atkSpeed*10000)/(my_atkSpeed + enemy_atkSpeed);
+		int my_turn = 20000 - my_atkSpeed;
+		return my_turn;
+	}
+	
+	private Runnable playerTurn = new Runnable() {
+		public void run() {
+			try {
+				Random rand = new Random();
+				int my_turn = getMyTurn(p_atkSpeed, m_atkSpeed);
+				int damage;
+				while (combatIsOn()) {
+					Thread.sleep(my_turn);
+					damage = rand.nextInt(500) + 100;
+					if (combatIsOn()) {
+						while (dealing_damage) {}
+						dealing_damage = true;
+						m_currentHp -= damage;
+						dealing_damage = false;
+						System.out.println("\n" + p_name + " dealt " + damage + " damage to " + m_name);
+						System.out.println(p_name + " - Hp: " + p_currentHp);
+						System.out.println(m_name + " - Hp: " + m_currentHp);
+					}
+				}
+			} catch (Exception e) {};
+		}
+	};
+	
+	private Runnable monsterTurn = new Runnable() {
+		public void run() {
+			try {
+				Random rand = new Random();
+				int my_turn = getMyTurn(m_atkSpeed, p_atkSpeed);
+				int damage;
+				while (combatIsOn()) {
+					Thread.sleep(my_turn);
+					damage = rand.nextInt(100) + 1;
+					if (combatIsOn()) {
+						while (dealing_damage) {}
+						dealing_damage = true;
+						m_currentHp -= damage;
+						dealing_damage = false;
+						System.out.println("\n" + m_name + " dealt " + damage + " damage to " + p_name);
+						System.out.println(p_name + " - Hp: " + p_currentHp);
+						System.out.println(m_name + " - Hp: " + m_currentHp);
+					}
+				}
+			} catch (Exception e) {};
+		}
+	};
 	
 	
 	
-	
+	/*
 	public static int attack(Character attacker, Character defender) {
 		if (attacker.hp > 0) {
 			int damage = attacker.getAttributes().atk - defender.getAttributes().def;
@@ -88,9 +185,5 @@ public abstract class Combat {
 			return false;
 		}
 	}
-	
-
-	
-	
-
+	*/
 }
