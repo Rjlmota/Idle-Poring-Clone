@@ -25,8 +25,6 @@ public class Combat {
 		this.m_currentHp = monster.maxHp;	
 		this.m_atkSpeed = monster.atkSpeed;
 		
-		this.dealing_damage = false;
-		
 		System.out.println("\nCombat Starts!");
 		System.out.println(p_name + " - Hp: " + p_currentHp);
 		System.out.println(m_name + " - Hp: " + m_currentHp);
@@ -49,8 +47,7 @@ public class Combat {
 	}
 	
 	public int getMyTurn(int my_atkSpeed, int enemy_atkSpeed) {
-		//int my_turn = (my_atkSpeed*10000)/(my_atkSpeed + enemy_atkSpeed);
-		int my_turn = 20000 - my_atkSpeed;
+		int my_turn = (my_atkSpeed*10000)/(my_atkSpeed + enemy_atkSpeed);
 		return my_turn;
 	}
 	
@@ -58,16 +55,12 @@ public class Combat {
 		public void run() {
 			try {
 				Random rand = new Random();
-				int my_turn = getMyTurn(p_atkSpeed, m_atkSpeed);
 				int damage;
 				while (combatIsOn()) {
-					Thread.sleep(my_turn);
+					Thread.sleep(getMyTurn(p_atkSpeed, m_atkSpeed));
 					damage = rand.nextInt(500) + 100;
 					if (combatIsOn()) {
-						while (dealing_damage) {}
-						dealing_damage = true;
 						m_currentHp -= damage;
-						dealing_damage = false;
 						System.out.println("\n" + p_name + " dealt " + damage + " damage to " + m_name);
 						System.out.println(p_name + " - Hp: " + p_currentHp);
 						System.out.println(m_name + " - Hp: " + m_currentHp);
@@ -81,16 +74,12 @@ public class Combat {
 		public void run() {
 			try {
 				Random rand = new Random();
-				int my_turn = getMyTurn(m_atkSpeed, p_atkSpeed);
 				int damage;
 				while (combatIsOn()) {
-					Thread.sleep(my_turn);
+					Thread.sleep(getMyTurn(m_atkSpeed, p_atkSpeed));
 					damage = rand.nextInt(100) + 1;
 					if (combatIsOn()) {
-						while (dealing_damage) {}
-						dealing_damage = true;
 						m_currentHp -= damage;
-						dealing_damage = false;
 						System.out.println("\n" + m_name + " dealt " + damage + " damage to " + p_name);
 						System.out.println(p_name + " - Hp: " + p_currentHp);
 						System.out.println(m_name + " - Hp: " + m_currentHp);
