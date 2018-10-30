@@ -23,6 +23,8 @@ public abstract class Character extends Attributes{
 	public int atkSpeed;
 	public int tenacity;
 	public int cast;
+
+	public String status;
 	
 	public Character(String name) {
 		this.name = name;
@@ -81,6 +83,13 @@ public abstract class Character extends Attributes{
 		this.atkSpeed = (2*t_agi);
 		this.tenacity = (2*t_vit);
 		this.cast = 0;
+	}
+	
+	
+	public boolean isDead() {
+		if(this.currentHp > 0)
+			return false;
+		return true;
 	}
 	
 }

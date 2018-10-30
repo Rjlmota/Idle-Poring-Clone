@@ -1,6 +1,8 @@
 package phase;
 import characters.Character;
 import characters.Monster;
+import combat.Combat;
+
 import java.util.*;
 
 public class Level {
@@ -29,26 +31,74 @@ public class Level {
 		
 	}
 	
-	public void start(Character Player) {
-		int iterator = (int) (Math.random()*1 + Monsters.size());
+	public void start(characters.Class Player) {
+		int iterator = (int) (Math.random()*Monsters.size() + 0);
 		Monster currentMonster = Monsters.get(iterator);
 		
+		int killCount = 0;
+		
+		System.out.println("Welcome to " + this.title);
+
+		
+		Combat combat = new Combat(Player, currentMonster);
+		combat.startCombat();
 		while(true) {
-			
-			if(currentMonster.isDead()) {
-				iterator = (int) (Math.random()*1 + Monsters.size());
-				currentMonster = Monsters.get(iterator);
-			}
-			
-			if(bossCall) 
-				currentMonster = boss;
-			
-			if(boss.isDead()) 
+			if(Player.isDead()) {
+				System.out.println("YOU DIED");
 				break;
+			}
+
+			if(currentMonster.isDead()) {
+					for(int i = 0; i < currentMonster.loot.size(); i++)
+						System.out.println("Loot: " + currentMonster.loot.get(i).name);
+						
+					currentMonster.loot.clear();
+					currentMonster.reset();
+					System.out.println("New Monster!");
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					iterator = (int)(Math.random()*Monsters.size() + 0);
+					currentMonster = Monsters.get(iterator);
+					killCount++;
+					if(killCount > 5)
+						bossCall = true;
+				
+				if(bossCall) { 
+					for(int i = 0; i < 5; i++) {					
+						System.out.println("-!-!-! BOSS !-!-!-!");
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					currentMonster = boss;
+				}
+				if(boss.isDead()) 
+					break;
+				
+				combat = new Combat(Player, currentMonster);
+				combat.startCombat();
 		
+			}
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
 	
+	if(Player.isDead()) {
+		System.out.println("Returning to Menu");
+		}else {
+			nextLevel();
 		}
-		
-	nextLevel();
 	}
 }

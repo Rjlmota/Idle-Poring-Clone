@@ -38,10 +38,19 @@ public class Class extends Character{
 		return equips;
 	}
 	//To DO: extend upLevel function to limit to 6 points per level.
-	public void upLevel(int str, int agi, int vit, int inte, int dex, int luck) {
-		this.level += 1;
-		this.addAttributes(str, agi, vit, inte, dex, luck);
-		updateClass();
+	public void upLevel(int levels) {
+		
+		for(int i = 0; i < levels; i++) {
+			this.level += 1;
+			int str  = (int) Math.pow(this.str,  0.7);
+			int agi  = (int) Math.pow(this.agi,  0.7);
+			int vit  = (int) Math.pow(this.vit,  0.7);
+			int inte = (int) Math.pow(this.inte, 0.7);
+			int dex  = (int) Math.pow(this.dex,  0.7);
+			int luck = (int) Math.pow(this.luck, 0.7);
+			this.addAttributes(str, agi, vit, inte, dex, luck);
+			this.updateAttributes();
+		}
 	}
 	
 	public void updateClass() {

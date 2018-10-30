@@ -47,7 +47,7 @@ public abstract class Attributes {
 		this.vit += vit;
 		this.inte += inte;
 		this.dex += dex;
-		this.luck += luck; 
+		this.luck += luck;
 	}
 	
 }

@@ -6,28 +6,35 @@ import java.util.Random;
 
 public class Combat {
 	
+	Class player;
+	Monster monster;
+	
 	String p_name;
-	int p_currentHp;
+	//int player.currentHp;
 	int p_atkSpeed;
 	
 	String m_name;
-	int m_currentHp;
+	//int monster.currentHp;
+	
 	int m_atkSpeed;
 	
 	Boolean dealing_damage;
 	
 	public Combat(Class player, Monster monster) {
 		this.p_name = player.name;
-		this.p_currentHp = player.maxHp;
+		//this.player.currentHp = player.maxHp;
 		this.p_atkSpeed = player.atkSpeed;
 		
+		this.player = player;
+		this.monster = monster;
+		
 		this.m_name = monster.name;
-		this.m_currentHp = monster.maxHp;	
+		//this.monster.currentHp = monster.maxHp;	
 		this.m_atkSpeed = monster.atkSpeed;
 		
 		System.out.println("\nCombat Starts!");
-		System.out.println(p_name + " - Hp: " + p_currentHp);
-		System.out.println(m_name + " - Hp: " + m_currentHp);
+		System.out.println(p_name + " - Hp: " + player.currentHp);
+		System.out.println(m_name + " - Hp: " + monster.currentHp);
 		
 		startCombat();
 	}
@@ -40,7 +47,7 @@ public class Combat {
 	}
 	
 	public Boolean combatIsOn() {
-		if ((p_currentHp > 0) && (m_currentHp > 0)) {
+		if ((player.currentHp > 0) && (monster.currentHp > 0)) {
 			return true; 
 		}
 		return false;
@@ -58,12 +65,21 @@ public class Combat {
 				int damage;
 				while (combatIsOn()) {
 					Thread.sleep(getMyTurn(p_atkSpeed, m_atkSpeed));
-					damage = rand.nextInt(500) + 100;
+					damage = (int) (player.atk *2 - monster.def*1.5);
+					if(damage < 0)
+						damage = 0;
 					if (combatIsOn()) {
-						m_currentHp -= damage;
+						monster.currentHp -= damage;
+						
+						if(monster.currentHp < 0)
+							monster.currentHp = 0;
+						
+						player.currentHp += player.vit;
+						if(player.currentHp > player.maxHp)
+							player.currentHp = player.maxHp;
 						System.out.println("\n" + p_name + " dealt " + damage + " damage to " + m_name);
-						System.out.println(p_name + " - Hp: " + p_currentHp);
-						System.out.println(m_name + " - Hp: " + m_currentHp);
+						System.out.println(p_name + " - Hp: " + player.currentHp);
+						System.out.println(m_name + " - Hp: " + monster.currentHp);
 					}
 				}
 			} catch (Exception e) {};
@@ -77,12 +93,16 @@ public class Combat {
 				int damage;
 				while (combatIsOn()) {
 					Thread.sleep(getMyTurn(m_atkSpeed, p_atkSpeed));
-					damage = rand.nextInt(100) + 1;
+					damage = (int) (monster.atk*2 - player.def*1.5);
+					if(damage < 0)
+						damage = 0;
 					if (combatIsOn()) {
-						m_currentHp -= damage;
+						player.currentHp -= damage;
+						if(player.currentHp < 0)
+							player.currentHp = 0;
 						System.out.println("\n" + m_name + " dealt " + damage + " damage to " + p_name);
-						System.out.println(p_name + " - Hp: " + p_currentHp);
-						System.out.println(m_name + " - Hp: " + m_currentHp);
+						System.out.println(p_name + " - Hp: " + player.currentHp);
+						System.out.println(m_name + " - Hp: " + monster.currentHp);
 					}
 				}
 			} catch (Exception e) {};
