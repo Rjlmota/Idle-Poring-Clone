@@ -39,7 +39,7 @@ public class Level {
 		
 		System.out.println("Welcome to " + this.title);
 
-		
+		//Factory to monster 
 		Combat combat = new Combat(Player, currentMonster);
 		combat.startCombat();
 		while(true) {
@@ -48,6 +48,11 @@ public class Level {
 				break;
 			}
 
+			if(boss.isDead()) {
+				System.out.println("Boss defeated");
+				break;
+			}
+			
 			if(currentMonster.isDead()) {
 					for(int i = 0; i < currentMonster.loot.size(); i++)
 						System.out.println("Loot: " + currentMonster.loot.get(i).name);
@@ -55,6 +60,12 @@ public class Level {
 					currentMonster.loot.clear();
 					currentMonster.reset();
 					System.out.println("New Monster!");
+					Player.currentHp = Player.maxHp;
+					
+					killCount++;
+					if(killCount > 5)
+						bossCall = true;
+					
 					try {
 						Thread.sleep(5000);
 					} catch (InterruptedException e1) {
@@ -64,9 +75,7 @@ public class Level {
 					
 					iterator = (int)(Math.random()*Monsters.size() + 0);
 					currentMonster = Monsters.get(iterator);
-					killCount++;
-					if(killCount > 5)
-						bossCall = true;
+					
 				
 				if(bossCall) { 
 					for(int i = 0; i < 5; i++) {					
@@ -80,15 +89,13 @@ public class Level {
 					}
 					currentMonster = boss;
 				}
-				if(boss.isDead()) 
-					break;
-				
+
 				combat = new Combat(Player, currentMonster);
 				combat.startCombat();
 		
 			}
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

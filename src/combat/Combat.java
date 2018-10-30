@@ -36,11 +36,11 @@ public class Combat {
 		System.out.println(p_name + " - Hp: " + player.currentHp);
 		System.out.println(m_name + " - Hp: " + monster.currentHp);
 		
-		startCombat();
+		//startCombat();
 	}
 	
 	public void startCombat() {
-		
+		// Reusable Thread
 		new Thread(playerTurn).start();
 		new Thread(monsterTurn).start();
 
@@ -105,6 +105,7 @@ public class Combat {
 						System.out.println(m_name + " - Hp: " + monster.currentHp);
 					}
 				}
+				System.out.println("Bicho is dead");
 			} catch (Exception e) {};
 		}
 	};
