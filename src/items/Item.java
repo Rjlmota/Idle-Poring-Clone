@@ -8,6 +8,8 @@ public class Item extends Attributes{
 	public String id;
 	public String description;
 	public int power;
+
+	
 	
 	public Item(String name, String id) {
 		this.name = name;
