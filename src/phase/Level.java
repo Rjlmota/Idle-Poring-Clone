@@ -58,6 +58,14 @@ public class Level {
 						System.out.println("Loot: " + currentMonster.loot.get(i).name);
 						
 					currentMonster.loot.clear();
+					
+					try {
+						Thread.sleep(3000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 					currentMonster.reset();
 					System.out.println("New Monster!");
 					Player.currentHp = Player.maxHp;
