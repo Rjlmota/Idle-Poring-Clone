@@ -2,18 +2,18 @@ package characters;
 
 public class Stats {
 	
-	private int maxHp;
-	private int maxSp;
-	private int atk;
-	private int def;
-	private int atkM;
-	private int defM;
-	private int hit;
-	private int evas;
-	private int crit;
-	private int speed;
-	private int ten;
-	private int cast;
+	private int maxHp; 	// 0
+	private int maxSp; 	// 1
+	private int atk; 	// 2
+	private int def; 	// 3
+	private int atkM; 	// 4
+	private int defM; 	// 5
+	private int hit; 	// 6
+	private int evas; 	// 7
+	private int crit; 	// 8
+	private int speed; 	// 9
+	private int ten; 	// 10
+	private int cast; 	// 11
 	
 	public Stats() {
 		this.maxHp = 0;

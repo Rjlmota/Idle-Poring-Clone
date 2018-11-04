@@ -21,8 +21,7 @@ public class Monster extends Entity {
 	public Monster(String name, int id){
 		super(name);
 		this.attr = new Attributes();
-		this.attr.setAttributes(9, 40);
-		this.stats.setStats(this.attr.getArrayAttributes());
+		this.stats = new Stats();
 		this.id = id;
 		//The id variable will determine the initial distribution and due to the exponential
 		//nature of the leveling system, the proportion should stay stable without much programming intervention.
@@ -39,7 +38,11 @@ public class Monster extends Entity {
 			double dice = Math.random()*1 + 0;
 			if (dice > 0.5)
 				loot.add(chestplate);
+		}else {
+			this.attr.setAttributes(9, 40);
 		}
+		this.stats.setStats(this.attr.getArrayAttributes());
+		
 	}
 	
 	//To DO: extend upLevel function to limit to 6 points per level.
