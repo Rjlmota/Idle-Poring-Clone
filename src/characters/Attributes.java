@@ -3,17 +3,19 @@ package characters;
 import java.util.Random;
 
 //A Class designed to hold standard attributes for all characters from the game
-public abstract class Attributes {
-	public int power;
+public class Attributes {
 	
-	public int str;
-	public int agi;
-	public int vit;
-	public int inte;
-	public int dex;
-	public int luck;
+	private int str;
+	private int agi;
+	private int vit;
+	private int inte;
+	private int dex;
+	private int luck;
 	
-	public void setAttributes() {
+	private int power;
+	
+	public Attributes() {
+		this.power = 0;
 		this.str = 0;
 		this.agi = 0;
 		this.vit = 0;
@@ -22,16 +24,21 @@ public abstract class Attributes {
 		this.luck = 0;		
 	}
 	
-	public void setAttributes(int str, int agi, int vit, int inte, int dex, int luck) {
-		this.str = str;
-		this.agi = agi;
-		this.vit = vit;
-		this.inte = inte;
-		this.dex = dex;
-		this.luck = luck;
+	public void setAttributes(int[] attributes) {
+		if (attributes.length != 6) {
+			throw new IllegalArgumentException();
+		}else {
+			this.str = attributes[0];
+			this.agi = attributes[1];
+			this.vit = attributes[2];
+			this.inte = attributes[3];
+			this.dex = attributes[4];
+			this.luck= attributes[5];
+			this.power = this.str + this.agi + this.vit + this.inte + this.dex + this.luck;
+		}
 	}
 	
-	public void setRandomAttributes(int low, int high) {
+	public void setAttributes(int low, int high) {
 		Random rand = new Random();
 		this.str = rand.nextInt(high) + low;
 		this.agi = rand.nextInt(high) + low;
@@ -39,15 +46,12 @@ public abstract class Attributes {
 		this.inte = rand.nextInt(high) + low;
 		this.dex = rand.nextInt(high) + low;
 		this.luck = rand.nextInt(high) + low;
+		this.power = this.str + this.agi + this.vit + this.inte + this.dex + this.luck;
 	}
 	
-	public void addAttributes(int str, int agi, int vit, int inte, int dex, int luck) {
-		this.str += str;
-		this.agi += agi;
-		this.vit += vit;
-		this.inte += inte;
-		this.dex += dex;
-		this.luck += luck;
+	public int[] getArrayAttributes() {
+		int[] attr = {this.str, this.agi, this.vit, this.inte, this.dex, this.luck, this.power};
+		return attr;
 	}
 	
 }

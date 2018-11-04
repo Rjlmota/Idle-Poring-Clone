@@ -2,20 +2,18 @@ package items;
 
 import characters.Attributes;
 
-public class Item extends Attributes{
+public class Item{
 
 	public String name;
 	public String id;
 	public String description;
-	public int power;
-
+	public Attributes attr;
 	
 	
-	public Item(String name, String id) {
+	public Item(String name) {
 		this.name = name;
-		this.id = id;
-		setRandomAttributes(0, 10);
-		this.power = this.str + this.agi + this.vit + this.inte + this.dex + this.luck;
+		this.attr = new Attributes();
+		this.attr.setAttributes(0, 9);
 	}
 		
 }
