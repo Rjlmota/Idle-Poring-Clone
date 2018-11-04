@@ -1,6 +1,6 @@
 package characters;
 
-public class Pet extends Character {
+public class Pet extends Entity {
 
 	public Pet(String id, String name) {
 		super(name);
