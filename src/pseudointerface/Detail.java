@@ -3,7 +3,7 @@ import characters.*;
 import characters.Class;
 import items.Item;
 
-public abstract class PInterface {
+public abstract class Detail {
 	
 	public static void showAttributes(Attributes attr_) {
 		int[] attr = attr_.getArrayAttributes();
@@ -34,7 +34,7 @@ public abstract class PInterface {
 		System.out.println("\tCast: " + stats[11]);
 	}
 	
-	public static void showCharacter(Class player) {
+	public static void showPlayer(Class player) {
 		System.out.println("Player: " + player.name);
 		System.out.println("Level: " + player.level);
 		showAttributes(player.attr);
@@ -42,6 +42,13 @@ public abstract class PInterface {
 		for (int i=0; i<8; i++) {
 			showItem(player.equipments[i]);
 		}
+	}
+	
+	public static void showMonster(Monster monster) {
+		System.out.println("Monster: " + monster.name);
+		System.out.println("Level: " + monster.level);
+		showAttributes(monster.attr);
+		showStats(monster.stats);
 	}
 	
 	public static void showItem(Item item) {
