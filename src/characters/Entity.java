@@ -1,4 +1,5 @@
 package characters;
+import properties.*;
 
 public abstract class Entity {
 	

@@ -1,114 +1,89 @@
 package combat;
 import characters.Class;
 import characters.Monster;
+import pseudointerface.CombatInterface;
 
-import java.util.Random;
+public abstract class Combat {
+	
+	public static void startCombat(Class player, Monster monster) {
+		int[] player_attr = player.stats.getArrayStats();
+		int[] monster_attr = monster.stats.getArrayStats();
+		
+		int player_hp = player_attr[0]; // currentHp
+		int monster_hp = monster_attr[0]; // currentHp
+		
+		int damage;
+		
+		System.out.println("Combat starts!");
+		
+		try {
+			CombatInterface.currentLife(player.name, player_hp, monster.name, monster_hp);
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}		
+		while(player_hp > 0 && monster_hp > 0) {
+			
+			if (player_attr[9] >= monster_attr[9]) {
+				damage = getDamage(player_attr[2], monster_attr[3]);
+				monster_hp -= damage;
+				CombatInterface.damage(player.name, monster.name, damage);
 
-public class Combat {
-	
-	Class player;
-	Monster monster;
-	
-	String p_name;
-	//int player.currentHp;
-	int p_atkSpeed;
-	
-	String m_name;
-	//int monster.currentHp;
-	
-	int m_atkSpeed;
-	
-	Boolean dealing_damage;
-	
-	public Combat(Class player, Monster monster) {
-		this.p_name = player.name;
-		//this.player.currentHp = player.maxHp;
-		this.p_atkSpeed = player.atkSpeed;
-		
-		this.player = player;
-		this.monster = monster;
-		
-		this.m_name = monster.name;
-		//this.monster.currentHp = monster.maxHp;	
-		this.m_atkSpeed = monster.atkSpeed;
-		
-		System.out.println("\nCombat Starts!");
-		System.out.println(p_name + " - Hp: " + player.currentHp);
-		System.out.println(m_name + " - Hp: " + monster.currentHp);
-		
-		//startCombat();
-	}
-	
-	public void startCombat() {
-		// Reusable Thread
-		new Thread(playerTurn).start();
-		new Thread(monsterTurn).start();
-
-	}
-	
-	public Boolean combatIsOn() {
-		if ((player.currentHp > 0) && (monster.currentHp > 0)) {
-			return true; 
-		}
-		return false;
-	}
-	
-	public int getMyTurn(int my_atkSpeed, int enemy_atkSpeed) {
-		int my_turn = (my_atkSpeed*10000)/(my_atkSpeed + enemy_atkSpeed);
-		return my_turn;
-	}
-	
-	private Runnable playerTurn = new Runnable() {
-		public void run() {
-			try {
-				Random rand = new Random();
-				int damage;
-				while (combatIsOn()) {
-					Thread.sleep(getMyTurn(p_atkSpeed, m_atkSpeed));
-					damage = (int) (player.atk *2 - monster.def*1.5);
-					if(damage < 0)
-						damage = 0;
-					if (combatIsOn()) {
-						monster.currentHp -= damage;
-						
-						if(monster.currentHp < 0)
-							monster.currentHp = 0;
-						
-						player.currentHp += player.vit;
-						if(player.currentHp > player.maxHp)
-							player.currentHp = player.maxHp;
-						System.out.println("\n" + p_name + " dealt " + damage + " damage to " + m_name);
-						System.out.println(p_name + " - Hp: " + player.currentHp);
-						System.out.println(m_name + " - Hp: " + monster.currentHp);
-					}
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
-			} catch (Exception e) {};
-		}
-	};
-	
-	private Runnable monsterTurn = new Runnable() {
-		public void run() {
-			try {
-				Random rand = new Random();
-				int damage;
-				while (combatIsOn()) {
-					Thread.sleep(getMyTurn(m_atkSpeed, p_atkSpeed));
-					damage = (int) (monster.atk*2 - player.def*1.5);
-					if(damage < 0)
-						damage = 0;
-					if (combatIsOn()) {
-						player.currentHp -= damage;
-						if(player.currentHp < 0)
-							player.currentHp = 0;
-						System.out.println("\n" + m_name + " dealt " + damage + " damage to " + p_name);
-						System.out.println(p_name + " - Hp: " + player.currentHp);
-						System.out.println(m_name + " - Hp: " + monster.currentHp);
-					}
+				
+				if (monster_hp > 0) {
+					damage = getDamage(monster_attr[2], player_attr[3]);
+					player_hp -= damage;
+					CombatInterface.damage(monster.name, player.name, damage);
+
 				}
-				System.out.println("Bicho is dead");
-			} catch (Exception e) {};
+
+			}else {
+				damage = getDamage(monster_attr[2], player_attr[3]);
+				player_hp -= damage;
+				CombatInterface.damage(monster.name, player.name, damage);
+				
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				if (player_hp > 0) {
+					damage = getDamage(player_attr[2], monster_attr[3]);
+					monster_hp -= damage;
+					CombatInterface.damage(player.name, monster.name, damage);
+				}
+			}
+
+			player_attr = player.stats.getArrayStats();
+			monster_attr = monster.stats.getArrayStats();
+			
+			try {
+				CombatInterface.currentLife(player.name, player_hp, monster.name, monster_hp);
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
-	};
+		
+		System.out.println("Combat ends!");
+
+	}
+	
+	
+	private static int getDamage(int atk, int def) {
+		int damage = (int) (atk *2 - def*1.5);
+		if (damage>=0) {
+			return damage;
+		}
+		return 0;
+	}
+};
 	
 	
 	
@@ -196,4 +171,3 @@ public class Combat {
 		}
 	}
 	*/
-}

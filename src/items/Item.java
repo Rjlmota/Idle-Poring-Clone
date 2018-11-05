@@ -1,6 +1,6 @@
 package items;
 
-import characters.Attributes;
+import properties.Attributes;
 
 public class Item{
 
@@ -13,7 +13,7 @@ public class Item{
 	public Item(String name) {
 		this.name = name;
 		this.attr = new Attributes();
-		this.attr.setAttributes(0, 9);
+//		this.attr.setAttributes(0, 9);
 	}
 		
 }

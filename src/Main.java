@@ -5,14 +5,23 @@ import java.util.ArrayList;
 import characters.Class;
 import combat.Combat;
 import phase.Level;
-import pseudointerface.PInterface;
+import pseudointerface.*;
 
 public class Main {
 	//Teste
 	//Teste 2
 	//Teste 3
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		Class player = new Class("Player", "1");
+		//DetailInterface.showPlayer(player);
+		
+		Monster monster = new Monster("Monster", 1);
+		//DetailInterface.showMonster(monster);
+		
+		Combat.startCombat(player, monster);
+		
+		/*
 		Class player = new Class("Alberto", "1");
 		PInterface.showAttributes(player);
 		player.upLevel(5);
@@ -48,7 +57,7 @@ public class Main {
 		
 		//Combat combat = new Combat(player, monster);
 		//combat.startCombat();
-		
+		*/
 	}
 
 

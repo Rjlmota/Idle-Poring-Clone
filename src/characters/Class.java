@@ -1,6 +1,7 @@
 package characters;
 
 import items.Item;
+import properties.*;
 
 public class Class extends Entity{
 	

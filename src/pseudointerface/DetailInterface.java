@@ -1,9 +1,10 @@
 package pseudointerface;
+import properties.*;
 import characters.*;
 import characters.Class;
 import items.Item;
 
-public abstract class Detail {
+public abstract class DetailInterface {
 	
 	public static void showAttributes(Attributes attr_) {
 		int[] attr = attr_.getArrayAttributes();

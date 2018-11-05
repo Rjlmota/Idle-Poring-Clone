@@ -1,7 +1,7 @@
 package characters;
 
 import java.util.ArrayList;
-
+import properties.*;
 import items.Item;
 
 public class Monster extends Entity {
