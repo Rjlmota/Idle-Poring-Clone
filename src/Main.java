@@ -14,12 +14,12 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Class player = new Class("Player", "1");
-		//DetailInterface.showPlayer(player);
+		DetailInterface.showPlayer(player);
 		
-		Monster monster = new Monster("Monster", 1);
+		//Monster monster = new Monster("Monster", 1);
 		//DetailInterface.showMonster(monster);
 		
-		Combat.startCombat(player, monster);
+		//Combat.startCombat(player, monster);
 		
 		/*
 		Class player = new Class("Alberto", "1");

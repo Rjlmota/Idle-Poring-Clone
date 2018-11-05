@@ -41,7 +41,7 @@ public class Monster extends Entity {
 		}else {
 			this.attr.setAttributes(9, 40);
 		}
-		this.stats.setStats(this.attr.getArrayAttributes());
+		this.stats.setStats(this.attr.getAttributes());
 		
 	}
 	

@@ -1,6 +1,8 @@
 package properties;
 
 import java.util.Random;
+import java.util.HashMap;
+import java.util.Map;
 
 //A Class designed to hold standard attributes for all characters from the game
 public class Attributes {
@@ -24,16 +26,16 @@ public class Attributes {
 		this.luck = 0;		
 	}
 	
-	public void setAttributes(int[] attributes) {
-		if (attributes.length != 6) {
+	public void setAttributes(int[] attr) {
+		if (attr.length != 6) {
 			throw new IllegalArgumentException();
 		}else {
-			this.str = attributes[0];
-			this.agi = attributes[1];
-			this.vit = attributes[2];
-			this.inte = attributes[3];
-			this.dex = attributes[4];
-			this.luck= attributes[5];
+			this.str = attr[0];
+			this.agi = attr[1];
+			this.vit = attr[2];
+			this.inte = attr[3];
+			this.dex = attr[4];
+			this.luck= attr[5];
 			this.power = this.str + this.agi + this.vit + this.inte + this.dex + this.luck;
 		}
 	}
@@ -49,8 +51,15 @@ public class Attributes {
 		this.power = this.str + this.agi + this.vit + this.inte + this.dex + this.luck;
 	}
 	
-	public int[] getArrayAttributes() {
-		int[] attr = {this.str, this.agi, this.vit, this.inte, this.dex, this.luck, this.power};
+	public Map<String,Integer> getAttributes() {
+		Map<String,Integer> attr = new HashMap<String,Integer>();
+	    attr.put("str", this.str);
+	    attr.put("agi", this.agi);
+	    attr.put("vit", this.vit);
+	    attr.put("int", this.inte);
+	    attr.put("dex", this.dex);
+	    attr.put("luk", this.luck);
+	    attr.put("power", this.power);
 		return attr;
 	}
 	

@@ -2,6 +2,10 @@ package characters;
 
 import items.Item;
 import properties.*;
+import java.util.HashMap;
+import java.util.Map;
+
+
 
 public class Class extends Entity{
 	
@@ -11,6 +15,8 @@ public class Class extends Entity{
 	public String id; // 1-Swordsman; 2-Wizard; 3-Archer
 	
 	public int power;
+	
+	private String[] index = {"str", "agi", "vit", "int", "dex", "luk", "power"};
 	
 	public Class(String name, String id) {
 		super(name);
@@ -26,24 +32,29 @@ public class Class extends Entity{
 	}
 
 	public void updateClass() {
-		int[] attr = this.attr.getArrayAttributes();
-		int[] equips = getArrayEquipAttributes();
-		int[] stats = new int[6];
+		Map<String,Integer> attr = this.attr.getAttributes();
+		Map<String,Integer> equips = getEquipAttributes();
+		Map<String,Integer> stats = new HashMap<String,Integer>();
 		
-		for (int i=0; i<6; i++) {
-			stats[i] = attr[i] + equips[i];
+		for (String key : attr.keySet()) {
+		    stats.put(key, attr.get(key) + equips.get(key));			
 		}
 		
 		this.stats.setStats(stats);
 	}
 	
-	public int[] getArrayEquipAttributes() {
-		int[] total = {0, 0, 0, 0, 0, 0};
-		int[] equip = new int[6];
+	public Map<String,Integer> getEquipAttributes() {
+		Map<String,Integer> equip ;
+		Map<String,Integer> total = new HashMap<String,Integer>();
+		
+		for (int i=0; i<7; i++) {
+		    total.put(index[i], 0);
+		}
+
 		for (int i=0; i<8; i++) {
-			equip = this.equipments[i].attr.getArrayAttributes();
-			for (int j=0; j<6; j++) {
-				total[j] += equip[j];
+			equip = this.equipments[i].attr.getAttributes();
+			for (String key : total.keySet()) {
+				total.put(key, total.get(key) + equip.get(key));		
 			}
 		}
 		return total;
