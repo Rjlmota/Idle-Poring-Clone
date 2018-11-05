@@ -1,4 +1,5 @@
 package combat;
+import java.util.Map;
 import characters.Class;
 import characters.Monster;
 import pseudointerface.CombatInterface;
@@ -6,11 +7,11 @@ import pseudointerface.CombatInterface;
 public abstract class Combat {
 	
 	public static void startCombat(Class player, Monster monster) {
-		int[] player_attr = player.stats.getArrayStats();
-		int[] monster_attr = monster.stats.getArrayStats();
+		Map<String,Integer> player_attr = player.stats.getStats();
+		Map<String,Integer> monster_attr = monster.stats.getStats();
 		
-		int player_hp = player_attr[0]; // currentHp
-		int monster_hp = monster_attr[0]; // currentHp
+		int player_hp = player_attr.get("maxHp"); // currentHp
+		int monster_hp = monster_attr.get("maxHp"); // currentHp
 		
 		int damage;
 		
@@ -24,8 +25,8 @@ public abstract class Combat {
 		}		
 		while(player_hp > 0 && monster_hp > 0) {
 			
-			if (player_attr[9] >= monster_attr[9]) {
-				damage = getDamage(player_attr[2], monster_attr[3]);
+			if (player_attr.get("spd") >= monster_attr.get("spd")) {
+				damage = getDamage(player_attr.get("atk"), monster_attr.get("def"));
 				monster_hp -= damage;
 				CombatInterface.damage(player.name, monster.name, damage);
 
@@ -36,14 +37,14 @@ public abstract class Combat {
 				}
 				
 				if (monster_hp > 0) {
-					damage = getDamage(monster_attr[2], player_attr[3]);
+					damage = getDamage(monster_attr.get("atk"), player_attr.get("def"));
 					player_hp -= damage;
 					CombatInterface.damage(monster.name, player.name, damage);
 
 				}
 
 			}else {
-				damage = getDamage(monster_attr[2], player_attr[3]);
+				damage = getDamage(monster_attr.get("atk"), player_attr.get("def"));
 				player_hp -= damage;
 				CombatInterface.damage(monster.name, player.name, damage);
 				
@@ -54,14 +55,14 @@ public abstract class Combat {
 				}
 				
 				if (player_hp > 0) {
-					damage = getDamage(player_attr[2], monster_attr[3]);
+					damage = getDamage(player_attr.get("atk"), monster_attr.get("def"));
 					monster_hp -= damage;
 					CombatInterface.damage(player.name, monster.name, damage);
 				}
 			}
 
-			player_attr = player.stats.getArrayStats();
-			monster_attr = monster.stats.getArrayStats();
+			player_attr = player.stats.getStats();
+			monster_attr = monster.stats.getStats();
 			
 			try {
 				CombatInterface.currentLife(player.name, player_hp, monster.name, monster_hp);
