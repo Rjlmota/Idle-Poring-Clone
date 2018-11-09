@@ -84,6 +84,10 @@ public abstract class Combat {
 		}
 		return 0;
 	}
+	
+	public Combat() {
+		
+	}
 };
 	
 	

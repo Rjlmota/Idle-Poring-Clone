@@ -10,7 +10,7 @@ public class Item{
 	public Attributes attr;
 	
 	
-	public Item(String name) {
+	public Item(String id, String name) {
 		this.name = name;
 		this.attr = new Attributes();
 		this.attr.setAttributes(0, 9);

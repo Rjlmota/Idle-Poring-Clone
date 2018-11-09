@@ -25,7 +25,7 @@ public class Class extends Entity{
 		this.attr.setAttributes(aux);
 		
 		for (int i=0; i<8; i++) {
-			this.equipments[i] = new Item("Item" + i);
+			this.equipments[i] = new Item("1", "Item" + i);
 		}
 		
 		updateClass();

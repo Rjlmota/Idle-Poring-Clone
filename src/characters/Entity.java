@@ -9,6 +9,7 @@ public abstract class Entity {
 	
 	public Attributes attr;
 	public Stats stats;
+	public String status;
 	
 	// private String status;
 	

@@ -13,9 +13,9 @@ public class Monster extends Entity {
 	int id; // Identifies the types of attributes distribution
 			// 1- Poring, 2- Ogre, 3-Gnome
 	
-	Item chestplate = new Item ("Really Cool Chestplate");
-	Item sword = new Item("Really Cool Sword");
-	Item boots = new Item("BoOtS");
+	Item chestplate = new Item ("1", "Really Cool Chestplate");
+	Item sword = new Item("2", "Really Cool Sword");
+	Item boots = new Item("3", "BoOtS");
 	
 	
 	public Monster(String name, int id){

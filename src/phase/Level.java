@@ -1,5 +1,5 @@
 package phase;
-import characters.Character;
+import characters.Entity;
 import characters.Monster;
 import combat.Combat;
 
@@ -40,8 +40,8 @@ public class Level {
 		System.out.println("Welcome to " + this.title);
 
 		//Factory to monster 
-		Combat combat = new Combat(Player, currentMonster);
-		combat.startCombat();
+		//Combat combat = new Combat(Player, currentMonster);
+		Combat.startCombat(Player, currentMonster);
 		while(true) {
 			if(Player.isDead()) {
 				System.out.println("YOU DIED");
