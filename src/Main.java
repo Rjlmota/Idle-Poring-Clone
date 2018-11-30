@@ -13,17 +13,17 @@ public class Main {
 	//Teste 3
 	public static void main(String[] args) {
 		
-		Class player = new Class("Player", "1");
-		DetailInterface.showPlayer(player);
+		//Class player = new Class("Player", "1");
+		//DetailInterface.showPlayer(player);
 		
 		//Monster monster = new Monster("Monster", 1);
 		//DetailInterface.showMonster(monster);
 		
 		//Combat.startCombat(player, monster);
 		
-		/*
+		
 		Class player = new Class("Alberto", "1");
-		PInterface.showAttributes(player);
+		//PInterface.showAttributes(player);
 		player.upLevel(5);
 		
 		Monster monster = new Monster("Poring", 1);
@@ -57,7 +57,7 @@ public class Main {
 		
 		//Combat combat = new Combat(player, monster);
 		//combat.startCombat();
-		*/
+	
 	}
 
 

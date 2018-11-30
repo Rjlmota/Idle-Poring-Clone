@@ -38,70 +38,56 @@ public class Level {
 		int killCount = 0;
 		
 		System.out.println("Welcome to " + this.title);
-
+		
 		//Factory to monster 
 		//Combat combat = new Combat(Player, currentMonster);
 		Combat.startCombat(Player, currentMonster);
 		while(true) {
-			if(Player.isDead()) {
-				System.out.println("YOU DIED");
-				break;
-			}
-
-			if(boss.isDead()) {
-				System.out.println("Boss defeated");
-				break;
-			}
-			
-			if(currentMonster.isDead()) {
-					for(int i = 0; i < currentMonster.loot.size(); i++)
-						System.out.println("Loot: " + currentMonster.loot.get(i).name);
-						
-					currentMonster.loot.clear();
+			   for(int i = 0; i < currentMonster.loot.size(); i++)
+					System.out.println("Loot: " + currentMonster.loot.get(i).name);
 					
+				currentMonster.loot.clear();
+				
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				//currentMonster.reset();
+				System.out.println("New Monster!");
+				
+				killCount++;
+				if(killCount > 5)
+					bossCall = true;
+				
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				iterator = (int)(Math.random()*Monsters.size() + 0);
+				currentMonster = Monsters.get(iterator);
+				
+			
+			if(bossCall) { 
+				for(int i = 0; i < 5; i++) {					
+					System.out.println("-!-!-! BOSS !-!-!-!");
 					try {
-						Thread.sleep(3000);
+						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
-					currentMonster.reset();
-					System.out.println("New Monster!");
-					Player.currentHp = Player.maxHp;
-					
-					killCount++;
-					if(killCount > 5)
-						bossCall = true;
-					
-					try {
-						Thread.sleep(5000);
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
-					iterator = (int)(Math.random()*Monsters.size() + 0);
-					currentMonster = Monsters.get(iterator);
-					
-				
-				if(bossCall) { 
-					for(int i = 0; i < 5; i++) {					
-						System.out.println("-!-!-! BOSS !-!-!-!");
-						try {
-							Thread.sleep(1000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-					currentMonster = boss;
 				}
-
-				combat = new Combat(Player, currentMonster);
-				combat.startCombat();
-		
+				currentMonster = boss;
 			}
+
+			Combat.startCombat(Player, currentMonster);
+	
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
@@ -109,11 +95,6 @@ public class Level {
 				e.printStackTrace();
 			}
 	}
-	
-	if(Player.isDead()) {
-		System.out.println("Returning to Menu");
-		}else {
-			nextLevel();
-		}
+
 	}
 }
