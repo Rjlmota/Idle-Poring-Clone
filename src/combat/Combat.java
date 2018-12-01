@@ -1,6 +1,7 @@
 package combat;
 import java.util.Map;
 import characters.Class;
+import characters.Entity;
 import characters.Monster;
 import pseudointerface.CombatInterface;
 
@@ -84,6 +85,18 @@ public abstract class Combat {
 		}
 		return 0;
 	}
+	
+	
+	private void checkSkills(Entity self, Entity target) {
+		/*
+		 * 
+		 * Checks  whether or not self has skills;
+		 * Checks each one of the skill's cooldown;
+		 * If they are available, the skill is used against target.
+		 *  obs: AoE Skills
+		 */
+	}
+	
 	
 	public Combat() {
 		

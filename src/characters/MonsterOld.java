@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import properties.*;
 import items.Item;
 
-public class Monster extends Entity {
-	
+public class MonsterOld extends Entity {
 	public Attributes attr;
 	public Stats stats;
 	
@@ -18,7 +17,7 @@ public class Monster extends Entity {
 	Item boots = new Item("3", "BoOtS");
 	
 	
-	public Monster(String name, int id){
+	public MonsterOld(String name, int id){
 		super(name);
 		this.attr = new Attributes();
 		this.stats = new Stats();
