@@ -3,6 +3,7 @@ import characters.MonsterFactory;
 import characters.playerclass.Swordman;
 import characters.ClassFactory;
 import characters.Entity;
+import phase.PhaseHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,6 +22,7 @@ public class Main {
 	// Teste 3
 	public static void main(String[] args) {
 
+
 		Scanner scan = new Scanner(System.in);
 		Map<Entity, Level> database = new HashMap();
 		String pause;
@@ -32,7 +34,16 @@ public class Main {
 			StartInterface.startGame(database);
 		}
 	
+		/*
+		PhaseHandler phase_handler = new PhaseHandler();
+		Entity player = ClassFactory.getClass("Swordman", "player");
 		
+		Active slash = new Active("slash", 100, 4, 0.9, "physical");
+		player.skillList.add(slash);
+
+		Buff harden = new Buff("harden", 15, 3, "def", 15);
+		player.buff_list.add(harden);
+		*/
 		
 		// Class player = new Class("Player", "1");
 		// DetailInterface.showPlayer(player);
@@ -75,19 +86,10 @@ public class Main {
 
 		// Class player = new Class("Player", "1");
 /*
-		Entity player = ClassFactory.getClass("Swordman", "player");
+
 		
-		Monster monster = MonsterFactory.getMonster("Poring");
-		Monster monster2 = MonsterFactory.getMonster("Ogre");
-		Monster boss = new Monster("Leader Poring");
 
-		ArrayList<Monster> Monsters = new ArrayList<Monster>();
 
-		Active slash = new Active("slash", 100, 4, 0.9, "physical");
-		player.skillList.add(slash);
-
-		Buff harden = new Buff("harden", 15, 3, "def", 15);
-		player.buff_list.add(harden);
 
 		Monsters.add(monster);
 		Monsters.add(monster2);
@@ -95,6 +97,7 @@ public class Main {
 
 		level.start(player);
 */		
+
 		//Combat combat = new Combat(player, monster);
 		//combat.startCombat();
 	/*

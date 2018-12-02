@@ -11,6 +11,8 @@ public class MonsterFactory {
 		if(name.equalsIgnoreCase("Ogre")) 
 			return new Ogre(name);
 
+		if(name.equalsIgnoreCase("GuardPoring"))
+			return new GuardPoring(name);
 		return null;
 	}	
 }

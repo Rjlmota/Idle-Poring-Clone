@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import phase.PhaseHandler;
 import characters.ClassFactory;
 import characters.Entity;
 import characters.Monster;
@@ -16,7 +17,7 @@ public abstract class StartInterface {
 	private static Scanner scan = new Scanner(System.in);
 	private static Entity player = null;
 	private static Level level = null;
-	
+	private static PhaseHandler phasehandler = new PhaseHandler();
 	public static void startGame(Map<Entity, Level> database) {
 		
 		Map<Entity, Level> current = new HashMap();
@@ -27,6 +28,7 @@ public abstract class StartInterface {
 		}
 		
 		selectPlayer(database);
+		phasehandler.playMap(player);
 		showMenu();
 		
 	}
@@ -55,7 +57,7 @@ public abstract class StartInterface {
 		
 		Entity player = createPlayer();
 		System.out.println("\nCharacter Created!\n");
-		Level level = createLevel();
+		Level level = phasehandler.map.get(0);
 		
 		Map<Entity, Level> game = new HashMap();
 		game.put(player, level);
@@ -65,6 +67,7 @@ public abstract class StartInterface {
 	}
 	
 	public static Entity createPlayer() {
+		phasehandler.initialize();
 		String name;
 		int job;
 		System.out.println("\nCreating your character!");
@@ -89,7 +92,7 @@ public abstract class StartInterface {
 		return player;
 
 	}
-	
+	/*
 	public static Level createLevel() {
 		
 		Monster monster = MonsterFactory.getMonster("Poring");
@@ -101,10 +104,10 @@ public abstract class StartInterface {
 		Monsters.add(monster);
 		Monsters.add(monster2);
 		
-		return new Level("Scarlet Hills", boss, Monsters);
+		return new Level("Scarlet Hills", boss, Monsters, 1);
 		
 	}
-	
+	*/
 	public static void showMenu() {
 		
 		int op = 0;
