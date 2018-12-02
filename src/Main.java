@@ -1,5 +1,6 @@
 import characters.Monster;
 import characters.MonsterFactory;
+import characters.playerclass.Swordman;
 import characters.ClassFactory;
 import characters.Entity;
 
@@ -64,6 +65,9 @@ public class Main {
 	//Class player = new Class("Player", "1");
 
 	Entity player = ClassFactory.getClass("Swordman", "player");
+	DetailInterface.showPlayer((Swordman) player);
+	PlayerInterface.levelUp(player);
+	DetailInterface.showPlayer((Swordman) player);
 	
 	Monster monster = MonsterFactory.getMonster("Poring");
 	Monster monster2 = MonsterFactory.getMonster("Ogre");
@@ -77,7 +81,7 @@ public class Main {
 	Monsters.add(monster2);
 	Level firstLevel = new Level("Scarlet Hills", boss, Monsters);
 	
-	firstLevel.start(player);
+	//firstLevel.start(player);
 
 	}
 

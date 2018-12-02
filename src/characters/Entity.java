@@ -12,6 +12,7 @@ public abstract class Entity {
 	public String name;
 	
 	public int level;
+	public int power;
 	
 	public Attributes attr;
 	public Stats stats;
@@ -22,8 +23,6 @@ public abstract class Entity {
 	//To DO: extend equipments.
 	public Item[] equipments = new Item[8];
 	
-	public int power;
-	
 	private String[] index = {"str", "agi", "vit", "int", "dex", "luk", "power"};
 	
 	
@@ -33,14 +32,18 @@ public abstract class Entity {
 		this.attr = new Attributes();
 		this.stats = new Stats();
 	}
-
-	public void handleLoot(ArrayList<Item> loot) {}
-	public ArrayList<Item> handleLoot() {return null;}
-		
-
 	
-
-	public void updateClass() {
+	public void levelUp(int[] up) {
+		Map<String,Integer> attr = this.attr.getAttributes();
+		for (int i=0; i<6; i++) {
+			up[i] += attr.get(index[i]);
+		}
+		this.attr.setAttributes(up);
+		updateStats();
+		this.level += 1;
+	}
+	
+	public void updateStats() {
 		Map<String,Integer> attr = this.attr.getAttributes();
 		Map<String,Integer> equips = getEquipAttributes();
 		Map<String,Integer> stats = new HashMap<String,Integer>();
@@ -69,5 +72,9 @@ public abstract class Entity {
 		}
 		return total;
 	}
+	
+	//Overwritten by subclass.
+	public void handleLoot(ArrayList<Item> loot) {}
+	public ArrayList<Item> handleLoot() {return null;}
 	
 }

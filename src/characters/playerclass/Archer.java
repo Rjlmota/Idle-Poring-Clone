@@ -1,11 +1,7 @@
 package characters.playerclass;
 
-import items.Item;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
+import items.Item;
 import characters.Bag;
 import characters.Entity;
 
@@ -15,11 +11,7 @@ public class Archer extends Entity{
 
 	
 	public Bag bag = new Bag();
-	
-	//private String[] index = {"str", "agi", "vit", "int", "dex", "luk", "power"};
-
-	public String id; // 1-Swordsman; 2-Wizard; 3-Archer
-	
+		
 	public Archer(String name) {
 		super(name);
 		int[] aux = {9, 9, 9, 9, 9, 9};
@@ -29,7 +21,7 @@ public class Archer extends Entity{
 			this.equipments[i] = new Item("1", "Item" + i, "Equipment");
 		}
 		
-		updateClass();
+		updateStats();
 	}
 
 	
