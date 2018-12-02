@@ -12,6 +12,7 @@ public class Monster extends Entity {
 	
 	public ArrayList <Item> loot = new ArrayList<Item>();
 	
+	protected int[] base_attr = new int[6];
 	
 	public Monster(String name) {
 		super(name);
@@ -29,6 +30,8 @@ public class Monster extends Entity {
 		}
 		return drop;
 	}
-
-
+	public void levelUpTo(int level) {
+		for(int i = 0; i < level; i++)
+			this.levelUp(base_attr);
+	}
 }

@@ -3,14 +3,14 @@ package characters.monsterTypes;
 import characters.Monster;
 
 
-public class Poring extends Monster {
+public class GuardPoring extends Monster {
 	
-	int[] aux = {2, 1, 3, 1, 2, 1};
+	int[] aux = {3, 1, 3, 2, 2, 2};
 	
-	public Poring(String name) {
+	public GuardPoring(String name) {
 		super(name);
 		// str - agi - vit - int - dex - luck
-		int[] attr = { 7, 5, 10, 2, 4, 5 };
+		int[] attr = { 8, 3, 12, 3, 6, 7 };
 		this.attr.setAttributes(attr);
 		this.base_attr = aux;
 		updateStats();
