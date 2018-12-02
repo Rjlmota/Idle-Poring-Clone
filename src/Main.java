@@ -1,9 +1,10 @@
 import characters.Monster;
 import characters.MonsterFactory;
+import characters.ClassFactory;
+import characters.Entity;
 
 import java.util.ArrayList;
 
-import characters.Class;
 import combat.Combat;
 import phase.Level;
 import pseudointerface.*;
@@ -60,8 +61,10 @@ public class Main {
 		//combat.startCombat();
 	*/
 		
-	Class player = new Class("Player", "1");
+	//Class player = new Class("Player", "1");
 
+	Entity player = ClassFactory.getClass("Swordman", "player");
+	
 	Monster monster = MonsterFactory.getMonster("Poring");
 	Monster monster2 = MonsterFactory.getMonster("Ogre");
 	Monster boss = new Monster("Leader Poring");
@@ -74,7 +77,7 @@ public class Main {
 	Monsters.add(monster2);
 	Level firstLevel = new Level("Scarlet Hills", boss, Monsters);
 	
-	firstLevel.start(player);
+	//firstLevel.start(player);
 
 	}
 

@@ -1,13 +1,12 @@
 package combat;
 import java.util.Map;
-import characters.Class;
 import characters.Entity;
 import characters.Monster;
 import pseudointerface.CombatInterface;
 
 public abstract class Combat {
 	
-	public static boolean startCombat(Class player, Monster monster) {
+	public static boolean startCombat(Entity player, Monster monster) {
 		Map<String,Integer> player_attr = player.stats.getStats();
 		Map<String,Integer> monster_attr = monster.stats.getStats();
 		
@@ -75,10 +74,9 @@ public abstract class Combat {
 			
 		System.out.println("Combat ends!");
 		if(monster_hp <= 0) {
-			player.collectLoot(monster.dropLoot());
+			player.handleLoot(monster.handleLoot());
 			return true;
-		}
-		else 
+		}else 
 			return false;
 	}
 	

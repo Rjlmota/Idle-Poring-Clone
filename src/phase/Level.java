@@ -31,7 +31,7 @@ public class Level {
 		
 	}
 	
-	public void start(characters.Class Player) {
+	public void start(Entity Player) {
 		int iterator = (int) (Math.random()*Monsters.size() + 0);
 		Monster currentMonster = Monsters.get(iterator);
 		

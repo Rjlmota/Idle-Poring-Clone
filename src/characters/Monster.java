@@ -3,8 +3,6 @@ package characters;
 import java.util.ArrayList;
 
 import items.Item;
-import properties.Attributes;
-import properties.Stats;
 
 public class Monster extends Entity {
 
@@ -22,8 +20,8 @@ public class Monster extends Entity {
 		// TODO Auto-generated constructor stub
 		}
 		
-	
-	public ArrayList <Item> dropLoot(){
+	@Override
+	public ArrayList <Item> handleLoot(){
 		ArrayList <Item> drop = new ArrayList<Item>();
 		for(Item item : loot) {
 			if(item.dropRate > Math.random()*1 + 0) {

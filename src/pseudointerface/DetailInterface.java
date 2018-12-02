@@ -1,7 +1,7 @@
 package pseudointerface;
 import properties.*;
 import characters.*;
-import characters.Class;
+import characters.playerclass.*;
 import items.Item;
 import java.util.Map;
 
@@ -36,7 +36,27 @@ public abstract class DetailInterface {
 		System.out.println("\tCast: " + stats.get("cast"));
 	}
 	
-	public static void showPlayer(Class player) {
+	public static void showPlayer(Swordman player) {
+		System.out.println("Player: " + player.name);
+		System.out.println("Level: " + player.level);
+		showAttributes(player.attr);
+		showStats(player.stats);
+		for (int i=0; i<8; i++) {
+			showItem(player.equipments[i]);
+		}
+	}
+	
+	public static void showPlayer(Archer player) {
+		System.out.println("Player: " + player.name);
+		System.out.println("Level: " + player.level);
+		showAttributes(player.attr);
+		showStats(player.stats);
+		for (int i=0; i<8; i++) {
+			showItem(player.equipments[i]);
+		}
+	}
+	
+	public static void showPlayer(Wizard player) {
 		System.out.println("Player: " + player.name);
 		System.out.println("Level: " + player.level);
 		showAttributes(player.attr);

@@ -1,31 +1,26 @@
-package characters;
+package characters.playerclass;
 
 import items.Item;
-import properties.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import characters.Bag;
+import characters.Entity;
 
 
-public class Class extends Entity{
+public class Archer extends Entity{
 	
 	//To DO: extend equipments.
 	public Item[] equipments = new Item[8];
 	
-	
 	public Bag bag = new Bag();
-	
-	public String id; // 1-Swordsman; 2-Wizard; 3-Archer
-	
-	public int power;
 	
 	private String[] index = {"str", "agi", "vit", "int", "dex", "luk", "power"};
 	
-	public Class(String name, String id) {
+	public Archer(String name) {
 		super(name);
-		this.id = id;
 		int[] aux = {9, 9, 9, 9, 9, 9};
 		this.attr.setAttributes(aux);
 		
@@ -65,7 +60,8 @@ public class Class extends Entity{
 		return total;
 	}
 	
-	public void collectLoot(ArrayList <Item> loot) {
+	@Override
+	public void handleLoot(ArrayList <Item> loot) {
 		for(Item item : loot) {
 			bag.addItem(item);
 		}

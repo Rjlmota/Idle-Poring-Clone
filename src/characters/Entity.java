@@ -1,4 +1,7 @@
 package characters;
+import java.util.ArrayList;
+
+import items.Item;
 import properties.*;
 
 public abstract class Entity {
@@ -20,4 +23,8 @@ public abstract class Entity {
 		this.stats = new Stats();
 	}
 	
+
+	public void handleLoot(ArrayList<Item> loot) {}
+	public ArrayList<Item> handleLoot() {return null;}
+		
 }
