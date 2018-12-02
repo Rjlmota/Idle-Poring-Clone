@@ -8,6 +8,7 @@ public class Item{
 	public String id;
 	public String description;
 	public Attributes attr;
+	public double dropRate;
 	
 	
 	public Item(String id, String name) {
