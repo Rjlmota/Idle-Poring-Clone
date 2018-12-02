@@ -1,4 +1,5 @@
 import characters.Monster;
+import characters.MonsterFactory;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ public class Main {
 		
 		//Combat.startCombat(player, monster);
 		
-		
+		/*
 		Class player = new Class("Alberto", "1");
 		//PInterface.showAttributes(player);
 		player.upLevel(5);
@@ -57,7 +58,11 @@ public class Main {
 		
 		//Combat combat = new Combat(player, monster);
 		//combat.startCombat();
+	*/
+		
+	Monster tesste = MonsterFactory.getMonster("Poring");
 	
+		
 	}
 
 
