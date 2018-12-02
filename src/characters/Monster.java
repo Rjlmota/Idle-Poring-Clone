@@ -13,10 +13,9 @@ public class Monster extends Entity {
 	public ArrayList <Item> loot = new ArrayList<Item>();
 	
 	
-	
 	public Monster(String name) {
 		super(name);
-		
+		this.setExp(50);
 		// TODO Auto-generated constructor stub
 		}
 		
@@ -33,5 +32,3 @@ public class Monster extends Entity {
 
 
 }
-
-

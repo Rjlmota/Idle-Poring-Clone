@@ -60,7 +60,7 @@ public class Main {
 		// Class player = new Class("Player", "1");
 
 		Entity player = ClassFactory.getClass("Swordman", "player");
-
+		
 		Monster monster = MonsterFactory.getMonster("Poring");
 		Monster monster2 = MonsterFactory.getMonster("Ogre");
 		Monster boss = new Monster("Leader Poring");

@@ -11,16 +11,15 @@ import properties.*;
 
 public abstract class Entity {
 
-	public String name;
+	private String name;
 
-	public int level;
-	public int power;
+	private int level;
+	private float exp;
 	
 	public Attributes attr;
 	public Stats stats;
 	public String status;
 
-	// private String status;
 
 	// To DO: extend equipments.
 	public Item[] equipments = new Item[8];
@@ -29,14 +28,16 @@ public abstract class Entity {
 	public ArrayList<Skill> skillList = new ArrayList<Skill>();
 	public ArrayList<Buff> buff_list = new ArrayList<Buff>();
 
-	private String[] index = { "str", "agi", "vit", "int", "dex", "luk", "power" };
+	private final String[] index = { "str", "agi", "vit", "int", "dex", "luk", "power" };
 
 	public Entity(String name) {
 		this.name = name;
 		this.level = 1;
+		this.exp = 0;
 		this.attr = new Attributes();
 		this.stats = new Stats();
 	}
+	
 	
 	public void levelUp(int[] up) {
 		Map<String,Integer> attr = this.attr.getAttributes();
@@ -77,6 +78,22 @@ public abstract class Entity {
 			}
 		}
 		return total;
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public int getLevel() {
+		return this.level;
+	}
+		
+	public float getExp() {
+		return this.exp;
+	}
+	
+	public void setExp(float exp) {
+		this.exp = exp;
 	}
 	
 	//Overwritten by subclass.

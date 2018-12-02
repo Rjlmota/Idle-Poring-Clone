@@ -21,7 +21,7 @@ public class Archer extends Entity {
 		updateStats();
 
 	}
-
+	
 	@Override
 	public void handleLoot(ArrayList<Item> loot) {
 		for (Item item : loot) {

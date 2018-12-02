@@ -18,4 +18,8 @@ public abstract class CombatInterface {
 		System.out.println();
 	}
 	
+	public static void gainExp(String name, float exp) {
+		System.out.println(name + " gained " + exp + " experience.");
+	}
+	
 }

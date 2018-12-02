@@ -37,8 +37,8 @@ public abstract class DetailInterface {
 	}
 	
 	public static void showPlayer(Swordman player) {
-		System.out.println("Player: " + player.name);
-		System.out.println("Level: " + player.level);
+		System.out.println("Player: " + player.getName());
+		System.out.println("Level: " + player.getLevel());
 		showAttributes(player.attr);
 		showStats(player.stats);
 		for (int i=0; i<8; i++) {
@@ -47,8 +47,8 @@ public abstract class DetailInterface {
 	}
 	
 	public static void showPlayer(Archer player) {
-		System.out.println("Player: " + player.name);
-		System.out.println("Level: " + player.level);
+		System.out.println("Player: " + player.getName());
+		System.out.println("Level: " + player.getLevel());
 		showAttributes(player.attr);
 		showStats(player.stats);
 		for (int i=0; i<8; i++) {
@@ -57,8 +57,8 @@ public abstract class DetailInterface {
 	}
 	
 	public static void showPlayer(Wizard player) {
-		System.out.println("Player: " + player.name);
-		System.out.println("Level: " + player.level);
+		System.out.println("Player: " + player.getName());
+		System.out.println("Level: " + player.getLevel());
 		showAttributes(player.attr);
 		showStats(player.stats);
 		for (int i=0; i<8; i++) {
@@ -67,8 +67,8 @@ public abstract class DetailInterface {
 	}
 	
 	public static void showMonster(Monster monster) {
-		System.out.println("Monster: " + monster.name);
-		System.out.println("Level: " + monster.level);
+		System.out.println("Monster: " + monster.getName());
+		System.out.println("Level: " + monster.getLevel());
 		showAttributes(monster.attr);
 		showStats(monster.stats);
 	}
