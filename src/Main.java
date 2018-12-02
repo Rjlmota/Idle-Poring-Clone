@@ -5,6 +5,9 @@ import characters.ClassFactory;
 import characters.Entity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 import combat.Active;
 import combat.Buff;
@@ -18,6 +21,19 @@ public class Main {
 	// Teste 3
 	public static void main(String[] args) {
 
+		Scanner scan = new Scanner(System.in);
+		Map<Entity, Level> database = new HashMap();
+		String pause;
+		
+		
+		while(true) {
+			System.out.println("Type anything and press ENTER to start.");
+			pause = scan.next();
+			StartInterface.startGame(database);
+		}
+	
+		
+		
 		// Class player = new Class("Player", "1");
 		// DetailInterface.showPlayer(player);
 
@@ -58,7 +74,7 @@ public class Main {
 		 */
 
 		// Class player = new Class("Player", "1");
-
+/*
 		Entity player = ClassFactory.getClass("Swordman", "player");
 		
 		Monster monster = MonsterFactory.getMonster("Poring");
@@ -75,10 +91,10 @@ public class Main {
 
 		Monsters.add(monster);
 		Monsters.add(monster2);
-		Level firstLevel = new Level("Scarlet Hills", boss, Monsters);
+		Level level = new Level("Scarlet Hills", boss, Monsters);
 
-		firstLevel.start(player);
-		
+		level.start(player);
+*/		
 		//Combat combat = new Combat(player, monster);
 		//combat.startCombat();
 	/*

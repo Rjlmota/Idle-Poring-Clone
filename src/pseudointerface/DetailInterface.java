@@ -36,32 +36,14 @@ public abstract class DetailInterface {
 		System.out.println("\tCast: " + stats.get("cast"));
 	}
 	
-	public static void showPlayer(Swordman player) {
+	public static void showPlayer(Entity player) {
 		System.out.println("Player: " + player.getName());
 		System.out.println("Level: " + player.getLevel());
 		showAttributes(player.attr);
 		showStats(player.stats);
 		for (int i=0; i<8; i++) {
-			showItem(player.equipments[i]);
-		}
-	}
-	
-	public static void showPlayer(Archer player) {
-		System.out.println("Player: " + player.getName());
-		System.out.println("Level: " + player.getLevel());
-		showAttributes(player.attr);
-		showStats(player.stats);
-		for (int i=0; i<8; i++) {
-			showItem(player.equipments[i]);
-		}
-	}
-	
-	public static void showPlayer(Wizard player) {
-		System.out.println("Player: " + player.getName());
-		System.out.println("Level: " + player.getLevel());
-		showAttributes(player.attr);
-		showStats(player.stats);
-		for (int i=0; i<8; i++) {
+			if (player.equipments[i] == null)
+				break;
 			showItem(player.equipments[i]);
 		}
 	}

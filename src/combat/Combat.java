@@ -18,7 +18,7 @@ public abstract class Combat {
 	public static Fighter fighter2 = new Fighter();
 	
 	
-	static int current_turn = 0;
+	public static int current_turn = 0;
 
 	public static boolean startCombat(Entity entity1, Entity entity2) {
 		
@@ -29,6 +29,7 @@ public abstract class Combat {
 		
 		System.out.println("Combat Starts!");
 		
+		current_turn = 0;
 		
 		do {
 		
@@ -63,6 +64,8 @@ public abstract class Combat {
 				sleep(500);
 				
 			}
+			
+			current_turn ++;
 			
 		}while(fighter1.stats.get("hp")>0 && fighter2.stats.get("hp")>0);
 		
