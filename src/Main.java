@@ -77,7 +77,7 @@ public class Main {
 	Monsters.add(monster2);
 	Level firstLevel = new Level("Scarlet Hills", boss, Monsters);
 	
-	//firstLevel.start(player);
+	firstLevel.start(player);
 
 	}
 
