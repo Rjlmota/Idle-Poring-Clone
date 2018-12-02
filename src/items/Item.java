@@ -9,12 +9,13 @@ public class Item{
 	public String description;
 	public Attributes attr;
 	public double dropRate;
+	public String type;
 	
-	
-	public Item(String id, String name) {
+	public Item(String id, String name, String type) {
 		this.name = name;
 		this.attr = new Attributes();
 		this.attr.setAttributes(0, 9);
+		this.type = type;
 	}
 		
 }

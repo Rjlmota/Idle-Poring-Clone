@@ -2,6 +2,8 @@ package characters;
 
 import items.Item;
 import properties.*;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +13,9 @@ public class Class extends Entity{
 	
 	//To DO: extend equipments.
 	public Item[] equipments = new Item[8];
+	
+	
+	public Bag bag = new Bag();
 	
 	public String id; // 1-Swordsman; 2-Wizard; 3-Archer
 	
@@ -25,7 +30,7 @@ public class Class extends Entity{
 		this.attr.setAttributes(aux);
 		
 		for (int i=0; i<8; i++) {
-			this.equipments[i] = new Item("1", "Item" + i);
+			this.equipments[i] = new Item("1", "Item" + i, "Equipment");
 		}
 		
 		updateClass();
@@ -59,5 +64,12 @@ public class Class extends Entity{
 		}
 		return total;
 	}
+	
+	public void collectLoot(ArrayList <Item> loot) {
+		for(Item item : loot) {
+			bag.addItem(item);
+		}
+	}
+	
 	
 }

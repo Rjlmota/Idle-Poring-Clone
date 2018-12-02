@@ -43,11 +43,6 @@ public class Level {
 		//Combat combat = new Combat(Player, currentMonster);
 		Combat.startCombat(Player, currentMonster);
 		while(true) {
-			   for(int i = 0; i < currentMonster.loot.size(); i++)
-					System.out.println("Loot: " + currentMonster.loot.get(i).name);
-					
-				currentMonster.loot.clear();
-				
 				try {
 					Thread.sleep(3000);
 				} catch (InterruptedException e) {
@@ -84,6 +79,13 @@ public class Level {
 					}
 				}
 				currentMonster = boss;
+				if(Combat.startCombat(Player, currentMonster)) {
+					System.out.println("END");
+					nextLevel();
+					break;
+					
+				}
+					
 			}
 
 			Combat.startCombat(Player, currentMonster);

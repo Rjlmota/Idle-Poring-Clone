@@ -7,7 +7,7 @@ import pseudointerface.CombatInterface;
 
 public abstract class Combat {
 	
-	public static void startCombat(Class player, Monster monster) {
+	public static boolean startCombat(Class player, Monster monster) {
 		Map<String,Integer> player_attr = player.stats.getStats();
 		Map<String,Integer> monster_attr = monster.stats.getStats();
 		
@@ -72,9 +72,14 @@ public abstract class Combat {
 				e.printStackTrace();
 			}
 		}
-		
+			
 		System.out.println("Combat ends!");
-
+		if(monster_hp <= 0) {
+			player.collectLoot(monster.dropLoot());
+			return true;
+		}
+		else 
+			return false;
 	}
 	
 	

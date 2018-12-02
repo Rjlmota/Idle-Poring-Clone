@@ -60,10 +60,22 @@ public class Main {
 		//combat.startCombat();
 	*/
 		
-	Monster tesste = MonsterFactory.getMonster("Poring");
-	
-		
-	}
+	Class player = new Class("Player", "1");
 
+	Monster monster = MonsterFactory.getMonster("Poring");
+	Monster monster2 = MonsterFactory.getMonster("Ogre");
+	Monster boss = new Monster("Leader Poring");
+	
+	ArrayList <Monster> Monsters = new ArrayList<Monster>();
+	
+
+	
+	Monsters.add(monster);
+	Monsters.add(monster2);
+	Level firstLevel = new Level("Scarlet Hills", boss, Monsters);
+	
+	firstLevel.start(player);
+
+	}
 
 }

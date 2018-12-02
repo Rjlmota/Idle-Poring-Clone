@@ -45,6 +45,15 @@ public class Bag {
 	}
 	
 	
+	public void addItem(Item item) {
+		if(item.type.equalsIgnoreCase("equipment"))
+			equipments.add(item);
+		else if(item.type.equalsIgnoreCase("consumable"))
+			consumables.add(item);
+		else if(item.type.equalsIgnoreCase("misc"))
+			misc.add(item);
+	}
+	
 	public Bag(){
 		
 	}

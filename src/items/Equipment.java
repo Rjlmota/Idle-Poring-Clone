@@ -3,7 +3,7 @@ package items;
 public class Equipment extends Item {
 
 	public Equipment(String id, String name) {
-		super(id, name);
+		super(id, name, "equipment");
 	}
 
 	void equip() {
