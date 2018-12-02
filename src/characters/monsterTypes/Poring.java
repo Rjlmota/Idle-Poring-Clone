@@ -8,5 +8,6 @@ public class Poring extends Monster{
 		//str - agi - vit - int - dex - luck
 		int[] attr = {7, 5, 10, 2, 4, 5};
 		this.attr.setAttributes(attr);
+		updateClass();
 	}
 }

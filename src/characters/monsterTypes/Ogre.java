@@ -8,6 +8,6 @@ public class Ogre extends Monster{
 		//str - agi - vit - int - dex - luck
 		int[] attr = {12, 3, 15, 1, 6, 3};
 		this.attr.setAttributes(attr);
-		
+		updateClass();
 	}
 }
