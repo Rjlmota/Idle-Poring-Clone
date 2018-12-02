@@ -3,7 +3,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
+import combat.Buff;
+import combat.Skill;
 import items.Item;
 import properties.*;
 
@@ -24,7 +25,13 @@ public abstract class Entity {
 	
 	public int power;
 	
+	
+	public ArrayList <Skill> skillList = new ArrayList<Skill>();
+	public ArrayList <Buff> buff_list = new ArrayList<Buff>();
+	
 	private String[] index = {"str", "agi", "vit", "int", "dex", "luk", "power"};
+	
+	
 	
 	
 	public Entity(String name) {

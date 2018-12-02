@@ -5,6 +5,8 @@ import characters.Entity;
 
 import java.util.ArrayList;
 
+import combat.Active;
+import combat.Buff;
 import combat.Combat;
 import phase.Level;
 import pseudointerface.*;
@@ -72,6 +74,11 @@ public class Main {
 	ArrayList <Monster> Monsters = new ArrayList<Monster>();
 	
 
+	Active slash = new Active("slash", 100, 4, 0.9, "physical");
+	player.skillList.add(slash);
+	
+	Buff harden = new Buff("harden", 15, 3, "def", 15);
+	player.buff_list.add(harden);
 	
 	Monsters.add(monster);
 	Monsters.add(monster2);

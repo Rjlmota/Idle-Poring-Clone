@@ -1,4 +1,6 @@
 package combat;
+import java.util.Map;
+
 import characters.Entity;
 
 /*
@@ -13,12 +15,17 @@ public class Skill {
 	
 	
 	String name;
-	
+	double accuracy;
+	int cooldown;
+	double last_usage = -100;
+	String type;
+		
 	class Effect{
 		String name;
 		String description;
+		String type;
 		double chance;
-		
+
 	}
 	
 	void applyStatus(Effect effect, Entity enemy) {
@@ -34,8 +41,19 @@ public class Skill {
 	String effectDescription;
 	int skillLevel;
 	
-	public Skill(String name) {
+	public Skill(String name, int cooldown_sec, double accuracy) {
 		this.name = name;
+		this.cooldown = cooldown_sec;
+		this.accuracy = accuracy;
 		
 	}
+	
+	public int useSkill(Entity target) {
+		return -1;
+	}
+	
+	public void useSkill(Map <String, Integer> attr) {
+		
+	}
+
 }
