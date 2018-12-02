@@ -14,12 +14,73 @@ public abstract class Combat {
 	static Map<String, Integer> player_stats;
 	static Map<String, Integer> monster_stats;
 
+	public static Fighter fighter1 = new Fighter();
+	public static Fighter fighter2 = new Fighter();
+	
+	
 	static int current_turn = 0;
 
-	public static boolean startCombat(Entity player, Entity monster) {
+	public static boolean startCombat(Entity entity1, Entity entity2) {
+		
+		fighter1.setFighter(entity1);
+		fighter2.setFighter(entity2);
+		
+		ArrayList<Fighter> order = new ArrayList();
+		
+		System.out.println("Combat Starts!");
+		
+		
+		do {
+		
+			CombatInterface.currentLife(fighter1.name, fighter1.stats.get("hp"), fighter2.name, fighter2.stats.get("hp"));
+			sleep(2000);
+			
+			if (fighter1.stats.get("spd") > fighter2.stats.get("spd")) {
+				order.add(fighter1);
+				order.add(fighter2);
+			}else {
+				order.add(fighter2);
+				order.add(fighter1);
+			}
+
+			for (int i=0; i<2; i++) {
+				boolean hit = isHit(order.get(0).stats.get("hit"), order.get(1).stats.get("hit"));
+				if (hit) {
+					
+					int damage = getDamage(order.get(0).stats.get("atk"), order.get(1).stats.get("def"));
+					order.get(1).stats.replace("hp", order.get(1).stats.get("hp") - damage);
+					CombatInterface.damage(order.get(0).name, order.get(1).name, damage);
+
+				}else {
+					
+					System.out.println("Missed!");
+					
+				}
+				
+				order.add(order.get(0));
+				order.remove(0);
+				
+				sleep(500);
+				
+			}
+			
+		}while(fighter1.stats.get("hp")>0 && fighter2.stats.get("hp")>0);
+		
+		if (fighter1.stats.get("hp") > 0) {
+			
+			if (entity2 instanceof Monster) {
+				gainExp(entity1, entity2);
+				entity1.handleLoot(entity2.handleLoot());
+			}
+			return true;
+		}
+		return false;
+		
+		/*	
+		
 		player_stats = player.stats.getStats();
 		monster_stats = monster.stats.getStats();
-
+		
 		int player_hp = player_stats.get("maxHp"); // currentHp
 		int monster_hp = monster_stats.get("maxHp"); // currentHp
 
@@ -125,6 +186,9 @@ public abstract class Combat {
 			return true;
 		}
 		return false;
+		
+		*/
+		
 	}
 	
 	private static boolean isHit(int hit, int eva) {
@@ -198,6 +262,14 @@ public abstract class Combat {
 		}
 	}
 
+	private static void sleep(int time) {
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public Combat() { }
 
 };

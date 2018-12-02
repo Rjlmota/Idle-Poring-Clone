@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class Stats {
 	
-	private int maxHp;
-	private int maxSp;
+	private int Hp;
+	private int Sp;
 	private int atk; 
 	private int def; 
 	private int atkM;
@@ -19,8 +19,8 @@ public class Stats {
 	private int cast;
 	
 	public Stats() {
-		this.maxHp = 0;
-		this.maxSp = 0;
+		this.Hp = 0;
+		this.Sp = 0;
 		this.atk = 0;
 		this.def = 0;
 		this.atkM = 0;
@@ -35,8 +35,8 @@ public class Stats {
 
 	public void setStats(Map<String,Integer> attr) {
 		
-		this.maxHp = 2*(attr.get("str")) + (16*attr.get("vit"));			
-		this.maxSp = (8*attr.get("int"));
+		this.Hp = 2*(attr.get("str")) + (16*attr.get("vit"));			
+		this.Sp = (8*attr.get("int"));
 		this.atk = (2*attr.get("str")) + (2*attr.get("dex"));
 		this.def = (2*attr.get("vit")) + (attr.get("dex"));
 		this.atkM = (3*attr.get("int"));
@@ -52,8 +52,8 @@ public class Stats {
 	
 	public Map<String,Integer> getStats() {
 		Map<String,Integer> stats = new HashMap<String,Integer>();
-		stats.put("maxHp", this.maxHp);
-		stats.put("maxSp", this.maxSp);
+		stats.put("hp", this.Hp);
+		stats.put("sp", this.Sp);
 		stats.put("atk", this.atk);
 	    stats.put("def", this.def);
 	    stats.put("atkM", this.atkM);
