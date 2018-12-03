@@ -1,6 +1,4 @@
-package characters.monsterTypes;
-
-import characters.Monster;
+package monsters;
 
 
 public class GuardPoring extends Monster {

@@ -2,15 +2,17 @@ package combat;
 
 import java.util.ArrayList;
 import java.util.Map;
-import characters.Entity;
+import properties.Entity;
+import skills.Buff;
+import skills.Skill;
 
 public class Fighter {
 	
 	public String name;
 	public Map<String,Integer> stats;
 	
-	public ArrayList <Skill> skillList = new ArrayList<Skill>(); 
-	public ArrayList <Buff> buffList = new ArrayList<Buff>(); 
+	public ArrayList <Skill> skillList = new ArrayList<Skill>();
+	public ArrayList <Buff> buffList = new ArrayList<Buff>();
 	public ArrayList <Buff> current_buffs = new ArrayList<Buff>(); 	
 	public Fighter() { }
 	

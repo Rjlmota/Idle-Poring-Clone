@@ -1,15 +1,12 @@
 package pseudointerface;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 import phase.PhaseHandler;
 import characters.ClassFactory;
-import characters.Entity;
-import characters.Monster;
-import characters.MonsterFactory;
+import properties.Entity;
 import phase.Level;
 
 public abstract class StartInterface {

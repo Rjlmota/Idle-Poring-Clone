@@ -1,7 +1,7 @@
 package phase;
 
-import characters.Entity;
-import characters.Monster;
+import properties.Entity;
+import monsters.Monster;
 import combat.Combat;
 
 import java.util.*;

@@ -1,4 +1,4 @@
-package combat;
+package skills;
 
 import java.util.Map;
 
@@ -16,7 +16,7 @@ public class Buff extends Skill {
 		this.buff = buff;
 		this.stat = stat;
 		this.duration = duration;
-		super.type = "passive";
+		super.setType("passive");
 
 	}
 
@@ -25,14 +25,14 @@ public class Buff extends Skill {
 			if(current_turn - turn_used > duration) {
 				active = false;
 				attr.put(this.stat, attr.get(stat) - buff);
-				System.out.println(this.name + "weared off");
+				System.out.println(getName() + "weared off");
 				return false;
 			}
 		}
 		
 		if(active == false) {
-			if(current_turn - turn_used > duration + cooldown) {
-				System.out.println(this.name + "has been used");
+			if(current_turn - turn_used > duration + getCooldown()) {
+				System.out.println(getName() + "has been used");
 				attr.put(this.stat, attr.get(stat) + buff);
 				this.turn_used = current_turn;
 				active = true;
@@ -40,4 +40,13 @@ public class Buff extends Skill {
 		}
 		return true;
 	}
+
+	public int getDuration(){
+		return this.duration;
+	}
+
+	public void setTurnUsed(int x){
+		this.turn_used = x;
+	}
+
 }

@@ -1,8 +1,6 @@
 package characters;
 
-import characters.playerclass.Archer;
-import characters.playerclass.Swordman;
-import characters.playerclass.Wizard;
+import properties.Entity;
 
 public class ClassFactory {
 

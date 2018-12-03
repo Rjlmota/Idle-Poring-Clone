@@ -1,8 +1,4 @@
-package combat;
-
-import combat.skillTypes.ArcherSkill;
-import combat.skillTypes.SwordsmanSkill;
-import combat.skillTypes.WizardSkill;
+package skills;
 
 public abstract class SkillGenerator {
 	

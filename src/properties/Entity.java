@@ -1,13 +1,12 @@
-package characters;
+package properties;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import combat.Buff;
-import combat.Skill;
+import skills.Buff;
+import skills.Skill;
 import items.Item;
-import properties.*;
 
 public abstract class Entity {
 

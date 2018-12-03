@@ -1,8 +1,4 @@
-package combat.skillTypes;
-
-import combat.Active;
-import combat.Buff;
-import combat.Skill;
+package skills;
 
 public class ArcherSkill {
 // nome - dano - cd - acc - tipo 

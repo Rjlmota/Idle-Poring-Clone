@@ -1,7 +1,7 @@
 package pseudointerface;
 
 import java.util.Scanner;
-import characters.Entity;
+import properties.Entity;
 
 public abstract class PlayerInterface {
 	

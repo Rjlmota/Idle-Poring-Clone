@@ -1,12 +1,11 @@
-package characters.playerclass;
+package characters;
 
 import java.util.ArrayList;
 import items.Item;
-import characters.Bag;
-import characters.Entity;
-import combat.Buff;
-import combat.Skill;
-import combat.SkillGenerator;
+import properties.Entity;
+import skills.Buff;
+import skills.Skill;
+import skills.SkillGenerator;
 
 
 public class Swordman extends Entity{

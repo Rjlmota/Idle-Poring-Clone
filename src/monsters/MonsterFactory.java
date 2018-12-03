@@ -1,6 +1,4 @@
-package characters;
-
-import characters.monsterTypes.*;
+package monsters;
 
 public class MonsterFactory {
 	

@@ -1,4 +1,6 @@
-package combat;
+package skills;
+
+import combat.Fighter;
 
 public class Active extends Skill {
 

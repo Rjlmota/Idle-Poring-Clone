@@ -1,7 +1,8 @@
-package combat;
+package skills;
 
 import java.util.Map;
 
+import combat.Fighter;
 import properties.Entity;
 
 /*
@@ -14,11 +15,11 @@ import properties.Entity;
 
 public class Skill {
 
-	protected String name;
+	private String name;
 	double accuracy;
-	int cooldown;
-	double last_usage = -100;
-	String type;
+	private int cooldown;
+	private double last_usage = -100;
+	private String type;
 
 	class Effect {
 		String name;
@@ -56,8 +57,28 @@ public class Skill {
 
 	}
 	
-	public String getName() {
+	public String getName(){
 		return this.name;
+	}
+
+	public int getCooldown(){
+		return this.cooldown;
+	}
+
+	public double getLastUsage(){
+		return this.last_usage;
+	}
+
+	public void setLastUsage(int x){
+		this.last_usage = x;
+	}
+
+	public String getType(){
+		return this.type;
+	}
+
+	public void setType(String type){
+		this.type = type;
 	}
 
 }

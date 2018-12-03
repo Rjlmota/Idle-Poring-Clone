@@ -2,9 +2,9 @@ package phase;
 
 import java.util.ArrayList;
 
-import characters.Entity;
-import characters.Monster;
-import characters.MonsterFactory;
+import properties.Entity;
+import monsters.Monster;
+import monsters.MonsterFactory;
 
 public class PhaseHandler {
 

@@ -1,18 +1,32 @@
 package items;
 
-public class Equipment extends Item {
+import properties.Attributes;
 
-	public Equipment(String id, String name) {
-		super(id, name, "equipment");
+public class Equipment {
+
+	private String name;
+	private String type;
+	private String subtype;
+	public Attributes attr;
+
+	public Equipment(String name, String type, String subtype, int[] attr){
+		this.name = name;
+		this.type = type;
+		this.subtype = subtype;
+		this.attr = new Attributes();
+		this.attr.setAttributes(attr);
 	}
 
-	void equip() {
-		
+	public String getName(){
+		return this.name;
 	}
 
-	
-	int durability;
-	int levelRequired;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-	
+	public String getType(){
+		return this.type;
+	}
+
+	public String getSubtype(){
+		return this.subtype;
+	}
+
 }

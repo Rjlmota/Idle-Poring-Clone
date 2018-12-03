@@ -2,17 +2,16 @@ package combat;
 
 import java.util.ArrayList;
 import java.util.Map;
-import characters.Entity;
-import characters.Monster;
+import properties.Entity;
+import monsters.Monster;
 import pseudointerface.CombatInterface;
 import pseudointerface.PlayerInterface;
+import skills.Buff;
+import skills.Skill;
 
 public abstract class Combat {
 
 	private static ArrayList<Buff> current_buffs = new ArrayList<Buff>();
-
-	static Map<String, Integer> player_stats;
-	static Map<String, Integer> monster_stats;
 
 	public static Fighter fighter1 = new Fighter();
 	public static Fighter fighter2 = new Fighter();
@@ -116,28 +115,27 @@ public abstract class Combat {
 		
 	}
 	
-	private static int checkSkills(Fighter self, Fighter target) {
+	private static void checkSkills(Fighter self, Fighter target) {
 		/*
 		 * Checks whether or not self has skills; Checks each one of the skill's
 		 * cooldown; If they are available, the skill is used against target. obs: AoE
 		 * Skills
 		 */
 		for (Skill skill : self.skillList) {
-			if (current_turn - skill.last_usage > skill.cooldown) {
-				skill.last_usage = current_turn;
+			if (current_turn - skill.getLastUsage() > skill.getCooldown()) {
+				skill.setLastUsage(current_turn);
 				System.out.println(self.name + " used " + skill.getName());
 				skill.useSkill(target);
 				
 			}
 
 		}
-		return 0;
 	}
 
 	private static void useBuffs(Fighter self) {
 		for (Buff buff : self.buffList) {
-			if (current_turn - buff.last_usage > buff.cooldown + buff.duration) {
-				buff.turn_used = current_turn;
+			if (current_turn - buff.getLastUsage() > buff.getCooldown() + buff.getDuration()) {
+				buff.setTurnUsed(current_turn);
 				self.current_buffs.add(buff);
 
 			}
