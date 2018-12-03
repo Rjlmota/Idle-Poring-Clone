@@ -89,6 +89,8 @@ public abstract class StartInterface {
 			player = ClassFactory.getClass("Wizard", name);
 		}
 		
+		System.out.println("Your first skill is: " + player.skillList.get(0).getName());
+		
 		return player;
 
 	}

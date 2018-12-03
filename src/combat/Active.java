@@ -15,17 +15,10 @@ public class Active extends Skill {
 	}
 
 	@Override
-	public int useSkill(Entity target) {
-		// Use more complex damage calculation
-		// this.last_usage = System.currentTimeMillis()/1000;
-
-		int delt_damage = raw_damage - target.stats.getStats().get("def");
-		System.out.println("DAMAGE: " + delt_damage);
-		if (delt_damage > 0)
-			return delt_damage;
-		else
-			return 0;
-
+	public void useSkill(Fighter target) {
+		int damage = raw_damage - target.stats.get("def");
+		if(damage < 0) damage = 0;
+		target.stats.replace("hp", target.stats.get("hp") - damage);
+		System.out.println("delt " + damage + " damage");
 	}
-
 }

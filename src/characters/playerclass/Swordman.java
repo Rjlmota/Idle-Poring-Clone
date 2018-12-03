@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import items.Item;
 import characters.Bag;
 import characters.Entity;
+import combat.Buff;
+import combat.Skill;
+import combat.SkillGenerator;
 
 
 public class Swordman extends Entity{
@@ -18,6 +21,14 @@ public class Swordman extends Entity{
 		for (int i=0; i<8; i++) {
 			this.equipments[i] = new Item("1", "Item" + i, "Equipment");
 		}
+		
+		
+		
+		Skill startSkill = SkillGenerator.generateSkill("Swordsman", "Slash");
+		this.skillList.add(startSkill);
+		
+		Buff startBuff = SkillGenerator.generateBuff("Swordsman", "Burning");
+		this.buff_list.add(startBuff);
 		
 		updateStats();
 	}

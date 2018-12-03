@@ -45,6 +45,11 @@ public abstract class Combat {
 			}
 
 			for (int i=0; i<2; i++) {
+				
+				checkSkills(order.get(0), order.get(1));
+				useBuffs(order.get(0));
+				checkBuffs(order.get(0));
+				
 				boolean hit = isHit(order.get(0).stats.get("hit"), order.get(1).stats.get("hit"));
 				if (hit) {
 					
@@ -111,7 +116,7 @@ public abstract class Combat {
 		
 	}
 	
-	private static int checkSkills(Entity self, Entity target) {
+	private static int checkSkills(Fighter self, Fighter target) {
 		/*
 		 * Checks whether or not self has skills; Checks each one of the skill's
 		 * cooldown; If they are available, the skill is used against target. obs: AoE
@@ -120,35 +125,32 @@ public abstract class Combat {
 		for (Skill skill : self.skillList) {
 			if (current_turn - skill.last_usage > skill.cooldown) {
 				skill.last_usage = current_turn;
-				System.out.println(self.getName() + " used " + skill.getName());
-				int damage = skill.useSkill(target);
-				System.out.println("delt " + damage + " damage");
-				return damage;
+				System.out.println(self.name + " used " + skill.getName());
+				skill.useSkill(target);
+				
 			}
 
 		}
 		return 0;
 	}
 
-	private static void useBuffs(Entity self) {
-		for (Buff buff : self.buff_list) {
-			System.out.println("Buff applied: " + buff.getName());
-			if (current_turn - buff.last_usage > buff.cooldown) {
+	private static void useBuffs(Fighter self) {
+		for (Buff buff : self.buffList) {
+			if (current_turn - buff.last_usage > buff.cooldown + buff.duration) {
 				buff.turn_used = current_turn;
-				current_buffs.add(buff);
+				self.current_buffs.add(buff);
 
 			}
 		}
 
 	}
 
-	private static void checkBuffs() {
-		for (Buff buff : current_buffs) {
-			if (current_turn - buff.turn_used > buff.duration) {
-				current_buffs.remove(buff);
-			} else {
-				buff.useSkill(player_stats);
-			}
+	private static void checkBuffs(Fighter self) {
+		boolean remove;
+		for (Buff buff : self.current_buffs) {
+				remove = buff.useSkill(self.stats, current_turn);
+				if(remove)
+					current_buffs.remove(buff); // Removed buff due to end of duration time.
 		}
 	}
 

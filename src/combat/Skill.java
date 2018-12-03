@@ -14,7 +14,7 @@ import characters.Entity;
 
 public class Skill {
 
-	private String name;
+	protected String name;
 	double accuracy;
 	int cooldown;
 	double last_usage = -100;
@@ -48,8 +48,8 @@ public class Skill {
 
 	}
 
-	public int useSkill(Entity target) {
-		return -1;
+	public void useSkill(Fighter target) {
+
 	}
 
 	public void useSkill(Map<String, Integer> attr) {
