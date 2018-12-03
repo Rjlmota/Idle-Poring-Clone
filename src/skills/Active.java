@@ -1,7 +1,5 @@
 package combat;
 
-import characters.Entity;
-
 public class Active extends Skill {
 
 	int raw_damage;

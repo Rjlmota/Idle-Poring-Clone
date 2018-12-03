@@ -2,8 +2,6 @@ package combat;
 
 import java.util.Map;
 
-import characters.Entity;
-
 public class Buff extends Skill {
 
 	int buff;

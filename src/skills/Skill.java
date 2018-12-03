@@ -2,7 +2,7 @@ package combat;
 
 import java.util.Map;
 
-import characters.Entity;
+import properties.Entity;
 
 /*
  * Skills will be an abstract form to help manage some skill types: Active, Passive, ?.
