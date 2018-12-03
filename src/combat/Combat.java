@@ -214,7 +214,7 @@ public abstract class Combat {
 		
 		CombatInterface.gainExp(player.getName(), exp);
 		
-		if (player.getExp() + exp >= 100) {
+		if (player.getExp() + exp >= 1000) {
 			float new_exp = player.getExp() + exp - 100;
 			player.setExp(exp);
 			PlayerInterface.levelUp(player);
