@@ -13,6 +13,11 @@ public class MonsterFactory {
 
 		if(name.equalsIgnoreCase("GuardPoring"))
 			return new GuardPoring(name);
-		return null;
+		
+		else
+			return new Boss(name);
+		
+		//return null;
+		
 	}	
 }

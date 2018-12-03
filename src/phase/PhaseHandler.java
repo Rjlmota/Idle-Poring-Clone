@@ -13,10 +13,10 @@ public class PhaseHandler {
 	Monster monster3 = MonsterFactory.getMonster("GuardPoring");
 	
 	
-	Monster boss = new Monster("Leader Poring");
-	Monster boss2 = new Monster("Pirate King");
-	Monster boss3 = new Monster("Flying Sausage");
-	Monster boss4 = new Monster("Claudomiro");
+	Monster boss = MonsterFactory.getMonster("Leader Poring");
+	Monster boss2 = MonsterFactory.getMonster("Pirate King");
+	Monster boss3 = MonsterFactory.getMonster("Flying Sausage");
+	Monster boss4 = MonsterFactory.getMonster("Claudomiro");
 	
 	ArrayList<Monster> monsters = new ArrayList<Monster>();
 	ArrayList<Monster> bosses = new ArrayList<Monster>();
