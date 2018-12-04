@@ -2,11 +2,16 @@ package pseudointerface;
 
 public abstract class CombatInterface {
 	
-	public static void damage(String atk_name, String def_name, int damage) {
-		System.out.println(atk_name + " dealt " + damage + " to " + def_name);
+	public static void showDamage(String name, int damage, boolean crit) {
+		if (crit) {
+			System.out.println(name + " dealt " + damage + " critic damage!");
+		}else {
+			System.out.println(name + " dealt " + damage + " of damage.");
+		}
+
 	}
 	
-	public static void currentLife(String atk_name, int atk_hp, String def_name, int def_hp) {
+	public static void showCurrentLife(String atk_name, int atk_hp, String def_name, int def_hp) {
 		if (atk_hp < 0) {
 			atk_hp = 0;
 		}
@@ -18,7 +23,7 @@ public abstract class CombatInterface {
 		System.out.println();
 	}
 	
-	public static void gainExp(String name, float exp) {
+	public static void showExpGain(String name, float exp) {
 		System.out.println(name + " gained " + exp + " experience.");
 	}
 	

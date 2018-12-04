@@ -4,37 +4,40 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import characters.Bag;
+import characters.Slot;
 import skills.Buff;
 import skills.Skill;
+import items.Equipment;
 import items.Item;
 
 public abstract class Entity {
 
-	private String name;
+	protected String name;
+	protected int level;
+	protected float exp;
 
-	private int level;
-	private float exp;
-	
-	public Attributes attr;
-	public Stats stats;
 	public String status;
+	public Bag bag = new Bag();
+	public Attributes attr = new Attributes();
+	public Stats stats = new Stats();
 
 
-	// To DO: extend equipments.
-	public Item[] equipments = new Item[8];
-
-
+	public Map<String, Slot> equips = new HashMap<String, Slot>();
 	public ArrayList<Skill> skillList = new ArrayList<Skill>();
 	public ArrayList<Buff> buff_list = new ArrayList<Buff>();
 
 	private final String[] index = { "str", "agi", "vit", "int", "dex", "luk", "power" };
+    private final String[] ref = {"Weapon", "Helmet", "BodyArmor", "LegArmor", "Gloves", "Boots", "Necklace", "Ring"};
 
 	public Entity(String name) {
 		this.name = name;
 		this.level = 1;
 		this.exp = 0;
-		this.attr = new Attributes();
-		this.stats = new Stats();
+		for (int i=0; i<8; i++) {
+			equips.put(ref[i], new Slot());
+		}
+		
 	}
 	
 	
@@ -50,11 +53,11 @@ public abstract class Entity {
 	
 	public void updateStats() {
 		Map<String,Integer> attr = this.attr.getAttributes();
-		Map<String,Integer> equips = getEquipAttributes();
+		Map<String,Integer> equips_attr = getEquipAttributes();
 		Map<String,Integer> stats = new HashMap<String,Integer>();
 
 		for (String key : attr.keySet()) {
-			stats.put(key, attr.get(key) + equips.get(key));
+			stats.put(key, attr.get(key) + equips_attr.get(key));
 		}
 
 		this.stats.setStats(stats);
@@ -68,12 +71,13 @@ public abstract class Entity {
 			total.put(index[i], 0);
 		}
 
-		for (int i = 0; i < 8; i++) {
-			if (equipments[i] == null)
-				break;
-			equip = this.equipments[i].attr.getAttributes();
-			for (String key : total.keySet()) {
-				total.put(key, total.get(key) + equip.get(key));
+		for (Slot slot : equips.values()) {
+			if (slot.getEquipment() != null) {
+				equip = slot.getEquipment().attr.getAttributes();
+				for (String key : total.keySet()) {
+					total.put(key, total.get(key) + equip.get(key));
+				}
+		
 			}
 		}
 		return total;
@@ -91,12 +95,10 @@ public abstract class Entity {
 		return this.exp;
 	}
 	
-	public void setExp(float exp) {
-		this.exp = exp;
-	}
-	
 	//Overwritten by subclass.
-	public void handleLoot(ArrayList<Item> loot) {}
-	public ArrayList<Item> handleLoot() {return null;}
+	public void handleLoot(Equipment loot) {}
+	public Equipment handleLoot() {return null;}
+	public void handleLoot(Item loot) {}
+	public Item handleloot() {return null;}
 
 }

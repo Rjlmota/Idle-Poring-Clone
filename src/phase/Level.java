@@ -1,6 +1,6 @@
 package phase;
 
-import properties.Entity;
+import characters.Hero;
 import monsters.Monster;
 import combat.Combat;
 
@@ -30,13 +30,13 @@ public class Level {
 
 	public boolean bossCall;
 
-	private void nextLevel(Entity player) {
+	private void nextLevel(Hero player) {
 		System.out.println("Moving on to next level");
 		this.next_level.start(player);
 
 	}
 
-	public void start(Entity player) {
+	public void start(Hero player) {
 		int iterator = (int) (Math.random() * Monsters.size() + 0);
 		Monster currentMonster = Monsters.get(iterator);
 

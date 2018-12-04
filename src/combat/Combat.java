@@ -1,16 +1,19 @@
 package combat;
 
 import java.util.ArrayList;
-import java.util.Map;
-import properties.Entity;
+import java.util.Random;
+
+import characters.Hero;
+import items.Equipment;
 import monsters.Monster;
 import pseudointerface.CombatInterface;
-import pseudointerface.PlayerInterface;
 import skills.Buff;
 import skills.Skill;
 
 public abstract class Combat {
 
+	private static Random rnd = new Random();
+	
 	private static ArrayList<Buff> current_buffs = new ArrayList<Buff>();
 
 	public static Fighter fighter1 = new Fighter();
@@ -19,12 +22,12 @@ public abstract class Combat {
 	
 	public static int current_turn = 0;
 
-	public static boolean startCombat(Entity entity1, Entity entity2) {
+	public static boolean startCombat(Hero hero, Monster monster) {
 		
-		fighter1.setFighter(entity1);
-		fighter2.setFighter(entity2);
+		fighter1.setFighter(hero);
+		fighter2.setFighter(monster);
 		
-		ArrayList<Fighter> order = new ArrayList();
+		ArrayList<Fighter> order = new ArrayList<Fighter>();
 		
 		System.out.println("Combat Starts!");
 		
@@ -32,7 +35,7 @@ public abstract class Combat {
 		
 		do {
 		
-			CombatInterface.currentLife(fighter1.name, fighter1.stats.get("hp"), fighter2.name, fighter2.stats.get("hp"));
+			CombatInterface.showCurrentLife(fighter1.name, fighter1.stats.get("hp"), fighter2.name, fighter2.stats.get("hp"));
 			sleep(2000);
 			
 			if (fighter1.stats.get("spd") > fighter2.stats.get("spd")) {
@@ -51,14 +54,14 @@ public abstract class Combat {
 				
 				boolean hit = isHit(order.get(0).stats.get("hit"), order.get(1).stats.get("hit"));
 				if (hit) {
-					
-					int damage = getDamage(order.get(0).stats.get("atk"), order.get(1).stats.get("def"));
+					boolean crit = isCrit(order.get(0).stats.get("crit"));
+					int damage = getDamage(order.get(0).stats.get("atk"), order.get(1).stats.get("def"), crit);
 					order.get(1).stats.replace("hp", order.get(1).stats.get("hp") - damage);
-					CombatInterface.damage(order.get(0).name, order.get(1).name, damage);
+					CombatInterface.showDamage(order.get(0).name, damage, crit);
 
 				}else {
 					
-					System.out.println("Missed!");
+					System.out.println(order.get(0).name + " missed!");
 					
 				}
 				
@@ -75,9 +78,11 @@ public abstract class Combat {
 		
 		if (fighter1.stats.get("hp") > 0) {
 			
-			if (entity2 instanceof Monster) {
-				gainExp(entity1, entity2);
-				entity1.handleLoot(entity2.handleLoot());
+			if (monster instanceof Monster) {
+				gainExp(hero, monster);
+				Equipment loot = monster.handleLoot();
+				if (loot!=null)
+					hero.handleLoot(loot);
 			}
 			return true;
 		}
@@ -86,49 +91,51 @@ public abstract class Combat {
 	}
 	
 	private static boolean isHit(int hit, int eva) {
-		if (hit >= eva) {
+		
+		int limit = eva/10;
+		if (rnd.nextInt(hit) > limit)
 			return true;
-		}
 		return false;
 	}
 	
-	private static int getDamage(int atk, int def) {
-		int damage = (int) (atk * 2 - def * 1.5);
-		if (damage >= 0) {
-			return damage;
-		}
-		return 0;
+	private static boolean isCrit(int crit) {
+		
+		int limit = 200;
+		if (rnd.nextInt(limit/4) + crit > limit/2 )
+			return true;
+		return false;
+	}
+	
+	private static int getDamage(int atk, int def, boolean crit) {
+		
+		
+		int limit;
+		if (crit)
+			limit = (int)(2*atk);
+		else
+			limit = (int)(2*atk - def*1.5);
+
+		if (limit <=0)
+			return rnd.nextInt(10);
+		return rnd.nextInt(limit) + (3*limit)/4;
 	}
 
-	private static void gainExp(Entity player, Entity monster) {
+	private static void gainExp(Hero player, Monster monster) {
 		float exp = (player.getLevel() / monster.getLevel()) * monster.getExp();
 		
-		CombatInterface.gainExp(player.getName(), exp);
-		
-		if (player.getExp() + exp >= 1000) {
-			float new_exp = player.getExp() + exp - 100;
-			player.setExp(exp);
-			PlayerInterface.levelUp(player);
-		}else {
-			player.setExp(player.getExp() + exp);
-		}
+		CombatInterface.showExpGain(player.getName(), exp);
+		player.gainExp(exp);
 		
 	}
 	
 	private static void checkSkills(Fighter self, Fighter target) {
-		/*
-		 * Checks whether or not self has skills; Checks each one of the skill's
-		 * cooldown; If they are available, the skill is used against target. obs: AoE
-		 * Skills
-		 */
+
 		for (Skill skill : self.skillList) {
 			if (current_turn - skill.getLastUsage() > skill.getCooldown()) {
 				skill.setLastUsage(current_turn);
 				System.out.println(self.name + " used " + skill.getName());
-				skill.useSkill(target);
-				
+				skill.useSkill(target);		
 			}
-
 		}
 	}
 
@@ -160,6 +167,4 @@ public abstract class Combat {
 		}
 	}
 	
-	public Combat() { }
-
 };

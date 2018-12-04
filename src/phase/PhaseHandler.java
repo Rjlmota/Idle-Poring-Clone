@@ -2,7 +2,7 @@ package phase;
 
 import java.util.ArrayList;
 
-import properties.Entity;
+import characters.Hero;
 import monsters.Monster;
 import monsters.MonsterFactory;
 
@@ -50,7 +50,7 @@ public class PhaseHandler {
 
 	}
 
-	public  void  playMap(Entity player) {
+	public  void  playMap(Hero player) {
 		map.get(0).start(player);
 
 	}

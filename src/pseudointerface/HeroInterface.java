@@ -1,14 +1,18 @@
 package pseudointerface;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import characters.Bag;
+import items.Equipment;
 import properties.Entity;
 
-public abstract class PlayerInterface {
+public abstract class HeroInterface {
 	
 	private static final String[] index = {"Strenght", "Agility", "Vitality", "Intelligency", "Dexterity", "Lucky"};
 
 	
-	public static void levelUp(Entity entity) {
+	public static int[] levelUp() {
 		Scanner scan = new Scanner(System.in);
 		int points = 5;
 		int[] up = {0, 0, 0, 0, 0, 0};
@@ -41,13 +45,12 @@ public abstract class PlayerInterface {
 			
 			
 			do {
-				System.out.println("\nConfirm? (y = Yes, n = No)");
-				confirm = scan.next();				
+				System.out.println("\nConfirm? (Yes or No)");
+				confirm = scan.next();
 			}while (!confirm.equalsIgnoreCase("yes") && !confirm.equalsIgnoreCase("no"));
 			
 			if (confirm.equalsIgnoreCase("yes")) {
-				entity.levelUp(up);
-				break;
+				return up;
 			}else{	
 				for (int j=0; j<6; j++) {
 					up[j] = 0;
@@ -60,4 +63,18 @@ public abstract class PlayerInterface {
 		}
 	}
 	
+	public static void showBag(Bag bag) {
+		
+		System.out.println("Equipments:");
+		ArrayList<Equipment> equips = bag.getEquipments();
+		if (equips.isEmpty()) {
+			System.out.println("Empty.");
+		}else {
+			for (Equipment equip : equips) {
+				DetailInterface.showEquipment(equip);
+			}
+		}
+	}	
+	
+
 }

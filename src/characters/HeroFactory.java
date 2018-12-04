@@ -1,10 +1,9 @@
 package characters;
 
-import properties.Entity;
+public class HeroFactory {
 
-public class ClassFactory {
-
-	public static Entity getClass(String job, String name) {
+	public static Hero getHero(String job, String name) {
+		
 		if (job.equalsIgnoreCase("Swordman"))
 			return new Swordman(name);
 
