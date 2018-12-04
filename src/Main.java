@@ -1,21 +1,15 @@
-import characters.Hero;
-import characters.HeroFactory;
-import combat.Combat;
-import monsters.Monster;
-import monsters.MonsterFactory;
-import properties.Entity;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
+import characters.Hero;
 import phase.Level;
-import pseudointerface.*;
+import pseudointerface.StartInterface;
 
 public class Main {
 	public static void main(String[] args) {
 
 
+		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		Map<Hero, Level> database = new HashMap<Hero, Level>();
 		int op;
@@ -34,20 +28,6 @@ public class Main {
 			}
 			
 		}
-/*
-		Hero player = HeroFactory.getHero("Swordman", "Alberto");
-		//DetailInterface.showPlayer(player);
-		
-		Monster monster = MonsterFactory.getMonster("Poring");
-		
-		Combat.startCombat(player, monster);
-		
-		monster = MonsterFactory.getMonster("Ogre");
-		
-		Combat.startCombat(player, monster);
-		
-		HeroInterface.showBag(player.bag);
-*/	
 	}
 
 }

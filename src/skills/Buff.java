@@ -1,7 +1,5 @@
 package skills;
 
-import java.util.Map;
-
 import combat.Fighter;
 
 public class Buff extends Skill {

@@ -1,7 +1,7 @@
 package skills;
 
 public class WizardSkill {
-// nome - dano - cd - acc - tipo 
+
 	public static Active generate(String name) {
 		if(name.equalsIgnoreCase("fireball")) {
 			return new Active("Fireball", 200, 10, 1, "magical");
@@ -14,7 +14,6 @@ public class WizardSkill {
 		return null;
 	}
 	
-	//String name, int buff, int duration, String stat, int cooldown_sec
 	public static Buff generateBuff(String name) {
 		if(name.equalsIgnoreCase("Wisdom")) {
 			return new Buff("Wisdom", 20, 2, "spd", 5);

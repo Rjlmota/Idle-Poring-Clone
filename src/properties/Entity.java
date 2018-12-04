@@ -8,7 +8,6 @@ import characters.Bag;
 import characters.Slot;
 import skills.Active;
 import skills.Skill;
-import items.Equipment;
 import items.Item;
 
 public abstract class Entity {
@@ -25,10 +24,6 @@ public abstract class Entity {
 
 	public Map<String, Slot> equips = new HashMap<String, Slot>();
 	public ArrayList<Skill> skillList = new ArrayList<Skill>();
-	//public ArrayList<Buff> buff_list = new ArrayList<Buff>();
-	
-	
-	//String name, int damage, int cooldown_sec, double accuracy, String type
 	public Skill auto_attack = new Active("Auto Attack", 50, 1, 1, "physical");
 
 	private final String[] index = { "str", "agi", "vit", "int", "dex", "luk", "power" };
@@ -99,7 +94,6 @@ public abstract class Entity {
 		return this.exp;
 	}
 	
-	//Overwritten by subclass.
 	public void handleLoot(Item loot) {}
 	public Item handleLoot() {return null;}
 

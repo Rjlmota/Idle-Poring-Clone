@@ -4,7 +4,6 @@ import java.util.Random;
 import java.util.HashMap;
 import java.util.Map;
 
-//A Class designed to hold standard attributes for all characters from the game
 public class Attributes {
 	
 	private int str;

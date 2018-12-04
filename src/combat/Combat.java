@@ -1,8 +1,6 @@
 package combat;
 
 import java.util.ArrayList;
-import java.util.Random;
-
 import characters.Hero;
 import items.Item;
 import monsters.Monster;
@@ -11,8 +9,6 @@ import skills.Buff;
 import skills.Skill;
 
 public abstract class Combat {
-
-	private static Random rnd = new Random();
 
 	public static Fighter fighter1 = new Fighter();
 	public static Fighter fighter2 = new Fighter();
@@ -46,26 +42,8 @@ public abstract class Combat {
 
 			for (int i=0; i<2; i++) {
 				
-				//checkSkills(order.get(0), order.get(1));
-				//useBuffs(order.get(0));
-				//checkBuffs(order.get(0));
-				
 				checkBuffs(order.get(0));
 				Action(order.get(0), order.get(1));
-				/*
-				boolean hit = isHit(order.get(0).stats.get("hit"), order.get(1).stats.get("hit"));
-				if (hit) {
-					boolean crit = isCrit(order.get(0).stats.get("crit"));
-					int damage = getDamage(order.get(0).stats.get("atk"), order.get(1).stats.get("def"), crit);
-					order.get(1).stats.replace("hp", order.get(1).stats.get("hp") - damage);
-					CombatInterface.showDamage(order.get(0).name, damage, crit);
-
-				}else {
-					
-					System.out.println(order.get(0).name + " missed!");
-					
-				}
-				*/
 				
 				order.add(order.get(0));
 				order.remove(0);
@@ -98,38 +76,6 @@ public abstract class Combat {
 		
 	}
 	
-	private static boolean isHit(int hit, int eva) {
-		
-		int limit = eva/10;
-		if (rnd.nextInt(hit) > limit)
-			return true;
-		return false;
-	}
-	
-	private static boolean isCrit(int crit) {
-		
-		int limit = 200;
-		if (rnd.nextInt(limit/4) + crit > limit/2 )
-			return true;
-		return false;
-	}
-	
-	private static int getDamage(int atk, int def, boolean crit) {
-		
-		
-		int limit;
-		if (crit)
-			limit = (int)(2*atk);
-		else
-			limit = (int)(2*atk - def*1.5);
-
-		if (limit <=0)
-			return rnd.nextInt(10);
-		return rnd.nextInt(limit) + (3*limit)/4;
-	}
-
-	
-	
 	private static void Action(Fighter self, Fighter target) {
 		
 		Skill current_move = self.actions.get(0);
@@ -159,7 +105,6 @@ public abstract class Combat {
 		for (Buff buff : self.current_buffs) {		
 			if(!buff.isActive(current_turn)) {
 				buff.removeBuff(self);
-				//self.current_buffs.remove(buff);
 				toRemove.add(buff);
 				System.out.println(buff.getName() + " weared off");
 			}			

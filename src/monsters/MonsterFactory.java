@@ -15,7 +15,5 @@ public class MonsterFactory {
 		else
 			return new Boss(name);
 		
-		//return null;
-		
 	}	
 }
