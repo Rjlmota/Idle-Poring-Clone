@@ -2,7 +2,7 @@ package monsters;
 
 public class Ogre extends Monster {
 	
-	int [] aux = {2, 1, 3, 1, 2, 1};
+	int [] aux = {4, 2, 6, 2, 4, 2};
 	public Ogre(String name) {
 		super(name);
 		// str - agi - vit - int - dex - luck

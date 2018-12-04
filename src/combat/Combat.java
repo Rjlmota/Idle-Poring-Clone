@@ -73,6 +73,12 @@ public abstract class Combat {
 			
 		}while(fighter1.stats.get("hp")>0 && fighter2.stats.get("hp")>0);
 		
+		for (Fighter fighter : order) {
+			for(Skill skill : fighter.skillList) {
+				skill.reset();
+			}
+		}
+		
 		if (fighter1.stats.get("hp") > 0) {
 			
 			if (entity2 instanceof Monster) {
@@ -122,6 +128,7 @@ public abstract class Combat {
 		 * Skills
 		 */
 		for (Skill skill : self.skillList) {
+			//System.out.println(current_turn + " " + skill.getLastUsage());
 			if (current_turn - skill.getLastUsage() > skill.getCooldown()) {
 				skill.setLastUsage(current_turn);
 				System.out.println(self.name + " used " + skill.getName());

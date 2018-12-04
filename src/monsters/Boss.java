@@ -3,7 +3,7 @@ package monsters;
 
 public class Boss extends Monster {
 	
-	int[] aux = {3, 3, 3, 3, 3, 3};
+	int[] aux = {10, 10, 10, 10, 10, 10};
 	
 	public Boss(String name) {
 		super(name);

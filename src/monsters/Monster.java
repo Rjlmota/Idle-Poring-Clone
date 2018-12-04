@@ -32,7 +32,17 @@ public class Monster extends Entity {
 		return drop;
 	}
 	public void levelUpTo(int level) {
-		for(int i = 0; i < level; i++)
+		if(level > 50) {
+			System.out.println("Invalid Level");
+			return;
+		}
+		
+		for(int i = this.getLevel(); i < level; i++)
 			this.levelUp(base_attr);
 	}
+	
+	public void levelUp() {
+		this.levelUp(base_attr);
+	}
+	
 }

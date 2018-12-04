@@ -80,5 +80,10 @@ public class Skill {
 	public void setType(String type){
 		this.type = type;
 	}
+	
+	
+	public void reset() {
+		this.last_usage = -999;
+	}
 
 }

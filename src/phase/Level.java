@@ -68,17 +68,8 @@ public class Level {
 				currentMonster = boss;
 				if (Combat.startCombat(player, currentMonster)) {
 					System.out.println("END");
-					// Levelling up monsters to next level;
-					for (Monster monster : Monsters) {
-						System.out.println(monster.stats.getStats().get("maxHp"));
-						System.out.println(monster.getName());
-						monster.levelUpTo(levelNumber);
-
-					}
-
-					boss.levelUpTo(levelNumber + 1);
 				}
-				nextLevel(player);
+				//nextLevel(player);
 
 				break;
 			}

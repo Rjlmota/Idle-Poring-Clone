@@ -3,7 +3,7 @@ package monsters;
 
 public class Poring extends Monster {
 	
-	int[] aux = {2, 1, 3, 1, 2, 1};
+	int[] aux = {4, 2, 6, 2, 4, 2};
 	
 	public Poring(String name) {
 		super(name);

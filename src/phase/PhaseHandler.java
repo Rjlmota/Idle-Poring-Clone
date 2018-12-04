@@ -1,6 +1,7 @@
 package phase;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import properties.Entity;
 import monsters.Monster;
@@ -8,6 +9,9 @@ import monsters.MonsterFactory;
 
 public class PhaseHandler {
 
+	
+	int last_played = 0;
+	
 	Monster monster = MonsterFactory.getMonster("Poring");
 	Monster monster2 = MonsterFactory.getMonster("Ogre");
 	Monster monster3 = MonsterFactory.getMonster("GuardPoring");
@@ -22,6 +26,8 @@ public class PhaseHandler {
 	ArrayList<Monster> bosses = new ArrayList<Monster>();
 	public ArrayList<Level> map = new ArrayList<Level>();
 	
+	
+	private static Scanner scan = new Scanner(System.in);
 
 	public void initialize() {
 
@@ -51,8 +57,26 @@ public class PhaseHandler {
 	}
 
 	public  void  playMap(Entity player) {
-		map.get(0).start(player);
+		String stop;
+		while(true) {
+			map.get(last_played).start(player);
+			last_played++;
+			
+			// Levelling up monsters to next level;
+			for (Monster monster : monsters) {
+				//System.out.println(monster.stats.getStats().get("maxHp"));
+				//System.out.println(monster.getName());
+				monster.levelUp();
 
+			}
+			boss.levelUp();
+			
+			System.out.println("Back to menu? (y/n)");
+			stop = scan.next();
+			if(stop.equalsIgnoreCase("y")) {
+				break;
+			}
+		}
 	}
 	
 	public PhaseHandler() {

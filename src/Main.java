@@ -15,13 +15,12 @@ public class Main {
 		Map<Entity, Level> database = new HashMap();
 		String pause;
 		
-		/*
+		
 		while(true) {
 			System.out.println("Type anything and press ENTER to start.");
 			pause = scan.next();
 			StartInterface.startGame(database);
 		}
-		*/
 
 
 

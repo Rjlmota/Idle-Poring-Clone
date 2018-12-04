@@ -1,7 +1,7 @@
 package pseudointerface;
 import monsters.Monster;
 import properties.*;
-import characters.playerclass.*;
+//import characters.playerclass.*;
 import items.Item;
 import java.util.Map;
 
