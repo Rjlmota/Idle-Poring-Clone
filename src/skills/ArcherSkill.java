@@ -1,7 +1,6 @@
 package skills;
 
 public class ArcherSkill {
-// nome - dano - cd - acc - tipo 
 	public static Active generate(String name) {
 		if(name.equalsIgnoreCase("ChargedArrow")) {
 			return new Active("Charged Arrow", 250, 6, 1, "physical");
@@ -13,7 +12,7 @@ public class ArcherSkill {
 		
 		return null;
 	}
-//String name, int buff, int duration, String stat, int cooldown_sec
+	
 	public static Buff generateBuff(String name) {
 		if(name.equalsIgnoreCase("Blessing")) {
 			return new Buff("Blessing", 20, 2, "atk", 8);

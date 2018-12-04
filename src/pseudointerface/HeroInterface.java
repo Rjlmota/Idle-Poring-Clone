@@ -2,12 +2,10 @@ package pseudointerface;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import characters.Bag;
 import characters.Hero;
 import items.Equipment;
 import items.Misc;
-import properties.Entity;
 
 public abstract class HeroInterface {
 	

@@ -1,7 +1,7 @@
 package skills;
 
 public class SwordsmanSkill {
-// nome - dano - cd - acc - tipo 
+
 	public static Active generate(String name) {
 		if (name.equalsIgnoreCase("Slash")) {
 			return new Active("Slash", 300, 4, 1, "physical");
@@ -14,7 +14,6 @@ public class SwordsmanSkill {
 		return null;
 	}
 
-	// String name, int buff, int duration, String stat, int cooldown_sec
 	public static Buff generateBuff(String name) {
 		if (name.equalsIgnoreCase("Burning")) {
 			return new Buff("Burning Sword", 30, 4, "def", 8);

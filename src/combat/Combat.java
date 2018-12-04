@@ -2,7 +2,6 @@ package combat;
 
 import java.util.ArrayList;
 import java.util.Random;
-
 import characters.Hero;
 import items.Item;
 import monsters.Monster;
@@ -12,11 +11,9 @@ import skills.Skill;
 
 public abstract class Combat {
 
-	private static Random rnd = new Random();
-
 	public static Fighter fighter1 = new Fighter();
 	public static Fighter fighter2 = new Fighter();
-	
+	private static Random rnd = new Random();
 	
 	public static int current_turn = 0;
 
@@ -46,13 +43,8 @@ public abstract class Combat {
 
 			for (int i=0; i<2; i++) {
 				
-				//checkSkills(order.get(0), order.get(1));
-				//useBuffs(order.get(0));
-				//checkBuffs(order.get(0));
-				
 				checkBuffs(order.get(0));
 				Action(order.get(0), order.get(1));
-
 				
 				order.add(order.get(0));
 				order.remove(0);
@@ -101,9 +93,6 @@ public abstract class Combat {
 		return false;
 	}
 	
-
-	
-	
 	private static void Action(Fighter self, Fighter target) {
 
 		int raw_damage;
@@ -148,10 +137,8 @@ public abstract class Combat {
 			if(current_turn - buff.getLastUsage() <= buff.getDuration())
 				isActive = true;
 			
-			//System.out.println("isActive: " + buff.isActive(current_turn))
 			if(!isActive) {
 				buff.removeBuff(self);
-				//self.current_buffs.remove(buff);
 				toRemove.add(buff);
 				System.out.println(buff.getName() + " weared off");
 			}			

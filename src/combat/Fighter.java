@@ -3,7 +3,6 @@ package combat;
 import java.util.ArrayList;
 import java.util.Map;
 import properties.Entity;
-import skills.Active;
 import skills.Buff;
 import skills.Skill;
 
@@ -13,12 +12,8 @@ public class Fighter {
 	public Map<String,Integer> stats;
 	
 	
-	// To be removed
 	public ArrayList <Skill> skillList = new ArrayList<Skill>();
 	public ArrayList <Buff> current_buffs = new ArrayList<Buff>();
-	
-	//To replace code above
-	
 	public ArrayList <Skill> actions = new ArrayList <Skill>();
 	
 	public Skill auto_attack;
@@ -29,7 +24,6 @@ public class Fighter {
 		this.name = fighter.getName();
 		this.stats = fighter.stats.getStats();
 		this.skillList = fighter.skillList;
-		//this.buffList = fighter.buff_list;
 		this.auto_attack = fighter.auto_attack;
 		
 		this.setActions();

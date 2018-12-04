@@ -8,10 +8,6 @@ import java.util.*;
 
 public class Level {
 
-	// MONSTER LIST
-	// BOSS
-	//
-
 	String title;
 
 	private ArrayList<Monster> Monsters = new ArrayList<Monster>();
@@ -19,21 +15,15 @@ public class Level {
 
 	Level next_level;
 	int levelNumber;
-
+	public boolean bossCall;
+	
+	
 	public Level(String title, int levelNumber, Monster boss, ArrayList<Monster> monsterTypes, Level next) {
 		this.title = title;
 		this.boss = boss;
 		this.Monsters = monsterTypes;
 		this.next_level = next;
 		this.levelNumber = levelNumber;
-	}
-
-	public boolean bossCall;
-
-	private void nextLevel(Hero player) {
-		System.out.println("Moving on to next level");
-		this.next_level.start(player);
-
 	}
 
 	public void start(Hero player) {
@@ -44,8 +34,6 @@ public class Level {
 
 		System.out.println("Welcome to " + this.title);
 
-		// Factory to monster
-		// Combat combat = new Combat(Player, currentMonster);
 		Combat.startCombat(player, currentMonster);
 		while (true) {
 
@@ -83,7 +71,6 @@ public class Level {
 		try {
 			Thread.sleep(seconds * 1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
