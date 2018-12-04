@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import items.Equipment;
 import items.Item;
+import items.Misc;
 
 public class Bag {
 	
@@ -11,19 +12,32 @@ public class Bag {
 	
 	
 	private ArrayList<Equipment> equipments = new ArrayList <Equipment>();
-	private ArrayList <Item> itens = new ArrayList <Item>();
+	private ArrayList <Misc> miscs = new ArrayList <Misc>();
 	
 	public Bag(){
 		this.maxCapacity = 10;
 	}
 	
 	public void addToBag(Item item) {
-		itens.add(item);
+		
+		if (item instanceof Equipment) {
+			
+			if (equipments.size() <= this.maxCapacity)
+				equipments.add((Equipment)item);
+		}else {
+			
+			int index = miscs.indexOf(item);
+			if (index == -1) {
+				miscs.add((Misc)item);
+			}else {
+				Misc misc_ = miscs.get(index);
+				misc_.setQuantity(misc_.getQuantity() + 1);
+			}
+		}
 	}
 	
 	public void addToBag(Equipment equipment) {
-		if (equipments.size() <= this.maxCapacity)
-			equipments.add(equipment);
+
 	}
 	
 	public void removeFromBag(Equipment equipment) {
@@ -39,8 +53,8 @@ public class Bag {
 		return equipments_;
 	}
 	
-	public ArrayList<Item> getItens(){
-		ArrayList<Item> itens_ = this.itens;
+	public ArrayList<Misc> getItens(){
+		ArrayList<Misc> itens_ = this.miscs;
 		return itens_;
 	}
 	

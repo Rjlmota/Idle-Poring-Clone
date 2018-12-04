@@ -5,6 +5,7 @@ import java.util.Random;
 import properties.Entity;
 import items.Equipment;
 import items.EquipmentFactory;
+import items.Item;
 
 public class Monster extends Entity {
 
@@ -18,13 +19,14 @@ public class Monster extends Entity {
 	}
 		
 	@Override
-	public Equipment handleLoot(){
+	public Item handleLoot(){
 		Random rnd = new Random();
 		if(rnd.nextInt(50) > 25) {
 			return EquipmentFactory.getRandomEquipment(getLevel());
 		}
 		return null;
 	}
+	
 	public void levelUpTo(int level) {
 		if(level > 50) {
 			System.out.println("Invalid Level");

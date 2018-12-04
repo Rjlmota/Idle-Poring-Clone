@@ -16,10 +16,10 @@ public class Active extends Skill {
 	}
 
 	@Override
-	public int useSkill(Fighter self, Fighter target) {
+	public void useSkill(Fighter self, Fighter target) {
 		int damage = raw_damage - target.stats.get("def");
 		if(damage < 0) damage = 0;
-
-		return damage;
+		target.stats.replace("hp", target.stats.get("hp") - damage);
+		System.out.println("delt " + damage + " damage");
 	}
 }

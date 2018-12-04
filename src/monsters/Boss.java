@@ -1,5 +1,9 @@
 package monsters;
 
+import java.util.Random;
+
+import items.Item;
+import items.MiscFactory;
 
 public class Boss extends Monster {
 	
@@ -13,4 +17,14 @@ public class Boss extends Monster {
 		this.base_attr = aux;
 		updateStats();
 	}
+	
+	@Override
+	public Item handleLoot(){
+		Random rnd = new Random();
+		if(rnd.nextInt(50) > 25) {
+			return MiscFactory.getSingleItem("Fracom");
+		}
+		return null;
+	}
+	
 }

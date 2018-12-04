@@ -1,15 +1,6 @@
-<<<<<<< HEAD
-/phase/
-/monsters/
-/pseudointerface/
-/items/
-/combat/
-/skills/
-=======
-/pseudointerface/
-/combat/
-/monsters/
-/phase/
 /properties/
+/skills/
+/items/
 /characters/
->>>>>>> Equips
+/monsters/
+/combat/

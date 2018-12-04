@@ -7,7 +7,6 @@ import java.util.Map;
 import characters.Bag;
 import characters.Slot;
 import skills.Active;
-import skills.Buff;
 import skills.Skill;
 import items.Equipment;
 import items.Item;
@@ -101,9 +100,7 @@ public abstract class Entity {
 	}
 	
 	//Overwritten by subclass.
-	public void handleLoot(Equipment loot) {}
-	public Equipment handleLoot() {return null;}
 	public void handleLoot(Item loot) {}
-	public Item handleloot() {return null;}
+	public Item handleLoot() {return null;}
 
 }

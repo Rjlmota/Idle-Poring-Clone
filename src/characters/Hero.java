@@ -35,14 +35,10 @@ public class Hero extends Entity{
 	}
 	
 	@Override
-	public void handleLoot(Equipment loot) {
-		bag.addToBag(loot);
-	}
-	
-	@Override
 	public void handleLoot(Item loot) {
 		bag.addToBag(loot);
 	}
+	
 	
 	public void gainExp(float exp) {
 		this.exp += exp;
