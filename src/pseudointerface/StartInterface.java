@@ -5,19 +5,19 @@ import java.util.Map;
 import java.util.Scanner;
 
 import phase.PhaseHandler;
-import characters.ClassFactory;
-import properties.Entity;
+import characters.HeroFactory;
+import characters.Hero;
 import phase.Level;
 
 public abstract class StartInterface {
 	
 	private static Scanner scan = new Scanner(System.in);
-	private static Entity player = null;
+	private static Hero player = null;
 	private static Level level = null;
 	private static PhaseHandler phasehandler = new PhaseHandler();
-	public static void startGame(Map<Entity, Level> database) {
+	public static void startGame(Map<Hero, Level> database) {
 		
-		Map<Entity, Level> current = new HashMap();
+		Map<Hero, Level> current = new HashMap<Hero, Level>();
 		
 		if (database.isEmpty()) {
 			current = createGame();
@@ -30,12 +30,12 @@ public abstract class StartInterface {
 		
 	}
 	
-	public static void selectPlayer(Map<Entity, Level> database) {
+	public static void selectPlayer(Map<Hero, Level> database) {
 		
-		Map<Integer, Entity> ref = new HashMap();
+		Map<Integer, Hero> ref = new HashMap<Integer, Hero>();
 		int i=0, op;
-		for (Entity entity : database.keySet()) {
-			ref.put(i, entity);
+		for (Hero hero : database.keySet()) {
+			ref.put(i, hero);
 			i++;
 		}
 		
@@ -50,20 +50,20 @@ public abstract class StartInterface {
 		level = database.get(player);
 	}
 	
-	public static Map<Entity, Level> createGame() {
+	public static Map<Hero, Level> createGame() {
 		
-		Entity player = createPlayer();
+		Hero player = createHero();
 		System.out.println("\nCharacter Created!\n");
 		Level level = phasehandler.map.get(0);
 		
-		Map<Entity, Level> game = new HashMap();
+		Map<Hero, Level> game = new HashMap<Hero, Level>();
 		game.put(player, level);
 		
 		return game;
 		
 	}
 	
-	public static Entity createPlayer() {
+	public static Hero createHero() {
 		phasehandler.initialize();
 		String name;
 		int job;
@@ -77,13 +77,13 @@ public abstract class StartInterface {
 		}while (job<0 || job>4);
 		
 		if (job==1) {
-			player = ClassFactory.getClass("Swordman", name);
+			player = HeroFactory.getHero("Swordman", name);
 		}
 		else if (job==2) {
-			player = ClassFactory.getClass("Archer", name);
+			player = HeroFactory.getHero("Archer", name);
 		}
 		else {
-			player = ClassFactory.getClass("Wizard", name);
+			player = HeroFactory.getHero("Wizard", name);
 		}
 		
 		System.out.println("Your first skill is: " + player.skillList.get(0).getName());
@@ -126,7 +126,7 @@ public abstract class StartInterface {
 			System.out.println("Show Bag");
 		}
 		else if (op==3) {
-			DetailInterface.showPlayer(player);
+			DetailInterface.showEntity(player);
 		}
 		else {
 			System.out.println("Exiting");

@@ -9,6 +9,9 @@ public class Ogre extends Monster {
 		int[] attr = { 12, 3, 15, 1, 6, 3 };
 		this.attr.setAttributes(attr);
 		this.base_attr =aux;
+		
+		this.exp = 20;
+		
 		updateStats();
 	}
 }

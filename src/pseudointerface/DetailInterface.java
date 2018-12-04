@@ -1,8 +1,8 @@
 package pseudointerface;
 import monsters.Monster;
 import properties.*;
-//import characters.playerclass.*;
-import items.Item;
+import characters.*;
+import items.Equipment;
 import java.util.Map;
 
 public abstract class DetailInterface {
@@ -22,8 +22,8 @@ public abstract class DetailInterface {
 	public static void showStats(Stats stats_) {
 		Map<String,Integer> stats = stats_.getStats();
 		System.out.println("\nStats:");
-		System.out.println("\tmaximum Hp: " + stats.get("maxHp"));
-		System.out.println("\tmaximum Sp: " + stats.get("maxSp"));
+		System.out.println("\tHp: " + stats.get("hp"));
+		System.out.println("\tSp: " + stats.get("sp"));
 		System.out.println("\tAttack: " + stats.get("atk"));
 		System.out.println("\tDefense: " + stats.get("def"));
 		System.out.println("\tMagic Attack: " + stats.get("atkM"));
@@ -36,15 +36,14 @@ public abstract class DetailInterface {
 		System.out.println("\tCast: " + stats.get("cast"));
 	}
 	
-	public static void showPlayer(Entity player) {
-		System.out.println("Player: " + player.getName());
+	public static void showEntity(Entity player) {
+		System.out.println("Name: " + player.getName());
 		System.out.println("Level: " + player.getLevel());
 		showAttributes(player.attr);
 		showStats(player.stats);
-		for (int i=0; i<8; i++) {
-			if (player.equipments[i] == null)
-				break;
-			showItem(player.equipments[i]);
+		for ( Slot slot : player.equips.values()) {
+			if (slot.getEquipment()!=null)
+				showEquipment(slot.getEquipment());
 		}
 	}
 	
@@ -55,9 +54,9 @@ public abstract class DetailInterface {
 		showStats(monster.stats);
 	}
 	
-	public static void showItem(Item item) {
-		System.out.println("\n" + item.name);
-		showAttributes(item.attr);
+	public static void showEquipment(Equipment equip) {
+		System.out.println("\n" + equip.getName() + " - " + equip.getType());
+		showAttributes(equip.attr);
 	}
 	
 }

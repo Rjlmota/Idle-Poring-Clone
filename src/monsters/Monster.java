@@ -1,35 +1,29 @@
 package monsters;
 
 import java.util.ArrayList;
-
+import java.util.Random;
 import properties.Entity;
-import items.Item;
+import items.Equipment;
+import items.EquipmentFactory;
 
 public class Monster extends Entity {
 
-	//public Attributes attr;
-	//public Stats stats;
 	
-	
-	public ArrayList <Item> loot = new ArrayList<Item>();
+	public ArrayList <Equipment> loot = new ArrayList<Equipment>();
 	
 	protected int[] base_attr = new int[6];
 	
 	public Monster(String name) {
 		super(name);
-		this.setExp(50);
-		// TODO Auto-generated constructor stub
-		}
+	}
 		
 	@Override
-	public ArrayList <Item> handleLoot(){
-		ArrayList <Item> drop = new ArrayList<Item>();
-		for(Item item : loot) {
-			if(item.dropRate > Math.random()*1 + 0) {
-				drop.add(item);
-			}
+	public Equipment handleLoot(){
+		Random rnd = new Random();
+		if(rnd.nextInt(50) > 25) {
+			return EquipmentFactory.getRandomEquipment(getLevel());
 		}
-		return drop;
+		return null;
 	}
 	public void levelUpTo(int level) {
 		if(level > 50) {

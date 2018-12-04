@@ -6,14 +6,11 @@ public class Equipment {
 
 	private String name;
 	private String type;
-	private String subtype;
-	public Attributes attr;
+	public Attributes attr = new Attributes();
 
-	public Equipment(String name, String type, String subtype, int[] attr){
+	public Equipment(String name, String type, int[] attr){
 		this.name = name;
 		this.type = type;
-		this.subtype = subtype;
-		this.attr = new Attributes();
 		this.attr.setAttributes(attr);
 	}
 
@@ -23,10 +20,6 @@ public class Equipment {
 
 	public String getType(){
 		return this.type;
-	}
-
-	public String getSubtype(){
-		return this.subtype;
 	}
 
 }

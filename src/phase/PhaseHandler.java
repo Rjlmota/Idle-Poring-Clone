@@ -3,7 +3,7 @@ package phase;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import properties.Entity;
+import characters.Hero;
 import monsters.Monster;
 import monsters.MonsterFactory;
 
@@ -56,7 +56,7 @@ public class PhaseHandler {
 
 	}
 
-	public  void  playMap(Entity player) {
+	public  void  playMap(Hero player) {
 		String stop;
 		while(true) {
 			map.get(last_played).start(player);
