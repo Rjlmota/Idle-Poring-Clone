@@ -3,6 +3,8 @@ import monsters.Monster;
 import properties.*;
 import characters.*;
 import items.Equipment;
+import items.Misc;
+
 import java.util.Map;
 
 public abstract class DetailInterface {
@@ -48,6 +50,10 @@ public abstract class DetailInterface {
 	public static void showEquipment(Equipment equip) {
 		System.out.println(equip.getName() + " - " + equip.getType());
 		showAttributes(equip.attr);
+	}
+	
+	public static void showMisc(Misc misc) {
+		System.out.println(misc.getName() + " x " + misc.getQuantity());
 	}
 	
 }

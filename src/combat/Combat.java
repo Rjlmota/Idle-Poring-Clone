@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import characters.Hero;
-import items.Equipment;
 import items.Item;
 import monsters.Monster;
 import pseudointerface.CombatInterface;

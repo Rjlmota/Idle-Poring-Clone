@@ -6,13 +6,15 @@ import java.util.Scanner;
 import characters.Bag;
 import characters.Hero;
 import items.Equipment;
+import items.Misc;
 import properties.Entity;
 
 public abstract class HeroInterface {
 	
 	private static Scanner scan = new Scanner(System.in);
 	private static final String[] index = {"Strenght", "Agility", "Vitality", "Intelligency", "Dexterity", "Lucky"};
-	
+    private static final String[] ref = {"Weapon", "Helmet", "BodyArmor", "LegArmor", "Gloves", "Boots", "Necklace", "Ring"};
+
 	
 	public static void showHero(Hero hero) {
 		
@@ -24,7 +26,7 @@ public abstract class HeroInterface {
 			showBag(hero.bag);
 			
 			do {
-				System.out.print("1-Change Equipments\n2-Exit\n:> ");
+				System.out.print("1-Change Equipments\n2-Refine\n3-Exit\n:> ");
 				op = scan.nextInt();
 			}while (op<1 || op>2);
 			
@@ -33,6 +35,10 @@ public abstract class HeroInterface {
 				op2 = scan.nextInt();
 				Equipment new_equip = hero.bag.getEquipments().get(op2);
 				hero.changeEquipment(new_equip, new_equip.getType());
+			}else if (op==2) {
+				System.out.print("Which Slot?\n:> ");
+				op2 = scan.nextInt();
+				hero.equips.get(ref[op2]).levelUp();
 			}else {
 				System.out.println("Exiting.");
 				break;
@@ -103,6 +109,15 @@ public abstract class HeroInterface {
 				System.out.println(i);
 				DetailInterface.showEquipment(equip);
 				i++;
+			}
+		}
+		
+		ArrayList<Misc> miscs = bag.getMiscs();
+		if  (miscs.isEmpty() ) {
+			System.out.println("Empty.");
+		}else {
+			for (Misc misc : miscs) {
+				DetailInterface.showMisc(misc);
 			}
 		}
 	}	

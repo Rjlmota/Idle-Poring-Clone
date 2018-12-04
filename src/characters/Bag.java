@@ -30,18 +30,28 @@ public class Bag {
 			if (index == -1) {
 				miscs.add((Misc)item);
 			}else {
-				Misc misc_ = miscs.get(index);
-				misc_.setQuantity(misc_.getQuantity() + 1);
+				Misc misc = miscs.get(index);
+				misc.setQuantity(misc.getQuantity() + 1);
 			}
 		}
 	}
 	
-	public void addToBag(Equipment equipment) {
+	public void removeFromBag(Item item) {
+		if (item instanceof Equipment) {
 
-	}
-	
-	public void removeFromBag(Equipment equipment) {
-		equipments.remove(equipment);
+			equipments.remove(item);
+		
+		}else {
+			
+			int index = miscs.indexOf(item);
+			Misc misc = miscs.get(index);
+			misc.setQuantity(misc.getQuantity() - 1);
+			if (misc.getQuantity() == 0) {
+				miscs.remove(misc);
+			}
+			
+		}
+
 	}
 	
 	public int getMaxCapacity() {
@@ -53,7 +63,7 @@ public class Bag {
 		return equipments_;
 	}
 	
-	public ArrayList<Misc> getItens(){
+	public ArrayList<Misc> getMiscs(){
 		ArrayList<Misc> itens_ = this.miscs;
 		return itens_;
 	}
