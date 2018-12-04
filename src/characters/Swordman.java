@@ -16,7 +16,7 @@ public class Swordman extends Hero{
 		this.skillList.add(startSkill);
 		
 		Buff startBuff = SkillGenerator.generateBuff("Swordsman", "Burning");
-		this.buff_list.add(startBuff);
+		this.skillList.add(startBuff);
 		
 	}
 }

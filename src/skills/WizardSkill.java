@@ -17,7 +17,7 @@ public class WizardSkill {
 	//String name, int buff, int duration, String stat, int cooldown_sec
 	public static Buff generateBuff(String name) {
 		if(name.equalsIgnoreCase("Wisdom")) {
-			return new Buff("Wisdom", 20, 6, "int", 10);
+			return new Buff("Wisdom", 20, 2, "spd", 5);
 		}
 		
 		return null;

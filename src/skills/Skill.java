@@ -18,9 +18,8 @@ public class Skill {
 	private String name;
 	double accuracy;
 	private int cooldown;
-	private double last_usage = -100;
+	private int last_usage = -100;
 	private String type;
-
 	class Effect {
 		String name;
 		String description;
@@ -49,7 +48,7 @@ public class Skill {
 
 	}
 
-	public void useSkill(Fighter target) {
+	public void useSkill(Fighter self, Fighter target) {
 
 	}
 
@@ -65,7 +64,7 @@ public class Skill {
 		return this.cooldown;
 	}
 
-	public double getLastUsage(){
+	public int getLastUsage(){
 		return this.last_usage;
 	}
 

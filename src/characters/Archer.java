@@ -15,7 +15,7 @@ public class Archer extends Hero {
 		this.skillList.add(startSkill);
 		
 		Buff startBuff = SkillGenerator.generateBuff("Archer", "Blessing");
-		this.buff_list.add(startBuff);
+		this.skillList.add(startBuff);
 		
 	}
 	

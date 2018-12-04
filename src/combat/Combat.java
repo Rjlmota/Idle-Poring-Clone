@@ -13,8 +13,6 @@ import skills.Skill;
 public abstract class Combat {
 
 	private static Random rnd = new Random();
-	
-	private static ArrayList<Buff> current_buffs = new ArrayList<Buff>();
 
 	public static Fighter fighter1 = new Fighter();
 	public static Fighter fighter2 = new Fighter();
@@ -48,10 +46,13 @@ public abstract class Combat {
 
 			for (int i=0; i<2; i++) {
 				
-				checkSkills(order.get(0), order.get(1));
-				useBuffs(order.get(0));
-				checkBuffs(order.get(0));
+				//checkSkills(order.get(0), order.get(1));
+				//useBuffs(order.get(0));
+				//checkBuffs(order.get(0));
 				
+				checkBuffs(order.get(0));
+				Action(order.get(0), order.get(1));
+				/*
 				boolean hit = isHit(order.get(0).stats.get("hit"), order.get(1).stats.get("hit"));
 				if (hit) {
 					boolean crit = isCrit(order.get(0).stats.get("crit"));
@@ -64,6 +65,7 @@ public abstract class Combat {
 					System.out.println(order.get(0).name + " missed!");
 					
 				}
+				*/
 				
 				order.add(order.get(0));
 				order.remove(0);
@@ -126,6 +128,24 @@ public abstract class Combat {
 		return rnd.nextInt(limit) + (3*limit)/4;
 	}
 
+	
+	
+	private static void Action(Fighter self, Fighter target) {
+		
+		Skill current_move = self.actions.get(0);
+		System.out.println(self.name + " used " + current_move.getName());
+		current_move.useSkill(self, target);
+		
+		if(current_move.getType().equalsIgnoreCase("buff"))
+			current_move.setLastUsage(current_turn);
+		
+		
+		self.actions.remove(0);
+		for(int i = 0; i < current_move.getCooldown(); i++)
+			self.actions.add(self.auto_attack);
+		
+	}
+	
 	private static void gainExp(Hero player, Monster monster) {
 		float exp = (player.getLevel() / monster.getLevel()) * monster.getExp();
 		
@@ -134,36 +154,19 @@ public abstract class Combat {
 		
 	}
 	
-	private static void checkSkills(Fighter self, Fighter target) {
-
-		for (Skill skill : self.skillList) {
-			//System.out.println(current_turn + " " + skill.getLastUsage());
-			if (current_turn - skill.getLastUsage() > skill.getCooldown()) {
-				skill.setLastUsage(current_turn);
-				System.out.println(self.name + " used " + skill.getName());
-				skill.useSkill(target);		
-			}
-		}
-	}
-
-	private static void useBuffs(Fighter self) {
-		for (Buff buff : self.buffList) {
-			if (current_turn - buff.getLastUsage() > buff.getCooldown() + buff.getDuration()) {
-				buff.setTurnUsed(current_turn);
-				self.current_buffs.add(buff);
-
-			}
-		}
-
-	}
-
 	private static void checkBuffs(Fighter self) {
-		boolean remove;
-		for (Buff buff : self.current_buffs) {
-				remove = buff.useSkill(self.stats, current_turn);
-				if(remove)
-					current_buffs.remove(buff); // Removed buff due to end of duration time.
+		ArrayList <Buff> toRemove = new ArrayList<Buff>();
+		for (Buff buff : self.current_buffs) {		
+			if(!buff.isActive(current_turn)) {
+				buff.removeBuff(self);
+				//self.current_buffs.remove(buff);
+				toRemove.add(buff);
+				System.out.println(buff.getName() + " weared off");
+			}			
 		}
+		for(Buff remove : toRemove)
+			self.current_buffs.remove(remove);
+		
 	}
 
 	private static void sleep(int time) {

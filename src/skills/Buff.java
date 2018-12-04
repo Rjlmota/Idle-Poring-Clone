@@ -2,51 +2,52 @@ package skills;
 
 import java.util.Map;
 
+import combat.Fighter;
+
 public class Buff extends Skill {
 
 	int buff;
 	String stat;
 	int duration;
 	int turn_used = 0;
-	boolean active = false;
-	
 	
 	public Buff(String name, int buff, int duration, String stat, int cooldown_sec) {
 		super(name, cooldown_sec, 1);
 		this.buff = buff;
 		this.stat = stat;
 		this.duration = duration;
-		super.setType("passive");
+		super.setType("buff");
 
 	}
 
-	public boolean useSkill(Map<String, Integer> attr, int current_turn) {
-		if(active == true) {
-			if(current_turn - turn_used > duration) {
-				active = false;
-				attr.put(this.stat, attr.get(stat) - buff);
-				System.out.println(getName() + "weared off");
-				return false;
-			}
-		}
-		
-		if(active == false) {
-			if(current_turn - turn_used > duration + getCooldown()) {
-				System.out.println(getName() + "has been used");
-				attr.put(this.stat, attr.get(stat) + buff);
-				this.turn_used = current_turn;
-				active = true;
-			}
-		}
-		return true;
+
+	@Override
+	public void useSkill(Fighter self, Fighter target) {
+		System.out.println(getName() + "has been used");
+		self.stats.put(this.stat, self.stats.get(stat) + buff);
+		self.current_buffs.add(this);
+		System.out.println(getName() + "'s " + stat + " + " + buff);
+	}	
+	
+	public void removeBuff(Fighter self) {
+		self.stats.put(this.stat, self.stats.get(stat) - buff);
 	}
 
+	
+	
 	public int getDuration(){
 		return this.duration;
 	}
 
-	public void setTurnUsed(int x){
+	public void setTurnUsed(int x){;
 		this.turn_used = x;
 	}
 
+	public boolean isActive(int current_turn){
+		if(current_turn - turn_used < duration)
+			return true;
+		else
+			return false;
+	}
+	
 }

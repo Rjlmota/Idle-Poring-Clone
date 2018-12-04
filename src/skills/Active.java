@@ -11,11 +11,12 @@ public class Active extends Skill {
 		super(name, cooldown_sec, accuracy);
 		this.raw_damage = damage;
 		this.damageType = type;
+		this.setType("active");
 
 	}
 
 	@Override
-	public void useSkill(Fighter target) {
+	public void useSkill(Fighter self, Fighter target) {
 		int damage = raw_damage - target.stats.get("def");
 		if(damage < 0) damage = 0;
 		target.stats.replace("hp", target.stats.get("hp") - damage);

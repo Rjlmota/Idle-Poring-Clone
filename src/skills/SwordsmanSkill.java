@@ -17,7 +17,7 @@ public class SwordsmanSkill {
 	// String name, int buff, int duration, String stat, int cooldown_sec
 	public static Buff generateBuff(String name) {
 		if (name.equalsIgnoreCase("Burning")) {
-			return new Buff("Burning Sword", 30, 6, "atk", 10);
+			return new Buff("Burning Sword", 30, 3, "def", 6);
 		}
 
 		return null;

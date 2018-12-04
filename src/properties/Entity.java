@@ -6,6 +6,7 @@ import java.util.Map;
 
 import characters.Bag;
 import characters.Slot;
+import skills.Active;
 import skills.Buff;
 import skills.Skill;
 import items.Equipment;
@@ -25,7 +26,11 @@ public abstract class Entity {
 
 	public Map<String, Slot> equips = new HashMap<String, Slot>();
 	public ArrayList<Skill> skillList = new ArrayList<Skill>();
-	public ArrayList<Buff> buff_list = new ArrayList<Buff>();
+	//public ArrayList<Buff> buff_list = new ArrayList<Buff>();
+	
+	
+	//String name, int damage, int cooldown_sec, double accuracy, String type
+	public Skill auto_attack = new Active("Auto Attack", 50, 1, 1, "physical");
 
 	private final String[] index = { "str", "agi", "vit", "int", "dex", "luk", "power" };
     private final String[] ref = {"Weapon", "Helmet", "BodyArmor", "LegArmor", "Gloves", "Boots", "Necklace", "Ring"};

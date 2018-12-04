@@ -16,7 +16,7 @@ public class Wizard extends Hero{
 		this.skillList.add(startSkill);
 		
 		Buff startBuff = SkillGenerator.generateBuff("Wizard", "Wisdom");
-		this.buff_list.add(startBuff);
+		this.skillList.add(startBuff);
 		
 	}
 	
