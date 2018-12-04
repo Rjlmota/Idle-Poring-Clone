@@ -18,25 +18,23 @@ public class Main {
 
 		Scanner scan = new Scanner(System.in);
 		Map<Hero, Level> database = new HashMap<Hero, Level>();
-		String pause;
+		int op;
 		
-<<<<<<< HEAD
-		
-=======
-/*	
->>>>>>> Equips
 		while(true) {
-			System.out.println("Type anything and press ENTER to start.");
-			pause = scan.next();
-			StartInterface.startGame(database);
+			
+			System.out.print("1-Select Hero\n2-Start New Game\n:> ");
+			do {
+				op = scan.nextInt();
+			}while (op<0 || op>3);
+			
+			if (op==1) {
+				StartInterface.selectHero(database);
+			}else {
+				StartInterface.createGame(database);
+			}
+			
 		}
-<<<<<<< HEAD
-
-
-=======
-*/
->>>>>>> Equips
-
+/*
 		Hero player = HeroFactory.getHero("Swordman", "Alberto");
 		//DetailInterface.showPlayer(player);
 		
@@ -49,7 +47,7 @@ public class Main {
 		Combat.startCombat(player, monster);
 		
 		HeroInterface.showBag(player.bag);
-		
+*/	
 	}
 
 }

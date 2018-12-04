@@ -15,7 +15,7 @@ public class Hero extends Entity{
 		int[] aux = {9, 9, 9, 9, 9, 9};
 		this.attr.setAttributes(aux);
 		
-		for (String type : this.equips.keySet()) {
+		for (String type : equips.keySet()) {
 			if (type.equalsIgnoreCase("Weapon")) {
 				equips.get(type).setEquipment(EquipmentFactory.getEquipmentByType("Sword", this.level));
 			}else {
@@ -24,6 +24,14 @@ public class Hero extends Entity{
 		}
 		
 		updateStats();
+	}
+	
+	public void changeEquipment(Equipment new_equip, String type) {
+		Slot slot = equips.get(type);
+		Equipment old_equip = slot.getEquipment();
+		slot.setEquipment(new_equip);
+		bag.removeFromBag(new_equip);
+		bag.addToBag(old_equip);
 	}
 	
 	@Override

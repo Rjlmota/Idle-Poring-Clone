@@ -69,8 +69,7 @@ public class Level {
 				if (Combat.startCombat(player, currentMonster)) {
 					System.out.println("END");
 				}
-				//nextLevel(player);
-
+				
 				break;
 			}
 

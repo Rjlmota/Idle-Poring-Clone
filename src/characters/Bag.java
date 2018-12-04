@@ -25,7 +25,11 @@ public class Bag {
 		if (equipments.size() <= this.maxCapacity)
 			equipments.add(equipment);
 	}
-
+	
+	public void removeFromBag(Equipment equipment) {
+		equipments.remove(equipment);
+	}
+	
 	public int getMaxCapacity() {
 		return this.maxCapacity;
 	}

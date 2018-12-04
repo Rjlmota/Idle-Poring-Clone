@@ -62,18 +62,15 @@ public class PhaseHandler {
 			map.get(last_played).start(player);
 			last_played++;
 			
-			// Levelling up monsters to next level;
 			for (Monster monster : monsters) {
-				//System.out.println(monster.stats.getStats().get("maxHp"));
-				//System.out.println(monster.getName());
 				monster.levelUp();
-
 			}
+			
 			boss.levelUp();
 			
-			System.out.println("Back to menu? (y/n)");
+			System.out.println("Back to menu? (Yes or No)");
 			stop = scan.next();
-			if(stop.equalsIgnoreCase("y")) {
+			if(stop.equalsIgnoreCase("Yes")) {
 				break;
 			}
 		}

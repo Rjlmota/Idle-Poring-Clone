@@ -15,51 +15,40 @@ public abstract class StartInterface {
 	private static Hero player = null;
 	private static Level level = null;
 	private static PhaseHandler phasehandler = new PhaseHandler();
-	public static void startGame(Map<Hero, Level> database) {
-		
-		Map<Hero, Level> current = new HashMap<Hero, Level>();
+	
+	public static void selectHero(Map<Hero, Level> database) {
 		
 		if (database.isEmpty()) {
-			current = createGame();
-			database.putAll(current);
+			System.out.println("No Heroes found.");
+		}else {
+		
+			Map<Integer, Hero> ref = new HashMap<Integer, Hero>();
+			int i=0, op;
+			for (Hero hero : database.keySet()) {
+				ref.put(i, hero);
+				i++;
+			}
+			
+			System.out.println("\nSelect which hero to play:");
+			
+			for (Integer id : ref.keySet()) {
+				System.out.println(id + " - " + ref.get(id).getName() );
+			}
+			System.out.print(":> ");
+			op = scan.nextInt();
+			player = ref.get(op);
+			level = database.get(player);
+			showMenu(database);
 		}
-		
-		selectPlayer(database);
-		phasehandler.playMap(player);
-		showMenu();
-		
 	}
 	
-	public static void selectPlayer(Map<Hero, Level> database) {
+	public static void createGame(Map<Hero, Level> database) {
 		
-		Map<Integer, Hero> ref = new HashMap<Integer, Hero>();
-		int i=0, op;
-		for (Hero hero : database.keySet()) {
-			ref.put(i, hero);
-			i++;
-		}
-		
-		System.out.println("\nSelect which character to play:");
-		
-		for (Integer id : ref.keySet()) {
-			System.out.println(id + " - " + ref.get(id).getName() );
-		}
-		System.out.print(":> ");
-		op = scan.nextInt();
-		player = ref.get(op);
-		level = database.get(player);
-	}
-	
-	public static Map<Hero, Level> createGame() {
-		
-		Hero player = createHero();
+		Hero hero = createHero();
 		System.out.println("\nCharacter Created!\n");
 		Level level = phasehandler.map.get(0);
 		
-		Map<Hero, Level> game = new HashMap<Hero, Level>();
-		game.put(player, level);
-		
-		return game;
+		database.put(hero, level);
 		
 	}
 	
@@ -86,52 +75,36 @@ public abstract class StartInterface {
 			player = HeroFactory.getHero("Wizard", name);
 		}
 		
-		System.out.println("Your first skill is: " + player.skillList.get(0).getName());
-		
 		return player;
 
 	}
-	/*
-	public static Level createLevel() {
-		
-		Monster monster = MonsterFactory.getMonster("Poring");
-		Monster monster2 = MonsterFactory.getMonster("Ogre");
-		Monster boss = new Monster("Leader Poring");
 
-		ArrayList<Monster> Monsters = new ArrayList<Monster>();
-
-		Monsters.add(monster);
-		Monsters.add(monster2);
+	public static void showMenu(Map<Hero, Level> database) {
 		
-		return new Level("Scarlet Hills", boss, Monsters, 1);
+		while (true) {
 		
-	}
-	*/
-	public static void showMenu() {
-		
-		int op = 0;
-		
-		System.out.println("Menu:");
-		System.out.println("1-Combat\n2-Bag\n3-Character\n4-Exit");
-		
-		do {
-			System.out.print(":> ");
-			op = scan.nextInt();
-		}while (op<0 || op>5);
-		
-		if (op==1) {			
-			level.start(player);
+			int op = 0;
+			
+			System.out.println("Menu:");
+			System.out.println("1-Combat\n2-Hero\n3-Exit");
+			
+			do {
+				System.out.print(":> ");
+				op = scan.nextInt();
+			}while (op<0 || op>5);
+			
+			if (op==1) {		
+				phasehandler.playMap(player);
+			}
+			else if (op==2) {
+				HeroInterface.showHero(player);
+			}
+			else {
+				database.put(player, level);
+				System.out.println("Exiting");
+				break;
+			}
 		}
-		else if (op==2) {
-			System.out.println("Show Bag");
-		}
-		else if (op==3) {
-			DetailInterface.showEntity(player);
-		}
-		else {
-			System.out.println("Exiting");
-		}
-		
 	}
 	
 }
