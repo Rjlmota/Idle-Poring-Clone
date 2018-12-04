@@ -48,8 +48,8 @@ public class Skill {
 
 	}
 
-	public void useSkill(Fighter self, Fighter target) {
-
+	public int useSkill(Fighter self, Fighter target) {
+		return 0;
 	}
 
 	public void useSkill(Map<String, Integer> attr) {

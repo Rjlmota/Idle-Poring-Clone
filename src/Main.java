@@ -14,8 +14,6 @@ import pseudointerface.*;
 
 public class Main {
 	public static void main(String[] args) {
-
-
 		Scanner scan = new Scanner(System.in);
 		Map<Hero, Level> database = new HashMap<Hero, Level>();
 		int op;

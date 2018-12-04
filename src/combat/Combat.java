@@ -131,18 +131,28 @@ public abstract class Combat {
 	
 	
 	private static void Action(Fighter self, Fighter target) {
-		
+
+		int raw_damage;
+
 		Skill current_move = self.actions.get(0);
 		System.out.println(self.name + " used " + current_move.getName());
-		current_move.useSkill(self, target);
+		raw_damage = current_move.useSkill(self, target);
 		
 		if(current_move.getType().equalsIgnoreCase("buff"))
 			current_move.setLastUsage(current_turn);
-		
-		
+
+		else {
+			for (int i = 0; i < current_move.getCooldown(); i++)
+				self.actions.add(self.auto_attack);
+
+			if (isHit(self.stats.get("hit"), target.stats.get("eva"))) {
+				boolean crit = isCrit(self.stats.get("crit"));
+				DealDamage(raw_damage, crit, target);
+				} else {
+					System.out.println(self.name + " missed!");
+				}
+		}
 		self.actions.remove(0);
-		for(int i = 0; i < current_move.getCooldown(); i++)
-			self.actions.add(self.auto_attack);
 		
 	}
 	
@@ -176,5 +186,15 @@ public abstract class Combat {
 			e.printStackTrace();
 		}
 	}
-	
+
+
+	private static void DealDamage(int damage, boolean crit, Fighter target){
+
+		if(crit) {
+			damage *= 2;
+			System.out.println("Critical Hit!!");
+		}
+		System.out.println("delt " + damage + " damage");
+		target.stats.replace("hp", target.stats.get("hp") - damage);
+	}
 };

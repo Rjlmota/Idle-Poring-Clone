@@ -22,12 +22,13 @@ public class Buff extends Skill {
 
 
 	@Override
-	public void useSkill(Fighter self, Fighter target) {
+	public int useSkill(Fighter self, Fighter target) {
 		System.out.println(getName() + "has been used");
 		self.stats.put(this.stat, self.stats.get(stat) + buff);
 		self.current_buffs.add(this);
 		System.out.println(getName() + "'s " + stat + " + " + buff);
-	}	
+		return 0;
+	}
 	
 	public void removeBuff(Fighter self) {
 		self.stats.put(this.stat, self.stats.get(stat) - buff);
