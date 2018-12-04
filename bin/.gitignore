@@ -1,8 +1,21 @@
+<<<<<<< HEAD
 /properties/
 /skills/
 /items/
 /characters/
+=======
+/Main.class
+/characters/
+/combat/
+/items/
+>>>>>>> improv
 /monsters/
 /combat/
 /phase/
+<<<<<<< HEAD
 /pseudointerface/
+=======
+/properties/
+/pseudointerface/
+/skills/
+>>>>>>> improv

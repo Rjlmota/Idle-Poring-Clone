@@ -52,20 +52,7 @@ public abstract class Combat {
 				
 				checkBuffs(order.get(0));
 				Action(order.get(0), order.get(1));
-				/*
-				boolean hit = isHit(order.get(0).stats.get("hit"), order.get(1).stats.get("hit"));
-				if (hit) {
-					boolean crit = isCrit(order.get(0).stats.get("crit"));
-					int damage = getDamage(order.get(0).stats.get("atk"), order.get(1).stats.get("def"), crit);
-					order.get(1).stats.replace("hp", order.get(1).stats.get("hp") - damage);
-					CombatInterface.showDamage(order.get(0).name, damage, crit);
 
-				}else {
-					
-					System.out.println(order.get(0).name + " missed!");
-					
-				}
-				*/
 				
 				order.add(order.get(0));
 				order.remove(0);
@@ -114,30 +101,30 @@ public abstract class Combat {
 		return false;
 	}
 	
-	private static int getDamage(int atk, int def, boolean crit) {
-		
-		
-		int limit;
-		if (crit)
-			limit = (int)(2*atk);
-		else
-			limit = (int)(2*atk - def*1.5);
-
-		if (limit <=0)
-			return rnd.nextInt(10);
-		return rnd.nextInt(limit) + (3*limit)/4;
-	}
 
 	
 	
 	private static void Action(Fighter self, Fighter target) {
-		
+
+		int raw_damage;
 		Skill current_move = self.actions.get(0);
 		System.out.println(self.name + " used " + current_move.getName());
-		current_move.useSkill(self, target);
-		
-		if(current_move.getType().equalsIgnoreCase("buff"))
-			current_move.setLastUsage(current_turn);
+		raw_damage = current_move.useSkill(self, target);	
+
+		current_move.setLastUsage(current_turn);
+		if(current_move.getType().equalsIgnoreCase("active")) {
+			for (int i = 0; i < current_move.getCooldown(); i++)
+				self.actions.add(self.auto_attack);
+
+			if (isHit(self.stats.get("hit"), target.stats.get("eva"))) {
+				boolean crit = isCrit(self.stats.get("crit"));
+				DealDamage(raw_damage, crit, target);
+				} else {
+					System.out.println(self.name + " missed!");
+				}
+		}else {
+			self.current_buffs.add((Buff) current_move);
+		}
 		
 		
 		self.actions.remove(0);
@@ -156,8 +143,13 @@ public abstract class Combat {
 	
 	private static void checkBuffs(Fighter self) {
 		ArrayList <Buff> toRemove = new ArrayList<Buff>();
-		for (Buff buff : self.current_buffs) {		
-			if(!buff.isActive(current_turn)) {
+		for (Buff buff : self.current_buffs) {
+			boolean isActive = false;
+			if(current_turn - buff.getLastUsage() <= buff.getDuration())
+				isActive = true;
+			
+			//System.out.println("isActive: " + buff.isActive(current_turn))
+			if(!isActive) {
 				buff.removeBuff(self);
 				//self.current_buffs.remove(buff);
 				toRemove.add(buff);
@@ -175,6 +167,16 @@ public abstract class Combat {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private static void DealDamage(int damage, boolean crit, Fighter target) {
+		if(crit) {
+			damage*= 2;
+			System.out.println("Critical Damage!!!");
+		}
+		target.stats.replace("hp", target.stats.get("hp") - damage);
+		System.out.println("delt " + damage + " damage");
+		
 	}
 	
 };

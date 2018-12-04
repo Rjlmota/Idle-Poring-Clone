@@ -20,6 +20,8 @@ public class Skill {
 	private int cooldown;
 	private int last_usage = -100;
 	private String type;
+	public int turn_used;
+	
 	class Effect {
 		String name;
 		String description;
@@ -48,8 +50,8 @@ public class Skill {
 
 	}
 
-	public void useSkill(Fighter self, Fighter target) {
-
+	public int useSkill(Fighter self, Fighter target) {
+		return 0;
 	}
 
 	public void useSkill(Map<String, Integer> attr) {

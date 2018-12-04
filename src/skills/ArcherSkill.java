@@ -16,7 +16,7 @@ public class ArcherSkill {
 //String name, int buff, int duration, String stat, int cooldown_sec
 	public static Buff generateBuff(String name) {
 		if(name.equalsIgnoreCase("Blessing")) {
-			return new Buff("Blessing", 20, 2, "atk", 5);
+			return new Buff("Blessing", 20, 2, "atk", 8);
 		}
 		
 		return null;
