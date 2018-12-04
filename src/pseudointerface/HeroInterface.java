@@ -26,7 +26,7 @@ public abstract class HeroInterface {
 			do {
 				System.out.print("1-Change Equipments\n2-Refine\n3-Exit\n:> ");
 				op = scan.nextInt();
-			}while (op<1 || op>2);
+			}while (op<1 || op>3);
 			
 			if (op==1) {
 				System.out.print("Which Equipment?\n:> ");
