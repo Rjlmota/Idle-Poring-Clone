@@ -20,6 +20,8 @@ public class Skill {
 	private int cooldown;
 	private int last_usage = -100;
 	private String type;
+	public int turn_used;
+	
 	class Effect {
 		String name;
 		String description;

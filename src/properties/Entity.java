@@ -30,7 +30,7 @@ public abstract class Entity {
 	
 	
 	//String name, int damage, int cooldown_sec, double accuracy, String type
-	public Skill auto_attack = new Active("Auto Attack", 50, 1, 1, "physical");
+	public Skill auto_attack = new Active("Auto Attack", 50, 0, 1, "physical");
 
 	private final String[] index = { "str", "agi", "vit", "int", "dex", "luk", "power" };
     private final String[] ref = {"Weapon", "Helmet", "BodyArmor", "LegArmor", "Gloves", "Boots", "Necklace", "Ring"};

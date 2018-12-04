@@ -41,7 +41,7 @@ public class Fighter {
 			actions.add(skill);
 			for(int i = 0; i < skill.getCooldown(); i++)
 				actions.add(auto_attack);
-		actions.add(skillList.get(skillList.size()-1));
+		//actions.add(skillList.get(skillList.size()-1));
 		}
 		
 		if(skillList.isEmpty()) {

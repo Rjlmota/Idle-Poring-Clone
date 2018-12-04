@@ -9,7 +9,6 @@ public class Buff extends Skill {
 	int buff;
 	String stat;
 	int duration;
-	int turn_used = 0;
 	
 	public Buff(String name, int buff, int duration, String stat, int cooldown_sec) {
 		super(name, cooldown_sec, 1);
@@ -25,8 +24,8 @@ public class Buff extends Skill {
 	public int useSkill(Fighter self, Fighter target) {
 		System.out.println(getName() + "has been used");
 		self.stats.put(this.stat, self.stats.get(stat) + buff);
-		self.current_buffs.add(this);
-		System.out.println(getName() + "'s " + stat + " + " + buff);
+		//self.current_buffs.add(this);
+		System.out.println(self.name + "'s " + stat + " + " + buff);
 		return 0;
 	}
 	
@@ -40,12 +39,8 @@ public class Buff extends Skill {
 		return this.duration;
 	}
 
-	public void setTurnUsed(int x){;
-		this.turn_used = x;
-	}
-
 	public boolean isActive(int current_turn){
-		if(current_turn - turn_used < duration)
+		if(current_turn - this.turn_used < duration)
 			return true;
 		else
 			return false;

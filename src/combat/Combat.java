@@ -133,15 +133,13 @@ public abstract class Combat {
 	private static void Action(Fighter self, Fighter target) {
 
 		int raw_damage;
-
 		Skill current_move = self.actions.get(0);
 		System.out.println(self.name + " used " + current_move.getName());
 		raw_damage = current_move.useSkill(self, target);
 		
-		if(current_move.getType().equalsIgnoreCase("buff"))
-			current_move.setLastUsage(current_turn);
 
-		else {
+		current_move.setLastUsage(current_turn);
+		if(current_move.getType().equalsIgnoreCase("active")) {
 			for (int i = 0; i < current_move.getCooldown(); i++)
 				self.actions.add(self.auto_attack);
 
@@ -151,7 +149,11 @@ public abstract class Combat {
 				} else {
 					System.out.println(self.name + " missed!");
 				}
+		}else {
+			self.current_buffs.add((Buff) current_move);
 		}
+		
+		
 		self.actions.remove(0);
 		
 	}
@@ -166,8 +168,13 @@ public abstract class Combat {
 	
 	private static void checkBuffs(Fighter self) {
 		ArrayList <Buff> toRemove = new ArrayList<Buff>();
-		for (Buff buff : self.current_buffs) {		
-			if(!buff.isActive(current_turn)) {
+		for (Buff buff : self.current_buffs) {
+			boolean isActive = false;
+			if(current_turn - buff.getLastUsage() <= buff.getDuration())
+				isActive = true;
+			
+			//System.out.println("isActive: " + buff.isActive(current_turn))
+			if(!isActive) {
 				buff.removeBuff(self);
 				//self.current_buffs.remove(buff);
 				toRemove.add(buff);
